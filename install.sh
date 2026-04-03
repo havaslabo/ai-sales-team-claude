@@ -1,11 +1,11 @@
 #!/bin/bash
 # ============================================================================
-# AI Sales Team — Claude Code Skills Installer
-# 14 Skills · 5 Agents · 4 Scripts · PDF
+# AI Sales Team — Claude Code スキルインストーラー
+# 14スキル · 5エージェント · スクリプト · PDF対応
 # ============================================================================
 set -e
 
-# Colors
+# カラー定義
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
@@ -16,84 +16,84 @@ NC='\033[0m'
 echo ""
 echo -e "${BLUE}╔══════════════════════════════════════════════════════════════╗${NC}"
 echo -e "${BLUE}║                                                              ║${NC}"
-echo -e "${BLUE}║${NC}   ${CYAN}AI Sales Team — Claude Code Skills${NC}                        ${BLUE}║${NC}"
-echo -e "${BLUE}║${NC}   ${GREEN}14 Skills · 5 Agents · 4 Scripts · PDF${NC}                    ${BLUE}║${NC}"
+echo -e "${BLUE}║${NC}   ${CYAN}AI Sales Team — Claude Code スキル${NC}                         ${BLUE}║${NC}"
+echo -e "${BLUE}║${NC}   ${GREEN}14スキル · 5エージェント · スクリプト · PDF対応${NC}             ${BLUE}║${NC}"
 echo -e "${BLUE}║                                                              ║${NC}"
 echo -e "${BLUE}╚══════════════════════════════════════════════════════════════╝${NC}"
 echo ""
 
 # ---------------------------------------------------------------------------
-# Detect script directory (handle both local and curl | bash)
+# スクリプトのディレクトリを検出（ローカル実行と curl | bash 両対応）
 # ---------------------------------------------------------------------------
-GITHUB_REPO="zubair-trabzada/ai-sales-team-claude"
+GITHUB_REPO="havaslabo/ai-sales-team-claude"
 TEMP_DIR=""
 
 if [ -n "${BASH_SOURCE[0]}" ] && [ "${BASH_SOURCE[0]}" != "bash" ]; then
     SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
     if [ -f "$SCRIPT_DIR/install.sh" ] && [ -d "$SCRIPT_DIR/skills" ]; then
         SOURCE_DIR="$SCRIPT_DIR"
-        echo -e "${GREEN}Installing from local directory:${NC} $SOURCE_DIR"
+        echo -e "${GREEN}ローカルディレクトリからインストールします:${NC} $SOURCE_DIR"
     else
         SCRIPT_DIR=""
     fi
 fi
 
 if [ -z "${SCRIPT_DIR:-}" ] || [ ! -d "${SOURCE_DIR:-}" ]; then
-    echo -e "${YELLOW}Cloning from GitHub...${NC}"
+    echo -e "${YELLOW}GitHub からクローン中...${NC}"
     TEMP_DIR=$(mktemp -d)
     if command -v git &>/dev/null; then
         git clone --depth 1 "https://github.com/$GITHUB_REPO.git" "$TEMP_DIR/repo" 2>/dev/null
         SOURCE_DIR="$TEMP_DIR/repo"
     else
-        echo -e "${RED}Error: git is required for remote installation.${NC}"
-        echo "Install git or run install.sh from a local clone."
+        echo -e "${RED}エラー: git がインストールされていません。${NC}"
+        echo "git をインストールするか、リポジトリをクローンしてから install.sh を実行してください。"
         exit 1
     fi
-    echo -e "${GREEN}Cloned successfully.${NC}"
+    echo -e "${GREEN}クローン完了。${NC}"
 fi
 
 # ---------------------------------------------------------------------------
-# Target directories
+# インストール先ディレクトリ
 # ---------------------------------------------------------------------------
 SKILLS_DIR="$HOME/.claude/skills"
 AGENTS_DIR="$HOME/.claude/agents"
 
 # ---------------------------------------------------------------------------
-# Check for Claude Code
+# Claude Code の確認
 # ---------------------------------------------------------------------------
-echo -e "${BLUE}Checking prerequisites...${NC}"
+echo -e "${BLUE}前提条件を確認しています...${NC}"
 if command -v claude &>/dev/null; then
-    echo -e "  ${GREEN}✓${NC} Claude Code found"
+    echo -e "  ${GREEN}✓${NC} Claude Code が見つかりました"
 else
-    echo -e "  ${YELLOW}⚠${NC} Claude Code CLI not found (skills will still be installed)"
+    echo -e "  ${YELLOW}⚠${NC} Claude Code CLI が見つかりません（スキルはインストールされますが、Claude Code が必要です）"
 fi
 
 # ---------------------------------------------------------------------------
-# Create directories
+# ディレクトリの作成
 # ---------------------------------------------------------------------------
-echo -e "${BLUE}Creating directories...${NC}"
+echo -e "${BLUE}ディレクトリを作成しています...${NC}"
 mkdir -p "$SKILLS_DIR/sales/scripts"
 mkdir -p "$SKILLS_DIR/sales/templates"
-echo -e "  ${GREEN}✓${NC} Skills directory ready"
+echo -e "  ${GREEN}✓${NC} スキルディレクトリ: $SKILLS_DIR"
 
 mkdir -p "$AGENTS_DIR"
-echo -e "  ${GREEN}✓${NC} Agents directory ready"
+echo -e "  ${GREEN}✓${NC} エージェントディレクトリ: $AGENTS_DIR"
 
 # ---------------------------------------------------------------------------
-# Install main skill orchestrator
+# メインスキル（オーケストレーター）のインストール
 # ---------------------------------------------------------------------------
-echo -e "${BLUE}Installing skills...${NC}"
+echo -e "${BLUE}スキルをインストールしています...${NC}"
 
 INSTALL_COUNT=0
 
 if [ -f "$SOURCE_DIR/sales/SKILL.md" ]; then
     cp "$SOURCE_DIR/sales/SKILL.md" "$SKILLS_DIR/sales/SKILL.md"
-    echo -e "  ${GREEN}✓${NC} sales (orchestrator)"
+    echo -e "  ${GREEN}✓${NC} sales（オーケストレーター）"
     INSTALL_COUNT=$((INSTALL_COUNT + 1))
 fi
 
 # ---------------------------------------------------------------------------
-# Install 13 sub-skills
+# 13 サブスキルのインストール
 # ---------------------------------------------------------------------------
 SKILLS=(
     sales-prospect
@@ -118,14 +118,14 @@ for skill in "${SKILLS[@]}"; do
         echo -e "  ${GREEN}✓${NC} $skill"
         INSTALL_COUNT=$((INSTALL_COUNT + 1))
     else
-        echo -e "  ${YELLOW}⚠${NC} $skill (not found in source)"
+        echo -e "  ${YELLOW}⚠${NC} $skill（ソースに見つかりません）"
     fi
 done
 
 # ---------------------------------------------------------------------------
-# Install 5 agents
+# 5 エージェントのインストール
 # ---------------------------------------------------------------------------
-echo -e "${BLUE}Installing agents...${NC}"
+echo -e "${BLUE}エージェントをインストールしています...${NC}"
 
 AGENT_COUNT=0
 AGENTS=(
@@ -142,14 +142,14 @@ for agent in "${AGENTS[@]}"; do
         echo -e "  ${GREEN}✓${NC} $agent"
         AGENT_COUNT=$((AGENT_COUNT + 1))
     else
-        echo -e "  ${YELLOW}⚠${NC} $agent (not found in source)"
+        echo -e "  ${YELLOW}⚠${NC} $agent（ソースに見つかりません）"
     fi
 done
 
 # ---------------------------------------------------------------------------
-# Install Python scripts
+# Python スクリプトのインストール
 # ---------------------------------------------------------------------------
-echo -e "${BLUE}Installing scripts...${NC}"
+echo -e "${BLUE}スクリプトをインストールしています...${NC}"
 
 SCRIPT_COUNT=0
 for script in "$SOURCE_DIR"/scripts/*.py; do
@@ -161,9 +161,9 @@ for script in "$SOURCE_DIR"/scripts/*.py; do
 done
 
 # ---------------------------------------------------------------------------
-# Install templates
+# テンプレートのインストール
 # ---------------------------------------------------------------------------
-echo -e "${BLUE}Installing templates...${NC}"
+echo -e "${BLUE}テンプレートをインストールしています...${NC}"
 
 TEMPLATE_COUNT=0
 for template in "$SOURCE_DIR"/templates/*.md; do
@@ -175,73 +175,150 @@ for template in "$SOURCE_DIR"/templates/*.md; do
 done
 
 # ---------------------------------------------------------------------------
-# Check Python dependencies
+# Python 依存パッケージのインストール
 # ---------------------------------------------------------------------------
-echo -e "${BLUE}Checking Python environment...${NC}"
+echo -e "${BLUE}Python 依存パッケージをインストールしています...${NC}"
 
 if command -v python3 &>/dev/null; then
-    echo -e "  ${GREEN}✓${NC} Python 3 found: $(python3 --version 2>&1)"
-else
-    echo -e "  ${RED}✗${NC} Python 3 not found — required for scripts"
-fi
+    echo -e "  ${GREEN}✓${NC} Python 3 が見つかりました: $(python3 --version 2>&1)"
 
-# Check reportlab
-if python3 -c "import reportlab" 2>/dev/null; then
-    echo -e "  ${GREEN}✓${NC} reportlab installed"
-else
-    echo -e "  ${YELLOW}⚠${NC} reportlab not installed (needed for PDF reports)"
-    echo -e "      Install with: ${CYAN}pip3 install reportlab${NC}"
-fi
+    # pip コマンドを確認
+    PIP_CMD=""
+    if command -v pip3 &>/dev/null; then
+        PIP_CMD="pip3"
+    elif command -v pip &>/dev/null; then
+        PIP_CMD="pip"
+    elif python3 -m pip --version &>/dev/null 2>&1; then
+        PIP_CMD="python3 -m pip"
+    fi
 
-# Check beautifulsoup4
-if python3 -c "import bs4" 2>/dev/null; then
-    echo -e "  ${GREEN}✓${NC} beautifulsoup4 installed"
+    if [ -n "$PIP_CMD" ]; then
+        echo -e "  ${CYAN}reportlab をインストールしています...${NC}"
+        if $PIP_CMD install --quiet reportlab 2>/dev/null; then
+            echo -e "  ${GREEN}✓${NC} reportlab インストール完了"
+        else
+            # --user フラグで再試行
+            if $PIP_CMD install --quiet --user reportlab 2>/dev/null; then
+                echo -e "  ${GREEN}✓${NC} reportlab インストール完了（ユーザー環境）"
+            else
+                echo -e "  ${YELLOW}⚠${NC} reportlab のインストールに失敗しました"
+                echo -e "      手動でインストールしてください: ${CYAN}pip3 install reportlab${NC}"
+            fi
+        fi
+
+        echo -e "  ${CYAN}beautifulsoup4 をインストールしています...${NC}"
+        if $PIP_CMD install --quiet beautifulsoup4 2>/dev/null; then
+            echo -e "  ${GREEN}✓${NC} beautifulsoup4 インストール完了"
+        else
+            if $PIP_CMD install --quiet --user beautifulsoup4 2>/dev/null; then
+                echo -e "  ${GREEN}✓${NC} beautifulsoup4 インストール完了（ユーザー環境）"
+            else
+                echo -e "  ${YELLOW}⚠${NC} beautifulsoup4 のインストールに失敗しました"
+            fi
+        fi
+
+        echo -e "  ${CYAN}requests をインストールしています...${NC}"
+        if $PIP_CMD install --quiet requests 2>/dev/null; then
+            echo -e "  ${GREEN}✓${NC} requests インストール完了"
+        else
+            if $PIP_CMD install --quiet --user requests 2>/dev/null; then
+                echo -e "  ${GREEN}✓${NC} requests インストール完了（ユーザー環境）"
+            else
+                echo -e "  ${YELLOW}⚠${NC} requests のインストールに失敗しました"
+            fi
+        fi
+    else
+        echo -e "  ${YELLOW}⚠${NC} pip が見つかりません。手動でインストールしてください:"
+        echo -e "      ${CYAN}pip3 install reportlab beautifulsoup4 requests${NC}"
+    fi
 else
-    echo -e "  ${YELLOW}⚠${NC} beautifulsoup4 not installed (optional, enhances parsing)"
-    echo -e "      Install with: ${CYAN}pip3 install beautifulsoup4${NC}"
+    echo -e "  ${YELLOW}⚠${NC} Python 3 が見つかりません"
+    echo -e "      PDF レポート機能を使用するには Python 3 が必要です"
+    echo -e "      インストール: ${CYAN}https://www.python.org/downloads/${NC}"
 fi
 
 # ---------------------------------------------------------------------------
-# Cleanup temp dir if used
+# 日本語フォントの確認
+# ---------------------------------------------------------------------------
+echo -e "${BLUE}日本語フォントを確認しています...${NC}"
+
+FONT_OK=false
+
+# reportlab の CID フォント（内蔵）を確認
+if python3 -c "from reportlab.pdfbase.cidfonts import UnicodeCIDFont; from reportlab.pdfbase import pdfmetrics; pdfmetrics.registerFont(UnicodeCIDFont('HeiseiKakuGo-W5'))" 2>/dev/null; then
+    echo -e "  ${GREEN}✓${NC} 日本語フォント（reportlab 内蔵 CID フォント）が利用可能です"
+    FONT_OK=true
+fi
+
+# システムフォントの確認
+if [ "$FONT_OK" = false ]; then
+    FONT_PATHS=(
+        "/System/Library/Fonts/ヒラギノ角ゴシック W3.ttc"
+        "/Library/Fonts/NotoSansCJKjp-Regular.otf"
+        "/usr/share/fonts/opentype/noto/NotoSansCJKjp-Regular.otf"
+        "/usr/share/fonts/opentype/ipafont-gothic/ipag.ttf"
+        "C:/Windows/Fonts/meiryo.ttc"
+    )
+    for font_path in "${FONT_PATHS[@]}"; do
+        if [ -f "$font_path" ]; then
+            echo -e "  ${GREEN}✓${NC} 日本語フォントが見つかりました: $font_path"
+            FONT_OK=true
+            break
+        fi
+    done
+fi
+
+if [ "$FONT_OK" = false ]; then
+    echo -e "  ${YELLOW}⚠${NC} 日本語フォントが見つかりませんでした"
+    echo -e "      PDF レポートで日本語が文字化けする場合は以下でインストールしてください:"
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        echo -e "      macOS:  ${CYAN}brew install font-noto-sans-cjk-japanese${NC}"
+    else
+        echo -e "      Linux:  ${CYAN}sudo apt install fonts-noto-cjk${NC}  または  ${CYAN}sudo yum install google-noto-sans-cjk-ttc-fonts${NC}"
+    fi
+fi
+
+# ---------------------------------------------------------------------------
+# 一時ディレクトリのクリーンアップ
 # ---------------------------------------------------------------------------
 if [ -n "$TEMP_DIR" ] && [ -d "$TEMP_DIR" ]; then
     rm -rf "$TEMP_DIR"
-    echo -e "  ${GREEN}✓${NC} Cleaned up temporary files"
+    echo -e "  ${GREEN}✓${NC} 一時ファイルをクリーンアップしました"
 fi
 
 # ---------------------------------------------------------------------------
-# Summary
+# インストール完了サマリー
 # ---------------------------------------------------------------------------
 echo ""
 echo -e "${GREEN}╔══════════════════════════════════════════════════════════════╗${NC}"
-echo -e "${GREEN}║  Installation Complete!                                      ║${NC}"
+echo -e "${GREEN}║  インストール完了！                                          ║${NC}"
 echo -e "${GREEN}╚══════════════════════════════════════════════════════════════╝${NC}"
 echo ""
-echo -e "  ${CYAN}Skills:${NC}    $INSTALL_COUNT installed  →  $SKILLS_DIR"
-echo -e "  ${CYAN}Agents:${NC}    $AGENT_COUNT installed  →  $AGENTS_DIR"
-echo -e "  ${CYAN}Scripts:${NC}   $SCRIPT_COUNT installed  →  $SKILLS_DIR/sales/scripts"
-echo -e "  ${CYAN}Templates:${NC} $TEMPLATE_COUNT installed  →  $SKILLS_DIR/sales/templates"
+echo -e "  ${CYAN}スキル:${NC}         $INSTALL_COUNT 件  →  $SKILLS_DIR"
+echo -e "  ${CYAN}エージェント:${NC}   $AGENT_COUNT 件  →  $AGENTS_DIR"
+echo -e "  ${CYAN}スクリプト:${NC}     $SCRIPT_COUNT 件  →  $SKILLS_DIR/sales/scripts"
+echo -e "  ${CYAN}テンプレート:${NC}   $TEMPLATE_COUNT 件  →  $SKILLS_DIR/sales/templates"
 echo ""
 
 # ---------------------------------------------------------------------------
-# Command reference
+# コマンドリファレンス
 # ---------------------------------------------------------------------------
-echo -e "${BLUE}Command Reference:${NC}"
+echo -e "${BLUE}コマンドリファレンス:${NC}"
 echo ""
-echo -e "  ${CYAN}/sales prospect <url>${NC}          Full prospect analysis (5 agents)"
-echo -e "  ${CYAN}/sales quick <url>${NC}             60-second prospect snapshot"
-echo -e "  ${CYAN}/sales research <url>${NC}          Deep company research"
-echo -e "  ${CYAN}/sales qualify <url>${NC}           BANT + MEDDIC lead scoring"
-echo -e "  ${CYAN}/sales contacts <url>${NC}          Find decision makers"
-echo -e "  ${CYAN}/sales outreach <prospect>${NC}     Generate outreach sequences"
-echo -e "  ${CYAN}/sales followup <prospect>${NC}     Create follow-up sequences"
-echo -e "  ${CYAN}/sales prep <url>${NC}              Meeting preparation brief"
-echo -e "  ${CYAN}/sales proposal <client>${NC}       Client proposal generation"
-echo -e "  ${CYAN}/sales objections <topic>${NC}      Objection handling playbook"
-echo -e "  ${CYAN}/sales icp <description>${NC}       Ideal Customer Profile builder"
-echo -e "  ${CYAN}/sales competitors <url>${NC}       Competitive intelligence"
-echo -e "  ${CYAN}/sales report${NC}                  Sales pipeline report (Markdown)"
-echo -e "  ${CYAN}/sales report-pdf${NC}              Sales pipeline report (PDF)"
+echo -e "  ${CYAN}/sales prospect <url>${NC}          完全な見込み客分析（5エージェント並列）"
+echo -e "  ${CYAN}/sales quick <url>${NC}             60秒でのクイックスナップショット"
+echo -e "  ${CYAN}/sales research <url>${NC}          企業リサーチ＆ファーモグラフィクス"
+echo -e "  ${CYAN}/sales qualify <url>${NC}           リード評価（BANT + MEDDIC）"
+echo -e "  ${CYAN}/sales contacts <url>${NC}          意思決定者の特定"
+echo -e "  ${CYAN}/sales outreach <prospect>${NC}     アウトリーチシーケンスの生成"
+echo -e "  ${CYAN}/sales followup <prospect>${NC}     フォローアップシーケンスの作成"
+echo -e "  ${CYAN}/sales prep <url>${NC}              商談準備ブリーフ"
+echo -e "  ${CYAN}/sales proposal <client>${NC}       クライアント提案書の生成"
+echo -e "  ${CYAN}/sales objections <topic>${NC}      反論対応プレイブック"
+echo -e "  ${CYAN}/sales icp <description>${NC}       理想顧客プロファイル（ICP）の作成"
+echo -e "  ${CYAN}/sales competitors <url>${NC}       競合インテリジェンス"
+echo -e "  ${CYAN}/sales report${NC}                  営業パイプラインレポート（Markdown）"
+echo -e "  ${CYAN}/sales report-pdf${NC}              営業パイプラインレポート（PDF）"
 echo ""
-echo -e "  ${YELLOW}Tip:${NC} Start with ${CYAN}/sales prospect <url>${NC} for a full analysis!"
+echo -e "  ${YELLOW}ヒント:${NC} まずは ${CYAN}/sales prospect <url>${NC} で完全分析を試してみましょう！"
 echo ""
