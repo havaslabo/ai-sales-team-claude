@@ -3,78 +3,76 @@
 </p>
 
 <p align="center">
-  <a href="#quick-start"><img src="https://img.shields.io/badge/install-one--liner-blue?style=for-the-badge" alt="Install"></a>
-  <a href="#commands"><img src="https://img.shields.io/badge/14_skills-ready-8b5cf6?style=for-the-badge" alt="14 Skills"></a>
-  <a href="#how-it-works"><img src="https://img.shields.io/badge/5_parallel-agents-22c55e?style=for-the-badge" alt="5 Agents"></a>
+  <a href="#クイックスタート"><img src="https://img.shields.io/badge/install-ワンライナー-blue?style=for-the-badge" alt="Install"></a>
+  <a href="#コマンド一覧"><img src="https://img.shields.io/badge/22_スキル-ready-8b5cf6?style=for-the-badge" alt="22 Skills"></a>
+  <a href="#仕組み"><img src="https://img.shields.io/badge/5_並列-エージェント-22c55e?style=for-the-badge" alt="5 Agents"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-gray?style=for-the-badge" alt="MIT License"></a>
 </p>
 
-> **Your AI-powered sales team, running inside Claude Code.**
-> Research any company, qualify leads with BANT + MEDDIC, map the buying committee, generate personalized outreach, prepare for meetings, and produce professional PDF pipeline reports — all from the command line.
+> **日本BtoB営業に特化した AI 営業チームが、Claude Code の中で動きます。**
+> 企業リサーチ、リード評価（BANT + MEDDIC + 稟議対応）、意思決定者の特定、パーソナライズされたアウトリーチ生成、商談準備、稟議支援パッケージ、見積書生成、PDF パイプラインレポートまで — すべてコマンドライン一行から。
 
 ---
 
-## What This Does
+## できること
 
-Type a command in Claude Code and get instant, actionable sales intelligence:
+Claude Code でコマンドを打つだけで、即座に使える営業インテリジェンスが得られます。
 
 ```
-> /sales prospect https://acme.com
+> /sales prospect https://example-company.co.jp
 
-Launching 5 parallel agents...
-  ✓ Company Research & Firmographics    — Fit Score: 82/100
-  ✓ Decision Maker Identification       — 4 contacts found
-  ✓ Opportunity Assessment (BANT)       — Score: 78/100
-  ✓ Competitive Intelligence            — 3 competitors mapped
-  ✓ Outreach Strategy & Messaging       — 5-email sequence ready
+5つの並列エージェントを起動中...
+  ✓ 企業リサーチ＆ファーモグラフィクス    — 適合スコア: 82/100
+  ✓ 意思決定者の特定                      — 4名の担当者を発見
+  ✓ 機会評価（BANT + 稟議対応）           — スコア: 78/100
+  ✓ 競合インテリジェンス                  — 3社の競合をマッピング
+  ✓ アウトリーチ戦略＆メッセージング      — 5通のメールシーケンス完成
 
 ┌─────────────────────────────────────────────────┐
 │  PROSPECT SCORE                                 │
 │                                                 │
 │  ██████████████████████████████████░░░░  85/100  │
 │                                                 │
-│  Grade: A  —  Strong Prospect                   │
-│  Action: Invest significant effort              │
+│  グレード: A  —  有望見込み客                   │
+│  アクション: 多大な投資に値する                 │
 └─────────────────────────────────────────────────┘
 
-Full analysis saved to PROSPECT-ANALYSIS.md
+詳細分析を PROSPECT-ANALYSIS.md に保存しました
 ```
 
 ---
 
-## Quick Start
+## クイックスタート
 
-### One-Command Install
+### ワンコマンドインストール
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/zubair-trabzada/ai-sales-team-claude/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/havaslabo/ai-sales-team-claude/main/install.sh | bash
 ```
 
-### Manual Install
+### マニュアルインストール
 
 ```bash
-git clone https://github.com/zubair-trabzada/ai-sales-team-claude.git
+git clone https://github.com/havaslabo/ai-sales-team-claude.git
 cd ai-sales-team-claude
 ./install.sh
 ```
 
-### Optional: PDF Reports & Enhanced Parsing
-
-```bash
-pip install -r requirements.txt
-```
+> Python 依存パッケージ（reportlab・beautifulsoup4・requests）はインストーラーが自動でインストールします。
 
 <details>
-<summary><strong>What the installer does</strong></summary>
+<summary><strong>インストーラーの実行内容</strong></summary>
 
 ```
-╔══════════════════════════════════════════════════════════╗
-║  AI Sales Team — Claude Code Skills                     ║
-║  14 Skills · 5 Agents · 4 Scripts · PDF                 ║
-╚══════════════════════════════════════════════════════════╝
+╔══════════════════════════════════════════════════════════════╗
+║                                                              ║
+║   AI Sales Team — Claude Code スキル                         ║
+║   22スキル · 5エージェント · スクリプト · PDF対応            ║
+║                                                              ║
+╚══════════════════════════════════════════════════════════════╝
 
-Installing skills...
-  ✓ sales (orchestrator)
+スキルをインストールしています...
+  ✓ sales（オーケストレーター）
   ✓ sales-prospect
   ✓ sales-research
   ✓ sales-qualify
@@ -88,384 +86,456 @@ Installing skills...
   ✓ sales-competitors
   ✓ sales-report
   ✓ sales-report-pdf
+  ✓ sales-ringi
+  ✓ sales-security-qa
+  ✓ sales-event-followup
+  ✓ sales-poc
+  ✓ sales-minutes
+  ✓ sales-channel
+  ✓ sales-quote
+  ✓ sales-renewal
 
-Installing agents...
+エージェントをインストールしています...
   ✓ sales-company
   ✓ sales-contacts
   ✓ sales-opportunity
   ✓ sales-competitive
   ✓ sales-strategy
 
-Installing scripts...
-  ✓ analyze_prospect.py
-  ✓ lead_scorer.py
-  ✓ contact_finder.py
-  ✓ generate_pdf_report.py
+Python 依存パッケージをインストールしています...
+  ✓ reportlab インストール完了
+  ✓ beautifulsoup4 インストール完了
+  ✓ requests インストール完了
 
-Installing templates...
-  ✓ outreach-cold.md
-  ✓ outreach-warm.md
-  ✓ outreach-referral.md
-  ✓ meeting-prep.md
-  ✓ proposal-template.md
-  ✓ objection-playbook.md
+日本語フォントを確認しています...
+  ✓ 日本語フォント（reportlab 内蔵 CID フォント）が利用可能です
 ```
 
 </details>
 
 ---
 
-## Commands
+## コマンド一覧
 
-| Command | Description | Output |
-|:--------|:------------|:-------|
-| `/sales prospect <url>` | Full prospect audit — **5 parallel agents** | `PROSPECT-ANALYSIS.md` |
-| `/sales quick <url>` | 60-second prospect snapshot | Terminal output |
-| `/sales research <url>` | Company research & firmographics | `COMPANY-RESEARCH.md` |
-| `/sales qualify <url>` | BANT + MEDDIC lead scoring | `LEAD-QUALIFICATION.md` |
-| `/sales contacts <url>` | Decision maker identification | `DECISION-MAKERS.md` |
-| `/sales outreach <prospect>` | Cold outreach email sequence | `OUTREACH-SEQUENCE.md` |
-| `/sales followup <prospect>` | Follow-up email sequence | `FOLLOWUP-SEQUENCE.md` |
-| `/sales prep <url>` | Meeting preparation brief | `MEETING-PREP.md` |
-| `/sales proposal <client>` | Client proposal generator | `CLIENT-PROPOSAL.md` |
-| `/sales objections <topic>` | Objection handling playbook | `OBJECTION-PLAYBOOK.md` |
-| `/sales icp <description>` | Ideal Customer Profile builder | `IDEAL-CUSTOMER-PROFILE.md` |
-| `/sales competitors <url>` | Competitive intelligence | `COMPETITIVE-INTEL.md` |
-| `/sales report` | Pipeline report (Markdown) | `SALES-REPORT.md` |
-| `/sales report-pdf` | Pipeline report (PDF) | `SALES-REPORT-*.pdf` |
+### 見込み客開拓・分析
+
+| コマンド | 説明 | 出力ファイル |
+|:--------|:-----|:-----------|
+| `/sales prospect <url>` | 完全見込み客監査 — **5つの並列エージェント** | `PROSPECT-ANALYSIS.md` |
+| `/sales quick <url>` | 60秒での見込み客スナップショット | ターミナル出力 |
+| `/sales research <url>` | 企業リサーチ＆ファーモグラフィクス | `COMPANY-RESEARCH.md` |
+| `/sales qualify <url>` | リード評価（BANT + MEDDIC） | `LEAD-QUALIFICATION.md` |
+| `/sales contacts <url>` | 意思決定者の特定 | `DECISION-MAKERS.md` |
+| `/sales icp <description>` | 理想顧客プロファイル（ICP）作成 | `IDEAL-CUSTOMER-PROFILE.md` |
+| `/sales competitors <url>` | 競合インテリジェンス | `COMPETITIVE-INTEL.md` |
+
+### アウトリーチ・コミュニケーション
+
+| コマンド | 説明 | 出力ファイル |
+|:--------|:-----|:-----------|
+| `/sales outreach <prospect>` | コールドアウトリーチメールシーケンス | `OUTREACH-SEQUENCE.md` |
+| `/sales followup <prospect>` | フォローアップメールシーケンス | `FOLLOWUP-SEQUENCE.md` |
+| `/sales event-followup <展示会名> <会社名>` | 展示会・セミナー後フォローアップ | `EVENT-FOLLOWUP-[会社名].md` |
+
+### 商談・提案
+
+| コマンド | 説明 | 出力ファイル |
+|:--------|:-----|:-----------|
+| `/sales prep <url>` | 商談準備ブリーフ | `MEETING-PREP.md` |
+| `/sales minutes <company>` | 商談議事録・確認メール生成 | `MEETING-MINUTES-[会社名]-[日付].md` |
+| `/sales proposal <client>` | クライアント提案書生成 | `CLIENT-PROPOSAL.md` |
+| `/sales poc <company>` | PoC（試験導入）提案書生成 | `POC-PROPOSAL-[会社名].md` |
+| `/sales quote <company>` | 日本形式の見積書生成（インボイス対応） | `QUOTE-[会社名]-[日付].md` |
+| `/sales objections <topic>` | 反論対応プレイブック | `OBJECTION-PLAYBOOK.md` |
+
+### 日本市場特化スキル
+
+| コマンド | 説明 | 出力ファイル |
+|:--------|:-----|:-----------|
+| `/sales ringi <prospect>` | 稟議支援パッケージ生成（稟議書・FAQ・比較表） | `RINGI-SUPPORT.md` |
+| `/sales security-qa <company>` | 情報セキュリティ質問票対応支援 | `SECURITY-QA-[会社名].md` |
+| `/sales channel <partner>` | 代理店・SIer・パートナー経由営業支援 | `CHANNEL-STRATEGY-[パートナー名].md` |
+| `/sales renewal <company>` | 契約更新・アップセル・カスタマーサクセス支援 | `RENEWAL-PROPOSAL-[会社名].md` |
+
+### レポート
+
+| コマンド | 説明 | 出力ファイル |
+|:--------|:-----|:-----------|
+| `/sales report` | 営業パイプラインレポート（Markdown） | `SALES-REPORT.md` |
+| `/sales report-pdf` | 営業パイプラインレポート（PDF） | `SALES-REPORT-*.pdf` |
 
 ---
 
-## How It Works
+## 仕組み
 
-### Architecture
+### アーキテクチャ
 
-The system uses a three-layer architecture — one orchestrator skill routes commands to 13 sub-skills, with the flagship `/sales prospect` command launching 5 specialized agents in parallel:
+3層アーキテクチャで構成されています — 1つのオーケストレータースキルが22のサブスキルにコマンドをルーティングし、フラッグシップコマンド `/sales prospect` は5つの専門エージェントを並列起動します。
 
 ```
                          ┌──────────────────────────┐
                          │     /sales prospect       │
-                         │      (Orchestrator)       │
+                         │    （オーケストレーター）  │
                          └────────────┬─────────────┘
                                       │
                     ┌─────────────────┼─────────────────┐
                     ▼                 ▼                  ▼
           ┌─────────────┐   ┌─────────────────┐   ┌──────────────┐
-          │   PHASE 1    │   │     PHASE 2      │   │   PHASE 3    │
-          │  Discovery   │   │ Parallel Analysis │   │  Synthesis   │
+          │  フェーズ1   │   │    フェーズ2     │   │  フェーズ3   │
+          │  情報収集   │   │   並列分析       │   │  総合評価    │
           └──────┬──────┘   └────────┬──────────┘   └──────┬───────┘
                  │                   │                      │
                  ▼                   ▼                      ▼
           ┌─────────────┐   ┌───────────────┐       ┌──────────────┐
-          │ Fetch site   │   │ 5 agents run  │       │ Aggregate    │
-          │ Extract data │   │ simultaneously│       │ Score (0-100)│
-          │ Detect type  │   │               │       │ Action plan  │
-          │ Run scripts  │   │               │       │ First email  │
+          │ サイト取得  │   │ 5エージェント  │       │ 集計スコア   │
+          │ データ抽出  │   │ 同時実行       │       │ (0-100)      │
+          │ 業種判定    │   │               │       │ アクション   │
           └─────────────┘   └───────┬───────┘       └──────────────┘
                                     │
                  ┌──────────────────┼──────────────────┐
                  │                  │                   │
         ┌────────────────┐  ┌──────────────┐  ┌───────────────┐
         │ ┌────────────┐ │  │ ┌──────────┐ │  │ ┌───────────┐ │
-        │ │  Company   │ │  │ │ Contacts │ │  │ │Opportunity│ │
-        │ │  Research  │ │  │ │  Finder  │ │  │ │  Scoring  │ │
-        │ │            │ │  │ │          │ │  │ │           │ │
-        │ │ Fit: 25%   │ │  │ │Access:20%│ │  │ │Quality:20%│ │
+        │ │  企業      │ │  │ │ 担当者   │ │  │ │ 機会      │ │
+        │ │  リサーチ  │ │  │ │ 特定     │ │  │ │ 評価      │ │
+        │ │ 適合度:25% │ │  │ │ 接触:20% │ │  │ │ 質:20%    │ │
         │ └────────────┘ │  │ └──────────┘ │  │ └───────────┘ │
         └────────────────┘  └──────────────┘  └───────────────┘
         ┌────────────────┐  ┌──────────────┐
         │ ┌────────────┐ │  │ ┌──────────┐ │
-        │ │Competitive │ │  │ │ Outreach │ │
-        │ │  Analysis  │ │  │ │ Strategy │ │
-        │ │            │ │  │ │          │ │
-        │ │Position:15%│ │  │ │Ready: 20%│ │
+        │ │  競合      │ │  │ │ 戦略     │ │
+        │ │  分析      │ │  │ │ 立案     │ │
+        │ │ 位置:15%   │ │  │ │ 準備:20% │ │
         │ └────────────┘ │  │ └──────────┘ │
         └────────────────┘  └──────────────┘
 ```
 
-### Cross-Skill Integration
+### クロススキル連携
 
-Skills automatically detect and build on each other's output:
+スキルは自動的に互いの出力を検出し、連携して動作します。
 
 ```
 /sales prospect  ──►  PROSPECT-ANALYSIS.md
                             │
        ┌────────────────────┼────────────────────┐
        ▼                    ▼                     ▼
-/sales outreach      /sales prep           /sales proposal
- (uses contacts,     (uses all prior       (uses qualification,
-  research data)      analysis data)        competitive intel)
+/sales outreach      /sales prep           /sales ringi
+ (リサーチ・担当者   (全分析データを       (提案書・PoC
+  データを活用)       統合活用)             内容を基に稟議)
        │                    │                     │
        ▼                    ▼                     ▼
-  OUTREACH-              MEETING-              CLIENT-
-  SEQUENCE.md            PREP.md               PROPOSAL.md
+  OUTREACH-              MEETING-              RINGI-
+  SEQUENCE.md            PREP.md               SUPPORT.md
 ```
 
 ---
 
-## Prospect Scoring
+## 見込み客スコアリング
 
-Every prospect gets a **weighted composite score (0-100)** calculated from 5 dimensions:
+すべての見込み客は **5つの次元から算出した加重複合スコア（0〜100）** を取得します。
 
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
 │                                                                     │
-│   PROSPECT SCORE FORMULA                                            │
+│   PROSPECT SCORE 計算式                                             │
 │                                                                     │
-│   Company Fit ............ 25%   ████████████░░░░░░░░  Size,        │
-│                                                        industry,    │
-│                                                        growth       │
+│   企業適合度 ............. 25%   ████████████░░░░░░░░  規模、業界、 │
+│                                                        成長、予算   │
 │                                                                     │
-│   Contact Access ......... 20%   █████████░░░░░░░░░░░  Decision     │
-│                                                        makers,      │
-│                                                        warm paths   │
+│   コンタクトアクセス ..... 20%   █████████░░░░░░░░░░░  意思決定者、 │
+│                                                        紹介経路     │
 │                                                                     │
-│   Opportunity Quality .... 20%   █████████░░░░░░░░░░░  BANT score,  │
-│                                                        pain points  │
+│   機会の質 ............... 20%   █████████░░░░░░░░░░░  BANT、      │
+│                                                        ペインポイント│
 │                                                                     │
-│   Competitive Position ... 15%   ███████░░░░░░░░░░░░░  Current      │
-│                                                        solutions,   │
-│                                                        switching    │
+│   競合ポジション ......... 15%   ███████░░░░░░░░░░░░░  現行ソリューション、│
+│                                                        スイッチコスト│
 │                                                                     │
-│   Outreach Readiness ..... 20%   █████████░░░░░░░░░░░  Channels,    │
-│                                                        messaging,   │
-│                                                        anchors      │
+│   アウトリーチ準備度 ..... 20%   █████████░░░░░░░░░░░  チャネル、   │
+│                                                        メッセージング│
 │                                                                     │
 └─────────────────────────────────────────────────────────────────────┘
 ```
 
-### Grade Interpretation
+### グレード解釈基準
 
 ```
-  Score    Grade    Action
- ───────────────────────────────────────────────────────────
-  90-100    A+      🔥  Hot Lead — prioritize immediately
-  75-89     A       ✅  Strong Prospect — invest significant effort
-  60-74     B       📊  Qualified Lead — pursue with standard approach
-  40-59     C       🔄  Lukewarm — nurture, don't hard sell
-   0-39     D       ⏸️   Poor Fit — deprioritize or disqualify
+  スコア   グレード   アクション
+ ───────────────────────────────────────────────────────
+  90-100    A+      ホットリード — 即座に優先対応
+  75-89     A       有望見込み客 — 多大な投資に値する
+  60-74     B       評価済みリード — 標準アプローチで追求
+  40-59     C       ウォームリード — ナーチャリング、強引な営業はしない
+   0-39     D       適合度低 — 優先度を下げるか不適格とする
 ```
 
-### Qualification Frameworks
+### 評価フレームワーク
 
 <details>
-<summary><strong>BANT Scoring (0-100)</strong></summary>
+<summary><strong>BANT スコアリング（0〜100）</strong></summary>
 
-Each dimension scored 0-25 from publicly available signals:
+公開情報から各次元を 0〜25 でスコアリングします。
 
-| Dimension | Max | Signals |
-|-----------|-----|---------|
-| **Budget** | 25 | Funding, employee count, pricing pages, tech spend |
-| **Authority** | 25 | Decision makers found, C-suite identified, org chart |
-| **Need** | 25 | Pain points, job posts, reviews, competitor gaps |
-| **Timeline** | 25 | Recent funding, hiring, contract cycles, urgency |
+| 次元 | 最大 | 評価シグナル |
+|------|------|------------|
+| **Budget（予算）** | 25 | 資本金、従業員数、決算期、IT投資規模 |
+| **Authority（権限）** | 25 | 意思決定者の特定、C-suite、組織図、稟議ライン |
+| **Need（需要）** | 25 | ペインポイント、求人票、クチコミ、競合ギャップ |
+| **Timeline（時期）** | 25 | 決算期、人事異動、予算申請サイクル、緊急度 |
 
 </details>
 
 <details>
-<summary><strong>MEDDIC Assessment (0-100%)</strong></summary>
+<summary><strong>MEDDIC 評価（0〜100%）</strong></summary>
 
-Each dimension assessed for completeness:
+各次元の充足度を評価します。
 
-- **M**etrics — Can we quantify the business impact?
-- **E**conomic Buyer — Who controls the budget?
-- **D**ecision Criteria — How will they evaluate solutions?
-- **D**ecision Process — What's their buying process?
-- **I**dentify Pain — Are pain points confirmed?
-- **C**hampion — Is there an internal advocate?
+- **M**etrics — ビジネスインパクトを数値化できるか？
+- **E**conomic Buyer — 予算を握る意思決定者は誰か？
+- **D**ecision Criteria — どのように評価・選定するか？
+- **D**ecision Process — 稟議プロセス・購買フローはどうなっているか？
+- **I**dentify Pain — ペインポイントは確認されているか？
+- **C**hampion — 社内推進者（チャンピオン）はいるか？
+
+</details>
+
+<details>
+<summary><strong>日本市場向けスコア調整要素</strong></summary>
+
+| 要素 | 内容 | スコア影響 |
+|------|------|-----------|
+| 上場区分 | 東証プライム上場 → 予算規模・稟議プロセスが明確 | +5点 |
+| グループ企業 | 親会社の承認が必要な場合 → タイムラインが長くなる | -5点（Timeline軸） |
+| 決算期 | 3月決算（4月年度始まり）→ 10〜12月が予算申請の好機 | 時期によって加点/減点 |
+| 資本金規模 | 3億円以上 → 中堅〜大企業として予算容量あり | 企業適合度に反映 |
+| 老舗企業 | 設立50年以上 → 保守的な意思決定・変更リスクが高い | -5点（機会の質） |
 
 </details>
 
 ---
 
-## Examples
+## 使用例
 
-### Full Prospect Audit
-
-```
-> /sales prospect https://stripe.com
-
-Phase 1: Discovering company information...
-  ✓ Homepage fetched — SaaS / Fintech detected
-  ✓ 6 subpages extracted (about, team, pricing, careers, blog, contact)
-  ✓ analyze_prospect.py — 23 data points extracted
-
-Phase 2: Running parallel analysis (5 agents)...
-  ✓ Company Research      — Fit Score: 88/100
-  ✓ Contact Discovery     — 6 decision makers found
-  ✓ Opportunity Scoring   — BANT: 82/100
-  ✓ Competitive Intel     — 4 competitors mapped
-  ✓ Outreach Strategy     — 5-email sequence drafted
-
-Phase 3: Synthesizing results...
-  ✓ Prospect Score: 85/100 (Grade A)
-  ✓ Top contact: [CTO] — strong technical champion signal
-  ✓ Opening angle: recent Series D + engineering hiring surge
-
-Output: PROSPECT-ANALYSIS.md
-```
-
-### Lead Qualification
+### 完全見込み客分析
 
 ```
-> /sales qualify https://notion.so
+> /sales prospect https://example-tech.co.jp
 
-Analyzing notion.so for lead qualification...
+フェーズ1: 企業情報を収集中...
+  ✓ ホームページ取得完了 — SaaS / IT サービス 検出
+  ✓ 6ページ抽出（会社概要、製品、採用、ニュース、問い合わせ）
+  ✓ 23のデータポイントを抽出
 
-  BANT Score: 78/100 (Grade A)
+フェーズ2: 並列分析実行中（5エージェント）...
+  ✓ 企業リサーチ        — 適合スコア: 88/100
+  ✓ 担当者特定          — 6名の意思決定者を発見
+  ✓ 機会評価            — BANT: 82/100
+  ✓ 競合インテリジェンス — 4社の競合をマッピング
+  ✓ アウトリーチ戦略    — 5通のメールシーケンス完成
+
+フェーズ3: 結果を統合中...
+  ✓ Prospect Score: 85/100（グレード A）
+  ✓ トップコンタクト: [情報システム部長] — 社内推進者シグナルあり
+  ✓ アプローチ角度: 直近の採用拡大 + ERPリプレイスの検討シグナル
+
+出力: PROSPECT-ANALYSIS.md
+```
+
+### リード評価
+
+```
+> /sales qualify https://example-mfg.co.jp
+
+example-mfg.co.jp のリード評価を実施中...
+
+  BANTスコア: 78/100（グレード A）
   ┌────────────────────────────────────┐
-  │ Budget:    ██████████████████░░ 22  │
-  │ Authority: ████████████████░░░░ 18  │
-  │ Need:      ██████████████████░░ 20  │
-  │ Timeline:  ████████████████░░░░ 18  │
+  │ 予算:      ██████████████████░░ 22  │
+  │ 権限:      ████████████████░░░░ 18  │
+  │ 需要:      ██████████████████░░ 20  │
+  │ 時期:      ████████████████░░░░ 18  │
   └────────────────────────────────────┘
-  MEDDIC Completeness: 72%
+  MEDDIC 充足度: 72%
 
-Action: Schedule discovery call — high-priority prospect.
-Output: LEAD-QUALIFICATION.md
+アクション: 初回アポを設定 — 高優先度の見込み客。
+出力: LEAD-QUALIFICATION.md
 ```
 
-### Outreach Generation
+### 稟議支援パッケージ生成
 
 ```
-> /sales outreach "Linear"
+> /sales ringi "株式会社サンプル製造"
 
-Generating outreach sequence for Linear...
-  Type: Cold outreach (5-email sequence)
-  Framework: Observation → Connection → Ask
-  Personalized for: Engineering-focused B2B SaaS
+稟議支援パッケージを生成中...
+  ✓ エグゼクティブサマリー（1ページ）
+  ✓ よくある質問（FAQ）と回答集
+  ✓ 競合他社との比較表（3社対比）
+  ✓ 導入スケジュール案（3ヶ月〜6ヶ月）
+  ✓ 稟議書文面（コピペ可）
 
-  Email 1: "Quick question about [specific pain point]"    Day 1
-  Email 2: "Saw your team's post about [trigger event]"    Day 3
-  Email 3: "[Mutual connection] suggested I reach out"     Day 7
-  Email 4: "3 ideas for [specific challenge]"              Day 14
-  Email 5: "Should I close the file?"                      Day 21
-
-Output: OUTREACH-SEQUENCE.md
+出力: RINGI-SUPPORT.md
 ```
 
-### Meeting Prep
+### 商談後の議事録生成
 
 ```
-> /sales prep https://datadog.com
+> /sales minutes "株式会社サンプル"
 
-Generating meeting brief for datadog.com...
-  ┌────────────────────────────────────────────┐
-  │  MEETING PREP BRIEF                        │
-  │                                            │
-  │  Company:       Datadog                    │
-  │  Attendees:     3 profiled                 │
-  │  Talking Points: 7 prepared                │
-  │  Discovery Qs:  10 ready                   │
-  │  Objections:    5 with responses           │
-  │  Cheat Sheet:   1 page                     │
-  └────────────────────────────────────────────┘
+商談議事録を生成中...
+  ✓ 顧客送付用 確認メール（です・ます調）
+  ✓ 社内保存用 議事録（詳細・TODO付き）
 
-Output: MEETING-PREP.md
+出力: MEETING-MINUTES-株式会社サンプル-2026-04-03.md
 ```
 
 ---
 
-## Project Structure
+## 推奨ワークフロー（日本BtoB営業）
+
+### 新規開拓の場合
+
+```bash
+/sales icp "自社サービスの説明"          # ICP定義（初回のみ）
+/sales prospect https://example.co.jp    # 完全分析
+/sales event-followup 展示会名 会社名    # 展示会後（または）
+/sales outreach "会社名"                  # アウトリーチ
+/sales prep https://example.co.jp        # 商談準備
+/sales minutes "会社名"                  # 商談後の議事録
+/sales poc "会社名"                      # PoC提案（必要な場合）
+/sales ringi "会社名"                    # 稟議支援資料
+/sales security-qa "会社名"              # セキュリティ質問票（必要な場合）
+/sales quote "会社名"                    # 見積書
+/sales proposal "会社名"                 # 提案書
+```
+
+### 既存顧客の更新・拡大の場合
+
+```bash
+/sales renewal "会社名"                  # 更新商談準備
+/sales minutes "会社名"                  # 商談後の議事録
+/sales quote "会社名"                    # 更新見積書
+```
+
+### 代理店経由の場合
+
+```bash
+/sales channel "パートナー名"            # パートナー向け提案
+/sales ringi "会社名"                    # エンドユーザーの稟議支援
+```
+
+---
+
+## プロジェクト構成
 
 ```
 ai-sales-team-claude/
 │
-├── sales/SKILL.md                     ← Main orchestrator (routes all /sales commands)
+├── sales/SKILL.md                        ← メインオーケストレーター（全 /sales コマンドのルーティング）
 │
-├── skills/                            ← 13 sub-skills
-│   ├── sales-prospect/SKILL.md           Full prospect audit (launches 5 agents)
-│   ├── sales-research/SKILL.md           Company research & firmographics
-│   ├── sales-qualify/SKILL.md            Lead qualification (BANT + MEDDIC)
-│   ├── sales-contacts/SKILL.md           Decision maker identification
-│   ├── sales-outreach/SKILL.md           Cold outreach email sequences
-│   ├── sales-followup/SKILL.md           Follow-up email generation
-│   ├── sales-prep/SKILL.md               Meeting preparation brief
-│   ├── sales-proposal/SKILL.md           Client proposal generator
-│   ├── sales-objections/SKILL.md         Objection handling playbook
-│   ├── sales-icp/SKILL.md                Ideal Customer Profile builder
-│   ├── sales-competitors/SKILL.md        Competitive intelligence
-│   ├── sales-report/SKILL.md             Pipeline report (Markdown)
-│   └── sales-report-pdf/SKILL.md         Pipeline report (PDF)
+├── skills/                               ← 21 サブスキル
+│   ├── sales-prospect/SKILL.md              完全見込み客監査（5エージェントを起動）
+│   ├── sales-research/SKILL.md              企業リサーチ＆ファーモグラフィクス
+│   ├── sales-qualify/SKILL.md               リード評価（BANT + MEDDIC）
+│   ├── sales-contacts/SKILL.md              意思決定者の特定
+│   ├── sales-outreach/SKILL.md              コールドアウトリーチシーケンス
+│   ├── sales-followup/SKILL.md              フォローアップメール生成
+│   ├── sales-prep/SKILL.md                  商談準備ブリーフ
+│   ├── sales-proposal/SKILL.md              クライアント提案書生成
+│   ├── sales-objections/SKILL.md            反論対応プレイブック
+│   ├── sales-icp/SKILL.md                   理想顧客プロファイル（ICP）作成
+│   ├── sales-competitors/SKILL.md           競合インテリジェンス
+│   ├── sales-report/SKILL.md                パイプラインレポート（Markdown）
+│   ├── sales-report-pdf/SKILL.md            パイプラインレポート（PDF）
+│   ├── sales-ringi/SKILL.md                 稟議支援パッケージ生成
+│   ├── sales-security-qa/SKILL.md           情報セキュリティ質問票対応
+│   ├── sales-event-followup/SKILL.md        展示会・セミナー後フォローアップ
+│   ├── sales-poc/SKILL.md                   PoC（試験導入）提案書生成
+│   ├── sales-minutes/SKILL.md               商談議事録・確認メール生成
+│   ├── sales-channel/SKILL.md               代理店・SIer・パートナー営業支援
+│   ├── sales-quote/SKILL.md                 日本形式見積書（インボイス対応）
+│   └── sales-renewal/SKILL.md               契約更新・アップセル支援
 │
-├── agents/                            ← 5 parallel subagents
-│   ├── sales-company.md                  Company fit & firmographics (25%)
-│   ├── sales-contacts.md                 Decision maker mapping (20%)
-│   ├── sales-opportunity.md              Opportunity & BANT scoring (20%)
-│   ├── sales-competitive.md              Competitive positioning (15%)
-│   └── sales-strategy.md                 Outreach strategy & messaging (20%)
+├── agents/                               ← 5つの並列サブエージェント
+│   ├── sales-company.md                     企業適合度＆ファーモグラフィクス（25%）
+│   ├── sales-contacts.md                    意思決定者マッピング（20%）
+│   ├── sales-opportunity.md                 機会評価＆BANTスコアリング（20%）
+│   ├── sales-competitive.md                 競合ポジショニング（15%）
+│   └── sales-strategy.md                    アウトリーチ戦略＆メッセージング（20%）
 │
-├── scripts/                           ← Python utilities
-│   ├── analyze_prospect.py               Website scraping & data extraction
-│   ├── lead_scorer.py                    BANT/MEDDIC scoring engine
-│   ├── contact_finder.py                 Team & leadership extraction
-│   └── generate_pdf_report.py            ReportLab PDF generator
+├── scripts/                              ← Python ユーティリティ
+│   ├── analyze_prospect.py                  ウェブスクレイピング＆データ抽出
+│   ├── lead_scorer.py                       BANT/MEDDIC スコアリングエンジン
+│   ├── contact_finder.py                    チーム＆リーダーシップ抽出
+│   └── generate_pdf_report.py               ReportLab PDF ジェネレーター（日本語対応）
 │
-├── templates/                         ← Output templates
-│   ├── outreach-cold.md                  5-email cold sequence
-│   ├── outreach-warm.md                  3-email warm intro sequence
-│   ├── outreach-referral.md              3-email referral sequence
-│   ├── meeting-prep.md                   Meeting prep brief
-│   ├── proposal-template.md              11-section client proposal
-│   └── objection-playbook.md             15 universal objections
+├── templates/                            ← 出力テンプレート
+│   ├── outreach-cold.md                     5通のコールドシーケンス
+│   ├── outreach-warm.md                     3通のウォームイントロシーケンス
+│   ├── outreach-referral.md                 3通の紹介シーケンス
+│   ├── meeting-prep.md                      商談準備ブリーフ
+│   ├── proposal-template.md                 11セクションのクライアント提案書
+│   ├── objection-playbook.md                反論対応プレイブック
+│   ├── event-followup.md                    展示会フォローアップ3通
+│   ├── poc-proposal.md                      PoC提案書テンプレート
+│   ├── meeting-minutes.md                   商談議事録テンプレート
+│   └── quote-template.md                    日本形式見積書（インボイス対応）
 │
-├── install.sh                         ← One-command installer
-├── uninstall.sh                       ← Cleanup script
-├── requirements.txt                   ← Python deps (reportlab, bs4, requests)
-└── LICENSE                            ← MIT
+├── install.sh                            ← ワンコマンドインストーラー（Python依存も自動インストール）
+├── uninstall.sh                          ← クリーンアップスクリプト
+└── LICENSE                               ← MIT
 ```
 
 ---
 
-## Use Cases
+## 活用シーン
 
 <table>
 <tr>
 <td width="33%">
 
-### Founders & Solopreneurs
+### 営業担当者・営業チーム
 
 ```bash
-# Full prospect intelligence
-/sales prospect https://target.com
+# インバウンドリードを評価
+/sales qualify https://lead.co.jp
 
-# Ready-to-send email sequence
-/sales outreach "Target Company"
+# 稟議サポートを一括生成
+/sales ringi "株式会社〇〇"
 
-# Prep before the call
-/sales prep https://target.com
+# 商談後の議事録を即生成
+/sales minutes "株式会社〇〇"
 ```
 
 </td>
 <td width="33%">
 
-### Sales Teams
+### スタートアップ・ファウンダー
 
 ```bash
-# Qualify inbound leads
-/sales qualify https://lead.com
+# 完全な見込み客インテリジェンス
+/sales prospect https://target.co.jp
 
-# Map the buying committee
-/sales contacts https://lead.com
+# 展示会後のフォロー一括生成
+/sales event-followup Japan IT Week 株式会社〇〇
 
-# Handle pricing objections
-/sales objections "enterprise SaaS"
+# 見積書をすぐ生成
+/sales quote "株式会社〇〇"
 ```
 
 </td>
 <td width="33%">
 
-### Agency Owners
+### 代理店・パートナーセールス
 
 ```bash
-# Client proposal with pricing
-/sales proposal "Client Name"
+# パートナー向け戦略を生成
+/sales channel "〇〇商社"
 
-# Competitive positioning
-/sales competitors https://client.com
+# エンドユーザーの稟議を支援
+/sales ringi "エンドユーザー企業名"
 
-# Define ideal customer
-/sales icp "B2B SaaS, 50-200 emp"
+# 競合ポジショニング
+/sales competitors https://client.co.jp
 ```
 
 </td>
@@ -474,35 +544,35 @@ ai-sales-team-claude/
 
 ---
 
-## Requirements
+## 動作要件
 
-| Requirement | Status | Notes |
-|:------------|:------:|:------|
-| **Claude Code** | Required | [Install Claude Code](https://docs.anthropic.com/en/docs/claude-code) |
-| **Python 3.8+** | Optional | For scripts and PDF generation |
-| **reportlab** | Optional | `pip install reportlab` — PDF reports |
-| **beautifulsoup4** | Optional | `pip install beautifulsoup4` — enhanced parsing |
-| **requests** | Optional | `pip install requests` — fallback URL fetching |
+| 要件 | 状態 | 備考 |
+|:-----|:----:|:----|
+| **Claude Code** | 必須 | [Claude Code をインストール](https://docs.anthropic.com/en/docs/claude-code) |
+| **Python 3.8+** | 任意 | スクリプト・PDF生成に必要（インストーラーが自動確認） |
+| **reportlab** | 任意 | PDF レポート生成（インストーラーが自動インストール） |
+| **beautifulsoup4** | 任意 | 拡張パース機能（インストーラーが自動インストール） |
+| **requests** | 任意 | URL フェッチのフォールバック（インストーラーが自動インストール） |
 
 ---
 
-## Uninstall
+## アンインストール
 
 ```bash
-# From the repo directory
+# リポジトリディレクトリから
 ./uninstall.sh
 
-# Or remotely
-curl -fsSL https://raw.githubusercontent.com/zubair-trabzada/ai-sales-team-claude/main/uninstall.sh | bash
+# リモートから
+curl -fsSL https://raw.githubusercontent.com/havaslabo/ai-sales-team-claude/main/uninstall.sh | bash
 ```
 
-Removes all skills, agents, scripts, and templates from `~/.claude/`. Python packages are not removed.
+`~/.claude/` からすべてのスキル・エージェント・スクリプト・テンプレートを削除します。Python パッケージは削除されません。
 
 ---
 
 <p align="center">
-  <strong>MIT License</strong> · Copyright (c) 2026 Zubair Trabzada
+  <strong>MIT License</strong> · Copyright (c) 2026 Havaslabo
   <br><br>
-  <a href="https://github.com/zubair-trabzada/ai-sales-team-claude/issues">Report Bug</a> ·
-  <a href="https://github.com/zubair-trabzada/ai-sales-team-claude/issues">Request Feature</a>
+  <a href="https://github.com/havaslabo/ai-sales-team-claude/issues">バグを報告する</a> ·
+  <a href="https://github.com/havaslabo/ai-sales-team-claude/issues">機能をリクエストする</a>
 </p>
