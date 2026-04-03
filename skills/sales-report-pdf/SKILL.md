@@ -1,64 +1,64 @@
-# Professional Sales Report PDF Generator
+# プロフェッショナル営業レポート PDF 生成
 
-## Metadata
-- **Title:** Professional Sales Report PDF Generator
-- **Invocation:** `/sales report-pdf`
-- **Input:** None (reads SALES-REPORT.md and prospect files from current directory)
-- **Output:** `SALES-REPORT-{YYYY-MM-DD}.pdf` written to the current working directory
-- **Dependencies:** Python 3, `reportlab` library, `scripts/generate_pdf_report.py`
-
----
-
-## Purpose
-
-You generate a professional, visually polished PDF version of the sales pipeline report. The PDF is designed for sharing with sales leadership, investors, or team members who need a clean, portable document rather than a markdown file. It includes charts, formatted tables, color-coded scores, and a professional layout.
+## メタデータ
+- **タイトル:** プロフェッショナル営業レポート PDF 生成
+- **呼び出し方:** `/sales report-pdf`
+- **入力:** なし（カレントディレクトリの SALES-REPORT.md と見込み客ファイルを読み込みます）
+- **出力:** カレントディレクトリに `SALES-REPORT-{YYYY-MM-DD}.pdf` を生成します
+- **依存関係:** Python 3、`reportlab` ライブラリ、`scripts/generate_pdf_report.py`
 
 ---
 
-## Instructions
+## 目的
 
-When the user invokes `/sales report-pdf`, follow this process:
+営業パイプラインレポートのプロフェッショナルで見栄えのする PDF 版を生成します。この PDF は、Markdown ファイルではなくクリーンで持ち運び可能なドキュメントを必要とする営業リーダー・投資家・チームメンバーへの共有を目的としています。グラフ・フォーマット済みテーブル・カラーコードスコア・プロフェッショナルなレイアウトが含まれます。
 
-### Step 1: Verify Prerequisites
+---
 
-Check that `SALES-REPORT.md` exists in the current working directory.
+## 指示
 
-**If SALES-REPORT.md does NOT exist:**
-- Inform the user: "No SALES-REPORT.md found. Run `/sales report` first to generate the pipeline report, then run `/sales report-pdf` to create the PDF version."
-- Stop execution.
+ユーザーが `/sales report-pdf` を呼び出したら、以下のプロセスに従ってください。
 
-**If SALES-REPORT.md exists:**
-- Read its contents
-- Also scan for individual prospect analysis files (`**/PROSPECT-ANALYSIS.md`, `**/COMPANY-RESEARCH.md`, etc.) to enrich the PDF with additional detail
+### ステップ1: 前提条件の確認
 
-### Step 2: Check for reportlab
+カレントディレクトリに `SALES-REPORT.md` が存在するか確認してください。
 
-Verify that the `reportlab` Python library is available by running:
+**SALES-REPORT.md が存在しない場合:**
+- ユーザーに通知してください：「SALES-REPORT.md が見つかりませんでした。まず `/sales report` を実行してパイプラインレポートを生成し、その後 `/sales report-pdf` を実行して PDF 版を作成してください。」
+- 処理を停止してください。
+
+**SALES-REPORT.md が存在する場合:**
+- 内容を読み込んでください。
+- 個別の見込み客分析ファイル（`**/PROSPECT-ANALYSIS.md`、`**/COMPANY-RESEARCH.md` 等）もスキャンし、PDF に追加情報を反映させてください。
+
+### ステップ2: reportlab の確認
+
+以下を実行して `reportlab` Python ライブラリが利用可能か確認してください。
 ```bash
 python3 -c "import reportlab; print(reportlab.Version)"
 ```
 
-**If reportlab is NOT installed:**
-- Inform the user: "The `reportlab` Python library is required for PDF generation. Install it with: `pip install reportlab`"
-- Offer to run the install command for them: `pip install reportlab`
-- After installation, continue with PDF generation
+**reportlab がインストールされていない場合:**
+- ユーザーに通知してください：「PDF 生成には `reportlab` Python ライブラリが必要です。次のコマンドでインストールしてください：`pip install reportlab`」
+- インストールコマンドを代わりに実行するか確認してください：`pip install reportlab`
+- インストール完了後、PDF 生成を続行してください。
 
-**If Python 3 is NOT available:**
-- Inform the user: "Python 3 is required for PDF generation. Please install Python 3 and the reportlab library."
-- Stop execution.
+**Python 3 が利用できない場合:**
+- ユーザーに通知してください：「PDF 生成には Python 3 が必要です。Python 3 と reportlab ライブラリをインストールしてください。」
+- 処理を停止してください。
 
-### Step 3: Parse Report Data
+### ステップ3: レポートデータの解析
 
-Extract the following data from `SALES-REPORT.md` and any prospect analysis files:
+`SALES-REPORT.md` および見込み客分析ファイルから以下のデータを抽出してください。
 
-#### Pipeline Overview Data
-- Report generation date
-- Total number of prospects
-- Average pipeline score (0-100)
-- Overall pipeline health assessment
+#### パイプライン概要データ
+- レポート生成日
+- 見込み客総数
+- パイプライン平均スコア（0〜100）
+- パイプライン全体の健全性評価
 
-#### Prospect Data Array
-For each prospect, extract into a structured object:
+#### 見込み客データ配列
+各見込み客について以下の構造でデータを抽出してください。
 ```json
 {
   "name": "Company Name",
@@ -81,16 +81,16 @@ For each prospect, extract into a structured object:
 }
 ```
 
-#### Top Prospects Data
-For the top 5 prospects, extract detailed data including:
-- Full component score breakdown
-- Key contacts with titles
-- Pain points with severity
-- Recommended approach
-- Risk factors
+#### トップ見込み客データ
+上位5社について以下の詳細データを抽出してください。
+- 構成スコアの詳細内訳
+- 役職を含む主要コンタクト
+- 深刻度を含む課題
+- 推奨アプローチ
+- リスク要因
 
-#### Action Items
-Extract the prioritized action list:
+#### アクションアイテム
+優先順位付きアクションリストを抽出してください。
 ```json
 [
   {
@@ -103,7 +103,7 @@ Extract the prioritized action list:
 ]
 ```
 
-#### Pipeline Health Metrics
+#### パイプライン健全性指標
 ```json
 {
   "total_prospects": 10,
@@ -122,16 +122,16 @@ Extract the prioritized action list:
 }
 ```
 
-### Step 4: Build JSON Input File
+### ステップ4: JSON 入力ファイルの作成
 
-Write a JSON file at `_pdf_input.json` in the current working directory containing all extracted data:
+カレントディレクトリの `_pdf_input.json` に抽出したすべてのデータを含む JSON ファイルを書き込んでください。
 
 ```json
 {
-  "title": "Sales Pipeline Report",
+  "title": "営業パイプラインレポート",
   "date": "2025-01-15",
   "overall_pipeline_score": 72,
-  "health_rating": "Good",
+  "health_rating": "良好",
   "total_prospects": 10,
   "prospects": [
     {
@@ -139,7 +139,7 @@ Write a JSON file at `_pdf_input.json` in the current working directory containi
       "url": "...",
       "score": 85,
       "grade": "A",
-      "stage": "Qualified",
+      "stage": "資格認定済み",
       "next_action": "...",
       "est_value": "...",
       "component_scores": { ... },
@@ -163,8 +163,8 @@ Write a JSON file at `_pdf_input.json` in the current working directory containi
       "rank": 1,
       "company": "Acme Corp",
       "score": 92,
-      "reason": "Highest score with active trigger event",
-      "actions": ["Send intro email", "Connect on LinkedIn", "Schedule demo"]
+      "reason": "最高スコア、かつアクティブなトリガーイベントあり",
+      "actions": ["VPエンジニアリング宛に紹介メールを送信", "LinkedInで接続", "デモをスケジュール"]
     }
   ],
   "methodology": {
@@ -177,145 +177,145 @@ Write a JSON file at `_pdf_input.json` in the current working directory containi
 }
 ```
 
-### Step 5: Locate or Create the PDF Generation Script
+### ステップ5: PDF 生成スクリプトの確認
 
-Check if the PDF generation script exists at `scripts/generate_pdf_report.py` relative to the project root.
+プロジェクトルートの `scripts/generate_pdf_report.py` に PDF 生成スクリプトが存在するか確認してください。
 
-**Finding the project root:** Look for the `scripts/` directory in these locations (in order):
-1. The ai-sales-team-claude project directory (where the agents/ and skills/ folders are)
-2. The current working directory
-3. One level up from the current working directory
+**プロジェクトルートの検索順序:** 以下の場所を順番に確認してください。
+1. ai-sales-team-claude プロジェクトディレクトリ（agents/ および skills/ フォルダがある場所）
+2. カレントディレクトリ
+3. カレントディレクトリの一つ上のディレクトリ
 
-**If the script does NOT exist:**
-- Inform the user: "The PDF generation script was not found at `scripts/generate_pdf_report.py`. This script is part of the AI Sales Team project setup. Please ensure the project is properly installed."
-- Stop execution.
+**スクリプトが存在しない場合:**
+- ユーザーに通知してください：「PDF 生成スクリプトが `scripts/generate_pdf_report.py` に見つかりませんでした。このスクリプトは AI Sales Team プロジェクトのセットアップの一部です。プロジェクトが正しくインストールされているか確認してください。」
+- 処理を停止してください。
 
-**If the script exists:**
-- Proceed to execution.
+**スクリプトが存在する場合:**
+- 実行に進んでください。
 
-### Step 6: Generate the PDF
+### ステップ6: PDF の生成
 
-Run the PDF generation script:
+PDF 生成スクリプトを実行してください。
 
 ```bash
 python3 scripts/generate_pdf_report.py _pdf_input.json "SALES-REPORT-$(date +%Y-%m-%d).pdf"
 ```
 
-The script should produce a PDF with these sections:
+スクリプトは以下のセクションを含む PDF を生成します。
 
-#### PDF Section 1: Cover Page
-- Title: "Sales Pipeline Report"
-- Date of generation
-- Overall Pipeline Score displayed as a large circular gauge (0-100)
-- Pipeline health rating with color indicator
-- Quick stats: total prospects, average score, top grade count
+#### PDF セクション1: 表紙
+- タイトル：「営業パイプラインレポート」
+- 生成日
+- 大きな円形ゲージで表示される総合パイプラインスコア（0〜100）
+- カラーインジケータ付きパイプライン健全性評価
+- クイック統計：見込み客総数、平均スコア、トップグレード件数
 
-#### PDF Section 2: Score Breakdown
-- Horizontal bar chart showing score distribution by grade band
-- Color coded: A+ = dark green, A = green, B = blue, C = orange, D = red
-- Each bar labeled with count and percentage
+#### PDF セクション2: スコア内訳
+- グレード帯別スコア分布の横棒グラフ
+- カラーコード：A+ = 濃い緑、A = 緑、B = 青、C = オレンジ、D = 赤
+- 件数とパーセンテージのラベル付き
 
-#### PDF Section 3: Prospect Comparison Table
-- Full table of all prospects with columns: Rank, Company, Score, Grade, Stage, Next Action, Est. Value
-- Alternating row colors for readability
-- Grade column color-coded
-- Sorted by score descending
+#### PDF セクション3: 見込み客比較テーブル
+- 全見込み客の一覧テーブル（列：順位、企業名、スコア、グレード、ステージ、次のアクション、推定規模）
+- 読みやすさのための交互行カラー
+- グレード列のカラーコード
+- スコア降順でソート
 
-#### PDF Section 4: Top Prospects Detail
-- One page (or half-page) per top prospect
-- Component score radar chart or bar chart
-- Key contacts listed
-- Pain points and approach summary
-- Risk factors highlighted
+#### PDF セクション4: トップ見込み客詳細
+- トップ見込み客ごとに1ページ（または半ページ）
+- 構成スコアのレーダーチャートまたは棒グラフ
+- 主要コンタクトのリスト
+- 課題とアプローチのサマリー
+- リスク要因のハイライト
 
-#### PDF Section 5: Action Plan
-- Prioritized action items in a numbered list
-- Grouped by timeframe: Immediate, Short-Term, Pipeline Building
-- Each with company name, specific action, and urgency level
+#### PDF セクション5: アクションプラン
+- 番号付き優先アクションアイテムリスト
+- タイムフレームでグループ化：即時・短期・パイプライン強化
+- 企業名・具体的アクション・緊急度を記載
 
-#### PDF Section 6: Methodology
-- Brief explanation of the scoring methodology
-- Weight breakdown with percentages
-- Grade band definitions
-- Disclaimer that scores are based on publicly available information
+#### PDF セクション6: 評価方法論
+- スコアリング方法論の簡潔な説明
+- パーセンテージ付きウェイト内訳
+- グレード帯の定義
+- スコアが公開情報に基づいている旨の免責事項
 
-### Step 7: Clean Up and Report
+### ステップ7: クリーンアップと報告
 
-After PDF generation:
+PDF 生成後：
 
-1. Verify the PDF file was created and check its file size
-2. Remove the temporary `_pdf_input.json` file
-3. Report to the user:
-   - PDF file name and location
-   - File size
-   - Number of pages
-   - Summary of contents
+1. PDF ファイルが作成されたことを確認し、ファイルサイズを確認してください。
+2. 一時ファイル `_pdf_input.json` を削除してください。
+3. ユーザーに以下を報告してください。
+   - PDF ファイル名と保存場所
+   - ファイルサイズ
+   - ページ数
+   - 内容のサマリー
 
 ---
 
-## Error Handling
+## エラー処理
 
-### reportlab Not Installed
+### reportlab が未インストールの場合
 ```
-The PDF generation requires the reportlab Python library.
-Install it by running: pip install reportlab
+PDF 生成には reportlab Python ライブラリが必要です。
+以下のコマンドでインストールしてください：pip install reportlab
 
-Shall I install it for you?
+インストールを実行しますか？
 ```
 
-### Python Not Available
+### Python が利用できない場合
 ```
-Python 3 is required for PDF generation but was not found.
-Please install Python 3 from https://python.org and then run:
+PDF 生成に必要な Python 3 が見つかりませんでした。
+https://python.org から Python 3 をインストールし、次を実行してください：
   pip install reportlab
 ```
 
-### Script Not Found
+### スクリプトが見つからない場合
 ```
-The PDF generation script was not found at scripts/generate_pdf_report.py.
-This script is part of the AI Sales Team project. Please ensure the project
-directory structure is intact.
-```
-
-### No Report Data
-```
-SALES-REPORT.md was not found in the current directory.
-Run `/sales report` first to generate the pipeline report, then run
-`/sales report-pdf` to create the PDF version.
+PDF 生成スクリプトが scripts/generate_pdf_report.py に見つかりませんでした。
+このスクリプトは AI Sales Team プロジェクトの一部です。プロジェクトの
+ディレクトリ構造が正しいか確認してください。
 ```
 
-### PDF Generation Failed
-If the Python script exits with an error:
-1. Capture the error output
-2. Check for common issues:
-   - Invalid JSON input (malformed data)
-   - File permission errors
-   - Disk space issues
-   - reportlab version incompatibility
-3. Report the specific error to the user with a suggested fix
-4. Keep the `_pdf_input.json` file for debugging (don't delete it on failure)
+### レポートデータがない場合
+```
+SALES-REPORT.md がカレントディレクトリに見つかりませんでした。
+まず `/sales report` を実行してパイプラインレポートを生成し、その後
+`/sales report-pdf` を実行して PDF 版を作成してください。
+```
+
+### PDF 生成が失敗した場合
+Python スクリプトがエラーで終了した場合：
+1. エラー出力を取得してください。
+2. よくある問題を確認してください。
+   - 不正な JSON 入力（不正なデータ形式）
+   - ファイルパーミッションエラー
+   - ディスク容量の問題
+   - reportlab のバージョン非互換
+3. 修正案とともに具体的なエラーをユーザーに報告してください。
+4. デバッグ用に `_pdf_input.json` ファイルを保持してください（失敗時は削除しないこと）。
 
 ---
 
-## Output Specifications
+## 出力仕様
 
-- **File Name:** `SALES-REPORT-{YYYY-MM-DD}.pdf` (using current date)
-- **Page Size:** Letter (8.5" x 11")
-- **Orientation:** Portrait for most pages, landscape for wide tables if needed
-- **Color Scheme:** Professional blues and grays with color-coded score indicators
-- **Font:** Helvetica or similar sans-serif for readability
-- **Margins:** 0.75 inch on all sides
-- **Expected Length:** 4-8 pages depending on number of prospects
+- **ファイル名:** `SALES-REPORT-{YYYY-MM-DD}.pdf`（当日の日付を使用）
+- **ページサイズ:** レター（8.5" x 11"）
+- **向き:** 基本は縦向き、幅広テーブルが必要な場合は横向き
+- **カラースキーム:** プロフェッショナルな青とグレーを基調にカラーコードスコアインジケータを使用
+- **フォント:** 読みやすさのために Helvetica または同様のサンセリフ体
+- **余白:** 全辺 0.75 インチ
+- **想定ページ数:** 見込み客数によって 4〜8 ページ
 
 ---
 
-## Important Rules
+## 重要なルール
 
-1. ALWAYS check for SALES-REPORT.md before attempting PDF generation. Never generate a PDF from scratch without the markdown report.
-2. ALWAYS check for reportlab before running the script. Provide clear installation instructions if missing.
-3. Clean up temporary files (_pdf_input.json) on success. Keep them on failure for debugging.
-4. The JSON input must be valid JSON. Validate it before passing to the script.
-5. If the PDF script fails, provide the full error output to help the user debug.
-6. Never modify the original SALES-REPORT.md file during PDF generation.
-7. Report the final PDF file path, size, and page count to the user after successful generation.
-8. If prospect data is incomplete, still generate the PDF with available data rather than failing. Mark missing data as "N/A" in the PDF.
+1. PDF 生成を試みる前に、必ず SALES-REPORT.md を確認してください。Markdown レポートなしに PDF を一から生成しないでください。
+2. スクリプトを実行する前に、必ず reportlab を確認してください。未インストールの場合は明確なインストール手順を提供してください。
+3. 成功時は一時ファイル（_pdf_input.json）を削除してください。失敗時はデバッグ用に保持してください。
+4. JSON 入力は有効な JSON であること。スクリプトに渡す前にバリデーションを行ってください。
+5. PDF スクリプトが失敗した場合、ユーザーがデバッグできるよう完全なエラー出力を提供してください。
+6. PDF 生成中に元の SALES-REPORT.md ファイルを変更しないでください。
+7. 生成成功後、最終的な PDF ファイルのパス・サイズ・ページ数をユーザーに報告してください。
+8. 見込み客データが不完全な場合でも、利用可能なデータで PDF を生成してください。欠損データは PDF 内で「N/A」と表記してください。

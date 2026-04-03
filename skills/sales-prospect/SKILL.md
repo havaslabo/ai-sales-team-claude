@@ -1,614 +1,613 @@
-# Full Prospect Analysis Orchestrator
+# 完全見込み客分析オーケストレーター
 
-You are the full prospect audit engine for `/sales prospect <url>`. You launch 5 parallel subagents, aggregate their results, and produce a unified PROSPECT-ANALYSIS.md report that is ready-to-use and deal-focused.
+あなたは `/sales prospect <url>` の完全見込み客監査エンジンです。5つの並列サブエージェントを起動し、その結果を集約して、すぐに使用できる商談重視の統合 PROSPECT-ANALYSIS.md レポートを生成します。
 
-## When This Skill Is Invoked
+## このスキルが呼び出されるタイミング
 
-The user runs `/sales prospect <url>`. This is the flagship command of the entire suite. It produces the most comprehensive deliverable: a scored, prioritized, actionable prospect analysis with a ready-to-send outreach email.
+ユーザーが `/sales prospect <url>` を実行したときです。これはスイート全体のフラッグシップコマンドです。スコア付き・優先度付き・実行可能な見込み客分析と、すぐに送信できるアウトリーチメールを含む、最も包括的な成果物を生成します。
 
 ---
 
-## Phase 1: Discovery (Sequential — Pre-Analysis)
+## フェーズ 1：ディスカバリー（順次実行 — 事前分析）
 
-Before launching subagents, perform these discovery steps sequentially. Every subsequent phase depends on this data.
+サブエージェントを起動する前に、以下のディスカバリーステップを順次実行してください。後続のすべてのフェーズはこのデータに依存します。
 
-### 1.1 Fetch the Target URL
+### 1.1 対象 URL の取得
 
-Use `WebFetch` to retrieve the company homepage. Store the full content for subagent consumption.
+`WebFetch` を使用して企業のホームページを取得します。サブエージェントが利用できるようにコンテンツ全体を保存してください。
 
-If the homepage loads successfully, also fetch up to 5 key interior pages:
-- About / Company page
-- Team / Leadership page
-- Pricing page
-- Blog / Resources page
-- Careers / Jobs page
-- Contact page
+ホームページの取得に成功した場合は、以下の主要な内部ページも最大5ページ取得してください：
+- About / Company ページ
+- Team / Leadership ページ
+- Pricing ページ
+- Blog / Resources ページ
+- Careers / Jobs ページ
+- Contact ページ
 
-For each page, store:
-- Page URL
-- Page title
-- Raw content (text)
-- Key data points extracted (names, numbers, product details)
+各ページについて以下を保存してください：
+- ページ URL
+- ページタイトル
+- 生のコンテンツ（テキスト）
+- 抽出したキーデータポイント（名前、数字、製品詳細）
 
-**If the URL is unreachable:**
-1. Report the error to the user: "Could not reach [url] — HTTP [status code]"
-2. Attempt alternate URLs: try with/without www, try https vs http
-3. If still unreachable, suggest the user verify the URL and try again
-4. Do NOT proceed to Phase 2 if zero pages are accessible
+**URL に到達できない場合：**
+1. ユーザーにエラーを報告する：「[url] に到達できませんでした — HTTP [ステータスコード]」
+2. 代替 URL を試みる：www あり／なし、https と http を試す
+3. それでも到達できない場合は、URL を確認して再試行するよう提案する
+4. ページが1つもアクセスできない場合はフェーズ 2 に進まない
 
-### 1.2 Detect Company Type
+### 1.2 企業タイプの検出
 
-Classify the prospect into one of these categories. This classification shapes every subagent's analysis focus and scoring calibration:
+見込み客を以下のカテゴリのいずれかに分類してください。この分類により、各サブエージェントの分析フォーカスとスコアリングの調整が決まります。
 
-| Company Type | Detection Signals | Analysis Focus |
-|--------------|-------------------|----------------|
-| **SaaS/Software** | Free trial CTA, pricing tiers, feature pages, "login" link, API docs, developer documentation, integration marketplace | Tech stack, ARR signals, product-led growth, integration ecosystem, developer team size, churn indicators |
-| **Agency/Services** | Case studies, portfolio, "work with us", client logos, testimonials, service packages, hourly/retainer pricing | Client roster quality, team size, service positioning, retainer vs project pricing, industry specialization |
-| **E-commerce** | Product listings, cart/checkout, product categories, SKU counts, reviews, shipping info, return policy | Product catalog size, traffic signals, tech platform (Shopify, WooCommerce), revenue estimates, fulfillment model |
-| **Enterprise** | Large employee count (500+), multiple office locations, compliance pages, procurement portal, partner ecosystem | Org structure, procurement process, budget cycles, compliance needs, vendor requirements, multi-stakeholder buying |
-| **SMB** | Small team (1-50), owner-operator signals, local focus, simple pricing, limited product line | Budget constraints, quick ROI needs, ease of implementation, owner as decision maker, price sensitivity |
-| **Startup** | "Backed by" investor logos, founding year recent, small team growing fast, beta/early access language, Y Combinator/accelerator badges | Funding stage, burn rate signals, growth trajectory, founding team background, product-market fit signals |
+| 企業タイプ | 検出シグナル | 分析フォーカス |
+|------------|------------|--------------|
+| **SaaS/Software** | 無料トライアル CTA、料金体系、機能ページ、「ログイン」リンク、API ドキュメント、開発者向けドキュメント、インテグレーションマーケットプレイス | テックスタック、ARRシグナル、プロダクトレッドグロース、インテグレーションエコシステム、開発チーム規模、チャーン指標 |
+| **Agency/Services** | ケーススタディ、ポートフォリオ、「work with us」、クライアントロゴ、推薦文、サービスパッケージ、時間単位／リテーナー料金 | クライアントリストの質、チーム規模、サービスポジショニング、リテーナー対プロジェクト料金、業界特化 |
+| **E-commerce** | 商品一覧、カート／チェックアウト、商品カテゴリ、SKU数、レビュー、配送情報、返品ポリシー | 商品カタログ規模、トラフィックシグナル、テックプラットフォーム（Shopify、WooCommerce）、売上推定、フルフィルメントモデル |
+| **Enterprise** | 従業員数が多い（500名以上）、複数のオフィス拠点、コンプライアンスページ、調達ポータル、パートナーエコシステム | 組織構造、調達プロセス、予算サイクル、コンプライアンス要件、ベンダー要件、マルチステークホルダー購買 |
+| **SMB** | 少人数チーム（1〜50名）、オーナーオペレーターシグナル、ローカル重視、シンプルな料金体系、限定的な製品ライン | 予算制約、即効性の高い ROI ニーズ、導入の容易さ、オーナーが意思決定者、価格感度 |
+| **Startup** | 「Backed by」投資家ロゴ、直近の設立年、急成長中の小チーム、ベータ／早期アクセスの表現、Y Combinator／アクセラレーターバッジ | 資金調達ステージ、バーンレートシグナル、成長軌道、創業チームの経歴、プロダクトマーケットフィットシグナル |
 
-**Detection procedure:**
-1. Scan homepage for signals from each category
-2. Check careers page for employee count and hiring velocity
-3. Check pricing page for pricing model complexity
-4. Look for investor/funding mentions
-5. Assign the best-fit category (if ambiguous, note the two most likely categories)
+**検出手順：**
+1. ホームページで各カテゴリのシグナルをスキャンする
+2. 採用ページで従業員数と採用速度を確認する
+3. 料金ページで料金モデルの複雑さを確認する
+4. 投資家／資金調達の記載を探す
+5. 最も適合するカテゴリを割り当てる（曖昧な場合は最も可能性の高い2カテゴリを記載する）
 
-### 1.3 Extract Key Pages and Site Architecture
+### 1.3 主要ページとサイト構造の抽出
 
-Map the site architecture to identify all pages relevant to sales intelligence:
+サイト構造をマッピングして、営業インテリジェンスに関連するすべてのページを特定してください：
 
-| Page Type | Common URLs | Data to Extract |
-|-----------|-------------|-----------------|
-| **Homepage** | / | Headline, value prop, CTAs, social proof, product positioning |
-| **About** | /about, /company, /about-us | Founding story, mission, team size, locations, history |
-| **Team** | /team, /leadership, /about/team, /people | Names, titles, photos, bios, LinkedIn links |
-| **Pricing** | /pricing, /plans, /packages | Tiers, prices, features per tier, enterprise CTA |
-| **Blog** | /blog, /resources, /insights, /news | Recent topics, posting frequency, content depth |
-| **Careers** | /careers, /jobs, /join-us, /hiring | Open roles, team sizes by department, growth signals |
-| **Contact** | /contact, /get-in-touch, /demo | Contact forms, phone numbers, office addresses |
-| **Products** | /products, /features, /solutions, /platform | Product lines, features, use cases, integrations |
-| **Customers** | /customers, /case-studies, /testimonials | Customer logos, case study details, industry verticals served |
-| **Partners** | /partners, /integrations, /ecosystem | Technology partners, integration depth, ecosystem maturity |
+| ページタイプ | 一般的な URL | 抽出するデータ |
+|------------|------------|--------------|
+| **ホームページ** | / | ヘッドライン、バリュープロポジション、CTA、社会的証明、製品ポジショニング |
+| **About** | /about, /company, /about-us | 創業ストーリー、ミッション、チーム規模、拠点、沿革 |
+| **Team** | /team, /leadership, /about/team, /people | 名前、役職、写真、プロフィール、LinkedIn リンク |
+| **Pricing** | /pricing, /plans, /packages | 料金体系、価格、各プランの機能、エンタープライズ向け CTA |
+| **Blog** | /blog, /resources, /insights, /news | 最近のトピック、投稿頻度、コンテンツの深さ |
+| **Careers** | /careers, /jobs, /join-us, /hiring | 募集ポジション、部門別チーム規模、成長シグナル |
+| **Contact** | /contact, /get-in-touch, /demo | お問い合わせフォーム、電話番号、オフィス住所 |
+| **Products** | /products, /features, /solutions, /platform | 製品ライン、機能、ユースケース、インテグレーション |
+| **Customers** | /customers, /case-studies, /testimonials | 顧客ロゴ、ケーススタディ詳細、対応業界 |
+| **Partners** | /partners, /integrations, /ecosystem | テクノロジーパートナー、インテグレーションの深さ、エコシステムの成熟度 |
 
-### 1.4 Identify Industry Vertical
+### 1.4 業界バーティカルの特定
 
-Determine the prospect's primary industry vertical from these categories:
+以下のカテゴリから見込み客の主要業界バーティカルを判断してください：
 
-- Technology / Software
-- Financial Services / Fintech
-- Healthcare / Healthtech
-- Education / Edtech
-- E-commerce / Retail
-- Manufacturing / Industrial
-- Media / Entertainment
-- Real Estate / Proptech
-- Professional Services / Consulting
-- Marketing / Advertising
-- Logistics / Supply Chain
-- Energy / Cleantech
-- Food / Hospitality
-- Non-profit / Government
-- Other (specify)
+- テクノロジー / ソフトウェア
+- 金融サービス / Fintech
+- ヘルスケア / Healthtech
+- 教育 / Edtech
+- E-commerce / 小売
+- 製造業 / 産業
+- メディア / エンターテインメント
+- 不動産 / Proptech
+- プロフェッショナルサービス / コンサルティング
+- マーケティング / 広告
+- 物流 / サプライチェーン
+- エネルギー / Cleantech
+- 食品 / ホスピタリティ
+- 非営利 / 行政
+- その他（具体的に記載）
 
-**Detection signals:** Industry-specific terminology, customer logos, case study industries, job posting requirements, compliance mentions, regulatory references.
+**検出シグナル：** 業界固有の専門用語、顧客ロゴ、ケーススタディの業界、求人要件、コンプライアンスの記載、規制への言及。
 
-### 1.5 Run Structured Data Extraction
+### 1.5 構造化データ抽出の実行
 
-Execute the Python analysis script for machine-readable data extraction:
+機械可読なデータ抽出のために Python 分析スクリプトを実行します：
 
 ```bash
 python3 scripts/analyze_prospect.py --url <url> --output json
 ```
 
-This script extracts:
-- Structured company metadata
-- Technology stack detection
-- Social media profile links
-- Contact information patterns
-- SEO and traffic signals
+このスクリプトが抽出する項目：
+- 構造化された企業メタデータ
+- テックスタックの検出
+- ソーシャルメディアプロフィールリンク
+- 連絡先情報パターン
+- SEO とトラフィックシグナル
 
-**If the script is not available or fails:**
-1. Log the error but continue the analysis
-2. Perform manual extraction using WebFetch data
-3. Note in the report that automated extraction was unavailable
+**スクリプトが利用できないまたは失敗した場合：**
+1. エラーをログに記録しますが、分析は継続します
+2. WebFetch データを使用して手動で抽出を行います
+3. レポートに自動抽出が利用できなかった旨を記載します
 
-### 1.6 Compile Discovery Briefing
+### 1.6 ディスカバリーブリーフィングの作成
 
-Before launching subagents, compile a discovery briefing object containing:
+サブエージェントを起動する前に、以下を含むディスカバリーブリーフィングオブジェクトをまとめてください：
 
 ```
 DISCOVERY BRIEFING
 ==================
-URL: [target url]
-Company Name: [detected name]
+URL: [対象 URL]
+Company Name: [検出した名前]
 Company Type: [SaaS/Agency/E-commerce/Enterprise/SMB/Startup]
-Industry Vertical: [detected vertical]
-Key Pages Found: [list of accessible pages with URLs]
-Homepage Content: [stored content]
-Team Page Content: [stored content or "not found"]
-Pricing Page Content: [stored content or "not found"]
-Blog Content: [stored content or "not found"]
-Careers Content: [stored content or "not found"]
-Script Output: [JSON data or "unavailable"]
-Initial Signals: [key observations from discovery]
+Industry Vertical: [検出したバーティカル]
+Key Pages Found: [アクセス可能なページのリストと URL]
+Homepage Content: [保存したコンテンツ]
+Team Page Content: [保存したコンテンツ または「見つかりません」]
+Pricing Page Content: [保存したコンテンツ または「見つかりません」]
+Blog Content: [保存したコンテンツ または「見つかりません」]
+Careers Content: [保存したコンテンツ または「見つかりません」]
+Script Output: [JSON データ または「利用不可」]
+Initial Signals: [ディスカバリーからの主要な観察結果]
 ```
 
-This briefing is passed to every subagent as context.
+このブリーフィングはすべてのサブエージェントにコンテキストとして渡されます。
 
 ---
 
-## Phase 2: Parallel Analysis (5 Subagents Simultaneously)
+## フェーズ 2：並列分析（5つのサブエージェントを同時実行）
 
-Launch all 5 subagents simultaneously using Claude Code's Task tool. Each subagent receives the full discovery briefing. All subagents run with `subagent_type: "general-purpose"`.
+Claude Code の Task ツールを使用して、5つのサブエージェントをすべて同時に起動してください。各サブエージェントはディスカバリーブリーフィング全体を受け取ります。すべてのサブエージェントは `subagent_type: "general-purpose"` で実行されます。
 
-**CRITICAL:** Launch all 5 in parallel. Do NOT run them sequentially. Each subagent is independent and does not depend on the others.
+**重要：** 5つをすべて並列で起動してください。順次実行は**絶対にしないでください**。各サブエージェントは独立しており、互いに依存関係はありません。
 
-### Subagent 1: sales-company (Company Research & Firmographics)
+### サブエージェント 1：sales-company（企業リサーチ＆ファーモグラフィクス）
 
-**Skill file:** `skills/sales-research/SKILL.md`
-**Weight:** 25% of Prospect Score
-**Focus:** Company research, firmographics, financial signals, growth trajectory
+**スキルファイル：** `skills/sales-research/SKILL.md`
+**ウェイト：** Prospect Score の 25%
+**フォーカス：** 企業リサーチ、ファーモグラフィクス、財務シグナル、成長軌道
 
-**Task prompt must include:**
-- The full discovery briefing
-- Instruction to produce a Company Fit Score (0-100)
-- Instruction to return structured data: company name, founding date, employee count, funding total, revenue estimate, growth rate, tech stack, key strengths, key risks
+**タスクプロンプトに含めること：**
+- ディスカバリーブリーフィング全体
+- Company Fit Score（0-100）を生成する指示
+- 構造化データの返却指示：企業名、設立日、従業員数、資金調達総額、売上推定、成長率、テックスタック、主な強み、主なリスク
 
-**Expected output:** Company Fit Score (0-100) with breakdown across:
-- Size fit (0-20): Is the company the right size for your solution?
-- Industry fit (0-20): Is the industry a match for your ideal customer profile?
-- Growth trajectory (0-20): Is the company growing, stable, or declining?
-- Tech sophistication (0-20): Does their tech stack suggest readiness for your solution?
-- Budget signals (0-20): Are there signals of adequate budget?
+**期待する出力：** 以下の5つのサブ指標での Company Fit Score（0-100）：
+- 規模適合度（0-20）：ソリューションに対して企業規模が適切か？
+- 業界適合度（0-20）：業界は理想顧客プロファイルに合致するか？
+- 成長軌道（0-20）：企業は成長中か、安定しているか、衰退しているか？
+- テック成熟度（0-20）：テックスタックはソリューションへの対応を示唆しているか？
+- 予算シグナル（0-20）：十分な予算のシグナルがあるか？
 
-### Subagent 2: sales-contacts (Decision Maker Intelligence)
+### サブエージェント 2：sales-contacts（意思決定者インテリジェンス）
 
-**Skill file:** `skills/sales-contacts/SKILL.md`
-**Weight:** 20% of Prospect Score
-**Focus:** Decision maker identification, org chart mapping, personalization anchors
+**スキルファイル：** `skills/sales-contacts/SKILL.md`
+**ウェイト：** Prospect Score の 20%
+**フォーカス：** 意思決定者の特定、組織図マッピング、パーソナライゼーションアンカー
 
-**Task prompt must include:**
-- The full discovery briefing
-- Instruction to produce a Contact Access Score (0-100)
-- Instruction to return structured data: buying committee map (name, title, role, personalization anchor), org chart, top 3 priority contacts, multi-threading strategy
+**タスクプロンプトに含めること：**
+- ディスカバリーブリーフィング全体
+- Contact Access Score（0-100）を生成する指示
+- 構造化データの返却指示：購買委員会マップ（名前、役職、ロール、パーソナライゼーションアンカー）、組織図、優先コンタクト上位3名、マルチスレッディング戦略
 
-**Expected output:** Contact Access Score (0-100) with breakdown across:
-- Decision makers identified (0-25): How many key decision makers were found?
-- Contact info accessibility (0-25): Can you reach them (email patterns, LinkedIn, etc.)?
-- Personalization anchors (0-25): Quality of personalization hooks found per contact
-- Warm paths available (0-25): Shared connections, communities, mutual contacts
+**期待する出力：** 以下の4つのサブ指標での Contact Access Score（0-100）：
+- 特定済み意思決定者（0-25）：何名の主要意思決定者が見つかったか？
+- コンタクト情報のアクセス性（0-25）：メールパターン、LinkedIn 等でアプローチできるか？
+- パーソナライゼーションアンカー（0-25）：各コンタクトで見つかったパーソナライゼーションフックの質
+- ウォームパスの有無（0-25）：共通のつながり、コミュニティ、相互コンタクト
 
-### Subagent 3: sales-opportunity (Opportunity & Budget Assessment)
+### サブエージェント 3：sales-opportunity（機会と予算の評価）
 
-**Skill file:** `skills/sales-qualify/SKILL.md`
-**Weight:** 20% of Prospect Score
-**Focus:** Lead qualification (BANT + MEDDIC), pain point detection, budget signals, buying timeline
+**スキルファイル：** `skills/sales-qualify/SKILL.md`
+**ウェイト：** Prospect Score の 20%
+**フォーカス：** リード評価（BANT + MEDDIC）、ペインポイント検出、予算シグナル、購買タイムライン
 
-**Task prompt must include:**
-- The full discovery briefing
-- Instruction to produce an Opportunity Quality Score (0-100)
-- Instruction to return structured data: BANT scorecard, MEDDIC assessment, buying signals, red flags, recommended approach
+**タスクプロンプトに含めること：**
+- ディスカバリーブリーフィング全体
+- Opportunity Quality Score（0-100）を生成する指示
+- 構造化データの返却指示：BANT スコアカード、MEDDIC 評価、購買シグナル、レッドフラグ、推奨アプローチ
 
-**Expected output:** Opportunity Quality Score (0-100) with breakdown across:
-- Budget signals (0-25): Evidence of budget availability
-- Authority mapped (0-25): Clarity on who decides and how
-- Need confirmed (0-25): Strength of pain point evidence
-- Timeline urgency (0-25): Signals of near-term buying intent
+**期待する出力：** 以下の4つのサブ指標での Opportunity Quality Score（0-100）：
+- 予算シグナル（0-25）：予算確保の証拠
+- 決裁権のマッピング（0-25）：誰がどのように決定するかの明確さ
+- ニーズの確認（0-25）：ペインポイント証拠の強さ
+- タイムラインの緊急度（0-25）：近い将来の購買意向のシグナル
 
-### Subagent 4: sales-competitive (Competitive Positioning)
+### サブエージェント 4：sales-competitive（競合ポジショニング）
 
-**Skill file:** `skills/sales-competitors/SKILL.md` (if available) or general-purpose competitive analysis
-**Weight:** 15% of Prospect Score
-**Focus:** Current solutions the prospect uses, switching costs, competitive gaps, positioning strategy
+**スキルファイル：** `skills/sales-competitors/SKILL.md`（利用可能な場合）または汎用競合分析
+**ウェイト：** Prospect Score の 15%
+**フォーカス：** 見込み客が現在使用しているソリューション、スイッチングコスト、競合ギャップ、ポジショニング戦略
 
-**Task prompt must include:**
-- The full discovery briefing
-- Instruction to produce a Competitive Position Score (0-100)
-- Instruction to analyze: current vendor signals, technology stack, switching costs, competitive vulnerabilities, positioning angles
+**タスクプロンプトに含めること：**
+- ディスカバリーブリーフィング全体
+- Competitive Position Score（0-100）を生成する指示
+- 以下の分析指示：現在のベンダーシグナル、テックスタック、スイッチングコスト、競合における脆弱性、ポジショニングアングル
 
-**Expected output:** Competitive Position Score (0-100) with breakdown across:
-- Current vendor identified (0-25): Do we know what they use today?
-- Switching cost assessment (0-25): How hard would it be to switch? (Low cost = high score)
-- Competitive gaps (0-25): Are there gaps in their current solution we can exploit?
-- Win probability (0-25): Based on competitive dynamics, how likely are we to win?
+**期待する出力：** 以下の4つのサブ指標での Competitive Position Score（0-100）：
+- 現在のベンダー特定（0-25）：現在何を使用しているか把握できているか？
+- スイッチングコスト評価（0-25）：切り替えの難易度は？（コストが低いほど高スコア）
+- 競合ギャップ（0-25）：現在のソリューションに活用できるギャップはあるか？
+- 勝率（0-25）：競合状況に基づいて、勝てる可能性はどれくらいか？
 
-**Research methodology for the competitive subagent:**
-1. Scan the prospect's website for technology signals (built-with indicators, integration mentions, vendor logos)
-2. Check job postings for tool/platform requirements (e.g., "Salesforce experience required")
-3. Search for the prospect company name alongside competitor product names
-4. Look for review or case study mentions that reveal their current stack
-5. Analyze their tech requirements from careers page
-6. Search web for "[prospect name] uses [competitor]" or "[prospect name] partnered with [vendor]"
+**競合サブエージェントのリサーチ方法論：**
+1. 見込み客のウェブサイトでテクノロジーシグナルをスキャンする（built-with インジケーター、インテグレーション記載、ベンダーロゴ）
+2. 求人情報でツール／プラットフォームの要件を確認する（例：「Salesforce の経験必須」）
+3. 見込み客企業名と競合製品名を組み合わせて検索する
+4. 現在のスタックを明らかにするレビューやケーススタディの記載を探す
+5. 採用ページから技術要件を分析する
+6. 「[見込み客名] uses [competitor]」や「[見込み客名] partnered with [vendor]」でウェブ検索する
 
-### Subagent 5: sales-strategy (Outreach Strategy & Messaging)
+### サブエージェント 5：sales-strategy（アウトリーチ戦略＆メッセージング）
 
-**Skill file:** `skills/sales-outreach/SKILL.md`
-**Weight:** 20% of Prospect Score
-**Focus:** Outreach strategy, messaging, channel selection, first email draft
+**スキルファイル：** `skills/sales-outreach/SKILL.md`
+**ウェイト：** Prospect Score の 20%
+**フォーカス：** アウトリーチ戦略、メッセージング、チャネル選定、最初のメール草案
 
-**Task prompt must include:**
-- The full discovery briefing
-- Instruction to produce an Outreach Readiness Score (0-100)
-- Instruction to return: recommended outreach framework, personalization research, channel strategy, first email draft, objection preparation
+**タスクプロンプトに含めること：**
+- ディスカバリーブリーフィング全体
+- Outreach Readiness Score（0-100）を生成する指示
+- 以下の返却指示：推奨アウトリーチフレームワーク、パーソナライゼーションリサーチ、チャネル戦略、最初のメール草案、反論準備
 
-**Expected output:** Outreach Readiness Score (0-100) with breakdown across:
-- Personalization depth (0-25): Quality and quantity of personalization anchors
-- Trigger events found (0-25): Recent events that create natural outreach timing
-- Channel strategy clarity (0-25): Clear path to reach decision makers
-- Message-market fit (0-25): Strength of the value proposition match
+**期待する出力：** 以下の4つのサブ指標での Outreach Readiness Score（0-100）：
+- パーソナライゼーションの深さ（0-25）：パーソナライゼーションアンカーの質と量
+- トリガーイベントの発見（0-25）：自然なアウトリーチタイミングを生む最近の出来事
+- チャネル戦略の明確さ（0-25）：意思決定者へのアプローチ経路の明確さ
+- メッセージとマーケットの適合度（0-25）：バリュープロポジションの一致度の強さ
 
 ---
 
-## Phase 3: Synthesis (Sequential — Aggregation and Scoring)
+## フェーズ 3：統合（順次実行 — 集約とスコアリング）
 
-After all 5 subagents complete, aggregate their results into the final analysis.
+5つのサブエージェントがすべて完了したら、その結果を最終分析に集約してください。
 
-### 3.1 Handle Subagent Failures
+### 3.1 サブエージェント失敗の処理
 
-If any subagent fails or times out:
-1. Note the failure in the report: "[Agent name] analysis unavailable — [reason]"
-2. Assign a neutral score of 50 for that category
-3. Reduce confidence level of the overall Prospect Score
-4. Continue with all available data
-5. Recommend manual follow-up for the failed analysis area
+いずれかのサブエージェントが失敗またはタイムアウトした場合：
+1. レポートに失敗を記録する：「[エージェント名] の分析が利用できませんでした — [理由]」
+2. そのカテゴリに中立スコア 50 を割り当てる
+3. Prospect Score 全体の信頼度レベルを下げる
+4. 利用可能なすべてのデータで継続する
+5. 失敗した分析領域の手動フォローアップを推奨する
 
-### 3.2 Calculate Prospect Score (0-100)
+### 3.2 Prospect Score の計算（0-100）
 
-Compute the composite Prospect Score using the weighted formula:
+以下の加重式を使用して複合 Prospect Score を計算してください：
 
 ```
 Prospect Score = (
-    Company_Fit      * 0.25 +
-    Contact_Access   * 0.20 +
+    Company_Fit         * 0.25 +
+    Contact_Access      * 0.20 +
     Opportunity_Quality * 0.20 +
     Competitive_Position * 0.15 +
     Outreach_Readiness  * 0.20
 )
 ```
 
-**Score interpretation:**
+**スコア解釈：**
 
-| Score Range | Grade | Label | Meaning | Recommended Action |
-|-------------|-------|-------|---------|-------------------|
-| 90-100 | A+ | Hot Lead | Exceptional fit across all dimensions. High close probability. | Prioritize immediately. Assign senior rep. Multi-thread outreach within 24 hours. |
-| 75-89 | A | Strong Prospect | Strong fit with minor gaps. Worth significant sales investment. | Begin personalized outreach within 48 hours. Invest in deep research. |
-| 60-74 | B | Qualified Lead | Good fit but notable gaps. Standard sales approach warranted. | Add to active pipeline. Begin standard outreach sequence. Monitor for trigger events. |
-| 40-59 | C | Lukewarm | Mixed signals. Some fit indicators but significant concerns. | Nurture with value-add content. Do not hard sell. Re-evaluate in 30-60 days. |
-| 0-39 | D | Poor Fit | Fundamental misalignment on multiple dimensions. | Deprioritize. Add to long-term nurture only if one dimension scores above 70. |
+| スコア範囲 | グレード | ラベル | 意味 | 推奨アクション |
+|------------|-------|-------|------|--------------|
+| 90-100 | A+ | ホットリード | 全指標で卓越した適合度。成約確率が高い。 | 即座に優先対応。シニアレップをアサイン。24時間以内にマルチスレッドアウトリーチ。 |
+| 75-89 | A | 有望見込み客 | 軽微なギャップはあるが強い適合度。多大な営業投資に値する。 | 48時間以内にパーソナライズされたアウトリーチを開始。深いリサーチに投資する。 |
+| 60-74 | B | 評価済みリード | 良い適合度だが顕著なギャップあり。標準的な営業アプローチが適切。 | アクティブパイプラインに追加。標準アウトリーチシーケンスを開始。トリガーイベントを監視。 |
+| 40-59 | C | ウォームリード | 混在したシグナル。適合シグナルはあるが懸念事項も多い。 | 付加価値コンテンツでナーチャリング。強引な営業はしない。30〜60日後に再評価。 |
+| 0-39 | D | 適合度低 | 複数の指標で根本的なミスアラインメント。 | 優先度を下げる。1つの指標が70以上の場合のみ長期ナーチャリングに追加。 |
 
-### 3.3 Generate Prioritized Action Plan
+### 3.3 優先度付きアクションプランの作成
 
-Based on the Prospect Score and subagent findings, create a three-tier action plan:
+Prospect Score とサブエージェントの分析結果に基づいて、3段階のアクションプランを作成してください：
 
-**Immediate Actions (Next 24-48 Hours):**
-- Specific outreach actions to take right now
-- Decision makers to connect with on LinkedIn
-- Content to share or engage with
-- Internal preparation (CRM notes, team briefing)
-- List 3-5 specific actions with assigned priority
+**即時アクション（今後24〜48時間）：**
+- 今すぐ実施する具体的なアウトリーチアクション
+- LinkedIn でつながる意思決定者
+- シェアまたはエンゲージするコンテンツ
+- 社内準備（CRM メモ、チームブリーフィング）
+- 優先度を付けた3〜5つの具体的アクションをリストアップ
 
-**Short-Term Actions (Next 1-2 Weeks):**
-- Follow-up sequence to execute
-- Additional research to conduct
-- Stakeholders to engage (multi-threading)
-- Competitive positioning to prepare
-- List 3-5 specific actions with timeline
+**短期アクション（今後1〜2週間）：**
+- 実行するフォローアップシーケンス
+- 実施する追加リサーチ
+- エンゲージするステークホルダー（マルチスレッディング）
+- 準備する競合ポジショニング
+- タイムライン付きの3〜5つの具体的アクションをリストアップ
 
-**Long-Term Actions (Next 1-3 Months):**
-- Relationship-building activities
-- Content nurture strategy
-- Event or conference opportunities
-- Partnership or referral approaches
-- List 2-3 specific actions with milestones
+**長期アクション（今後1〜3ヶ月）：**
+- リレーションシップ構築活動
+- コンテンツナーチャリング戦略
+- イベントやカンファレンスの機会
+- パートナーシップや紹介アプローチ
+- マイルストーン付きの2〜3つの具体的アクションをリストアップ
 
-### 3.4 Create Ready-to-Use First Email
+### 3.4 すぐに使える最初のメールの作成
 
-Using the outreach strategy subagent's findings, craft the actual first outreach email. This must be:
-- Copy-paste ready (not a template with placeholders)
-- Personalized to the specific prospect (reference real data found during research)
-- Under 100 words in the body
-- Using one of the four outreach frameworks from the sales-outreach skill
-- With a clear, low-friction CTA
-- With 2 subject line options for A/B testing
-- With the specific send target (name, title, company)
+アウトリーチ戦略サブエージェントの分析結果を使用して、実際の最初のアウトリーチメールを作成してください。このメールは以下の条件を満たす必要があります：
+- コピー＆ペーストですぐに使える（プレースホルダー付きのテンプレートは不可）
+- 特定の見込み客にパーソナライズされている（リサーチ中に見つけた実際のデータを参照）
+- 本文は100ワード以内
+- sales-outreach スキルの4つのアウトリーチフレームワークのいずれか1つを使用
+- 明確でハードルの低い CTA
+- A/B テスト用の件名2案
+- 具体的な送信先（名前、役職、企業）
 
-### 3.5 Confidence Assessment
+### 3.5 信頼度評価
 
-Rate the overall confidence of the analysis:
+分析全体の信頼度を以下の基準で評価してください：
 
-| Confidence Level | Criteria |
-|-----------------|---------|
-| **High** | All 5 subagents completed successfully. Rich public data available. Multiple data sources confirmed findings. |
-| **Medium** | 4 of 5 subagents completed. Moderate public data. Some findings based on inference. |
-| **Low** | 3 or fewer subagents completed. Limited public data. Significant reliance on inference. |
-| **Very Low** | Major data gaps. Most findings are speculative. Recommend manual research before outreach. |
+| 信頼度レベル | 基準 |
+|------------|------|
+| **高** | 5つのサブエージェントすべてが正常に完了。豊富な公開データが利用可能。複数のデータソースが調査結果を確認。 |
+| **中** | 5つのうち4つのサブエージェントが完了。中程度の公開データ。一部の調査結果は推測に基づく。 |
+| **低** | 3つ以下のサブエージェントが完了。公開データが限定的。推測への依存度が高い。 |
+| **非常に低** | 主要なデータギャップあり。ほとんどの調査結果は推測的。アウトリーチ前に手動リサーチを推奨。 |
 
 ---
 
-## Output Format: PROSPECT-ANALYSIS.md
+## 出力フォーマット：PROSPECT-ANALYSIS.md
 
-Write the final report to `PROSPECT-ANALYSIS.md` in the current directory with this exact structure:
+以下の正確な構造でカレントディレクトリの `PROSPECT-ANALYSIS.md` に最終レポートを書き込んでください：
 
 ```markdown
-# Prospect Analysis: [Company Name]
+# 見込み客分析：[Company Name]
 **URL:** [url]
-**Date:** [current date]
-**Company Type:** [detected type]
-**Industry:** [detected vertical]
-**Prospect Score: [X]/100 (Grade: [letter grade] — [label])**
-**Confidence:** [High/Medium/Low/Very Low]
+**日付:** [現在の日付]
+**企業タイプ:** [検出したタイプ]
+**業界:** [検出したバーティカル]
+**Prospect Score: [X]/100 (グレード: [レターグレード] — [ラベル])**
+**信頼度:** [高/中/低/非常に低]
 
 ---
 
-## Executive Summary
+## エグゼクティブサマリー
 
-[3-5 paragraph summary for a sales leader. Lead with the Prospect Score and grade.
-Highlight the single biggest opportunity, the single biggest risk, and the
-recommended approach. Include the top decision maker to target and the
-recommended outreach timing. End with a clear go/no-go recommendation
-and expected deal timeline.]
+[営業リーダー向けの3〜5段落のサマリー。Prospect Score とグレードから始める。
+最大の機会、最大のリスク、推奨アプローチを強調する。ターゲットにすべき
+トップの意思決定者と推奨するアウトリーチタイミングを含める。明確な
+実施／不実施の推奨事項と予想される商談タイムラインで締めくくる。]
 
 ---
 
-## Prospect Snapshot
+## 見込み客スナップショット
 
-| Dimension | Value |
-|-----------|-------|
-| **Company** | [name] |
-| **Website** | [url] |
-| **Industry** | [vertical] |
-| **Company Type** | [SaaS/Agency/E-commerce/Enterprise/SMB/Startup] |
-| **Founded** | [year] |
-| **Employees** | [count or estimate] |
-| **Funding** | [total or "Bootstrapped" or "Public"] |
-| **Revenue Est.** | [estimate range] |
-| **HQ Location** | [city, state/country] |
-| **Key Decision Maker** | [name, title] |
+| 指標 | 値 |
+|-----|----|
+| **企業名** | [name] |
+| **ウェブサイト** | [url] |
+| **業界** | [vertical] |
+| **企業タイプ** | [SaaS/Agency/E-commerce/Enterprise/SMB/Startup] |
+| **設立** | [year] |
+| **従業員数** | [count or estimate] |
+| **資金調達** | [total or「ブートストラップ」or「上場」] |
+| **売上推定** | [estimate range] |
+| **本社所在地** | [city, state/country] |
+| **主要意思決定者** | [name, title] |
 | **Prospect Score** | [X]/100 ([grade]) |
-| **Recommended Action** | [one-line action] |
+| **推奨アクション** | [one-line action] |
 
 ---
 
-## Score Breakdown
+## スコア内訳
 
-| Category | Score | Weight | Weighted | Key Finding |
-|----------|-------|--------|----------|-------------|
-| Company Fit | [X]/100 | 25% | [X] | [one-line finding] |
-| Contact Access | [X]/100 | 20% | [X] | [one-line finding] |
-| Opportunity Quality | [X]/100 | 20% | [X] | [one-line finding] |
-| Competitive Position | [X]/100 | 15% | [X] | [one-line finding] |
-| Outreach Readiness | [X]/100 | 20% | [X] | [one-line finding] |
-| **TOTAL** | | **100%** | **[X]/100** | |
-
----
-
-## Company Profile
-
-[Full company research findings from the sales-company subagent.
-Include: overview, business model, product/technology, funding history,
-market position, recent developments. Cite specific sources.]
+| カテゴリ | スコア | ウェイト | 加重値 | 主な発見 |
+|---------|-------|--------|--------|---------|
+| 企業適合度 | [X]/100 | 25% | [X] | [one-line finding] |
+| コンタクトアクセス | [X]/100 | 20% | [X] | [one-line finding] |
+| 機会の質 | [X]/100 | 20% | [X] | [one-line finding] |
+| 競合ポジション | [X]/100 | 15% | [X] | [one-line finding] |
+| アウトリーチ準備度 | [X]/100 | 20% | [X] | [one-line finding] |
+| **合計** | | **100%** | **[X]/100** | |
 
 ---
 
-## Decision Maker Map
+## 企業プロフィール
 
-### Buying Committee
+[sales-company サブエージェントによる企業リサーチの全調査結果。
+以下を含める：概要、ビジネスモデル、製品／テクノロジー、資金調達履歴、
+市場ポジション、最近の動向。具体的なソースを引用すること。]
 
-| Name | Title | Buying Role | Personalization Anchor | Approach Strategy |
-|------|-------|-------------|----------------------|-------------------|
+---
+
+## 意思決定者マップ
+
+### 購買委員会
+
+| 名前 | 役職 | 購買ロール | パーソナライゼーションアンカー | アプローチ戦略 |
+|-----|-----|----------|--------------------------|-------------|
 | [name] | [title] | [Economic Buyer/Champion/Technical Evaluator/End User/Blocker] | [specific anchor] | [1-line strategy] |
 
-### Org Chart (Text-Based)
+### 組織図（テキスト形式）
 
 ```
 [CEO Name] — CEO
-├── [CTO Name] — CTO (Technical Evaluator)
+├── [CTO Name] — CTO（Technical Evaluator）
 │   ├── [VP Eng] — VP Engineering
 │   └── [Dir Product] — Director of Product
-├── [CRO Name] — CRO (Economic Buyer)
-│   └── [VP Sales] — VP Sales (Champion)
+├── [CRO Name] — CRO（Economic Buyer）
+│   └── [VP Sales] — VP Sales（Champion）
 └── [CMO Name] — CMO
     └── [Dir Marketing] — Director of Marketing
 ```
 
-### Top 3 Priority Contacts
+### 優先コンタクト上位3名
 
-[Detailed profile for each: name, title, role in buying process,
-LinkedIn summary, recent activity, personalization anchors,
-recommended approach, suggested first message]
-
----
-
-## Opportunity Assessment
-
-### BANT Scorecard
-
-| Dimension | Score | Evidence | Confidence |
-|-----------|-------|----------|------------|
-| Budget | [X]/25 | [specific evidence] | [High/Medium/Low] |
-| Authority | [X]/25 | [specific evidence] | [High/Medium/Low] |
-| Need | [X]/25 | [specific evidence] | [High/Medium/Low] |
-| Timeline | [X]/25 | [specific evidence] | [High/Medium/Low] |
-| **Total** | **[X]/100** | | |
-
-### MEDDIC Assessment
-
-| Element | Finding | Evidence | Confidence |
-|---------|---------|----------|------------|
-| Metrics | [what metrics matter to them] | [source] | [level] |
-| Economic Buyer | [who] | [source] | [level] |
-| Decision Criteria | [what factors] | [source] | [level] |
-| Decision Process | [how they buy] | [source] | [level] |
-| Identify Pain | [specific pain points] | [source] | [level] |
-| Champion | [potential champion] | [source] | [level] |
-
-### Buying Signals Detected
-[Bulleted list of positive buying signals with evidence]
-
-### Red Flags
-[Bulleted list of concerns or risks with evidence]
+[各コンタクトの詳細プロフィール：名前、役職、購買プロセスでの役割、
+LinkedIn サマリー、最近の活動、パーソナライゼーションアンカー、
+推奨アプローチ、提案する最初のメッセージ]
 
 ---
 
-## Competitive Landscape
+## 機会評価
 
-### Current Solutions Detected
-[What tools/vendors the prospect currently uses, with evidence]
+### BANT スコアカード
 
-### Switching Cost Assessment
-[Analysis of how difficult it would be for them to switch]
+| 指標 | スコア | 根拠 | 信頼度 |
+|-----|-------|------|-------|
+| Budget（予算） | [X]/25 | [specific evidence] | [高/中/低] |
+| Authority（決裁権） | [X]/25 | [specific evidence] | [高/中/低] |
+| Need（ニーズ） | [X]/25 | [specific evidence] | [高/中/低] |
+| Timeline（タイムライン） | [X]/25 | [specific evidence] | [高/中/低] |
+| **合計** | **[X]/100** | | |
 
-### Competitive Positioning Angles
-[How to position against their current solution. Key differentiators to emphasize.
-Weaknesses of their current solution to highlight.]
+### MEDDIC 評価
 
----
+| 要素 | 発見内容 | 根拠 | 信頼度 |
+|-----|---------|------|-------|
+| Metrics（指標） | [what metrics matter to them] | [source] | [level] |
+| Economic Buyer（経済的意思決定者） | [who] | [source] | [level] |
+| Decision Criteria（意思決定基準） | [what factors] | [source] | [level] |
+| Decision Process（意思決定プロセス） | [how they buy] | [source] | [level] |
+| Identify Pain（ペインの特定） | [specific pain points] | [source] | [level] |
+| Champion（チャンピオン） | [potential champion] | [source] | [level] |
 
-## Recommended Outreach Strategy
+### 検出された購買シグナル
+[証拠付きのポジティブな購買シグナルの箇条書きリスト]
 
-### Selected Framework
-[Which of the 4 outreach frameworks was selected and why]
-
-### Channel Strategy
-[Primary and secondary channels. LinkedIn + email timing.]
-
-### Personalization Research
-[All personalization anchors found: trigger events, personal interests,
-shared connections, recent content, career milestones]
-
-### Objection Preparation
-[Top 3 likely objections and prepared responses]
-
----
-
-## Prioritized Action Plan
-
-### Immediate (Next 24-48 Hours)
-1. [Specific action with details]
-2. [Specific action with details]
-3. [Specific action with details]
-
-### Short-Term (Next 1-2 Weeks)
-1. [Specific action with details]
-2. [Specific action with details]
-3. [Specific action with details]
-
-### Long-Term (Next 1-3 Months)
-1. [Specific action with details]
-2. [Specific action with details]
+### レッドフラグ
+[証拠付きの懸念事項またはリスクの箇条書きリスト]
 
 ---
 
-## Ready-to-Send First Email
+## 競合状況
 
-**To:** [Name], [Title] at [Company]
-**Subject Line A:** [subject]
-**Subject Line B:** [subject]
+### 検出された現在のソリューション
+[見込み客が現在使用しているツール／ベンダーと根拠]
+
+### スイッチングコスト評価
+[切り替えの難易度の分析]
+
+### 競合ポジショニングアングル
+[現在のソリューションに対してどのようにポジショニングするか。強調すべき主な差別化要因。
+現在のソリューションの弱点で強調すべき点。]
 
 ---
 
-[Full email body — copy-paste ready, under 100 words,
-personalized with real data from the research]
+## 推奨アウトリーチ戦略
+
+### 選択したフレームワーク
+[4つのアウトリーチフレームワークのうちどれを選択し、その理由]
+
+### チャネル戦略
+[プライマリとセカンダリのチャネル。LinkedIn とメールのタイミング。]
+
+### パーソナライゼーションリサーチ
+[見つかったすべてのパーソナライゼーションアンカー：トリガーイベント、個人的な興味、
+共通のつながり、最近のコンテンツ、キャリアのマイルストーン]
+
+### 反論準備
+[最も可能性の高い3つの反論と準備された回答]
+
+---
+
+## 優先度付きアクションプラン
+
+### 即時（今後24〜48時間）
+1. [詳細付きの具体的なアクション]
+2. [詳細付きの具体的なアクション]
+3. [詳細付きの具体的なアクション]
+
+### 短期（今後1〜2週間）
+1. [詳細付きの具体的なアクション]
+2. [詳細付きの具体的なアクション]
+3. [詳細付きの具体的なアクション]
+
+### 長期（今後1〜3ヶ月）
+1. [詳細付きの具体的なアクション]
+2. [詳細付きの具体的なアクション]
+
+---
+
+## すぐに送れる最初のメール
+
+**宛先:** [Name], [Title] at [Company]
+**件名 A:** [subject]
+**件名 B:** [subject]
+
+---
+
+[メール本文 — コピー＆ペースト可能、100ワード以内、
+リサーチで得た実際のデータでパーソナライズ済み]
 
 ---
 
 **CTA:** [specific ask]
-**Send Timing:** [recommended day/time]
-**Follow-Up:** [when and how to follow up if no response]
+**送信タイミング:** [推奨する曜日／時間]
+**フォローアップ:** [返信がない場合のフォローアップのタイミングと方法]
 
 ---
 
-*Generated by AI Sales Team — `/sales prospect`*
+*AI Sales Team により生成 — `/sales prospect`*
 ```
 
 ---
 
-## Terminal Output
+## ターミナル出力
 
-In addition to the file, display a condensed scorecard in the terminal:
+ファイルに加えて、ターミナルにも簡潔なスコアカードを表示してください：
 
 ```
 ============================================
-  PROSPECT ANALYSIS COMPLETE
+  見込み客分析 完了
 ============================================
 
-Company:  [name] ([type])
-Industry: [vertical]
-URL:      [url]
+企業名:     [name] ([type])
+業界:       [vertical]
+URL:        [url]
 
-Prospect Score: [X]/100 (Grade: [letter] — [label])
-Confidence:     [High/Medium/Low]
+Prospect Score: [X]/100 (グレード: [letter] — [label])
+信頼度:         [高/中/低]
 
-Score Breakdown:
-  Company Fit:         [XX]/100 ████████░░
-  Contact Access:      [XX]/100 ██████░░░░
-  Opportunity Quality: [XX]/100 ███████░░░
-  Competitive Position:[XX]/100 █████░░░░░
-  Outreach Readiness:  [XX]/100 ████████░░
+スコア内訳:
+  企業適合度:         [XX]/100 ████████░░
+  コンタクトアクセス: [XX]/100 ██████░░░░
+  機会の質:           [XX]/100 ███████░░░
+  競合ポジション:     [XX]/100 █████░░░░░
+  アウトリーチ準備度: [XX]/100 ████████░░
 
-Key Decision Maker: [Name], [Title]
+主要意思決定者: [Name], [Title]
 
-Top 3 Opportunities:
+上位3つの機会:
   1. [opportunity]
   2. [opportunity]
   3. [opportunity]
 
-Top 3 Risks:
+上位3つのリスク:
   1. [risk]
   2. [risk]
   3. [risk]
 
-Next Step: [single most important action]
+次のステップ: [最も重要な1つのアクション]
 
-Full report saved to: PROSPECT-ANALYSIS.md
+フルレポートの保存先: PROSPECT-ANALYSIS.md
 ============================================
 ```
 
-**Bar chart rendering rules:**
-- Each bar is 10 characters wide
-- Score 0-10 = 1 filled block, 11-20 = 2 filled blocks, etc.
-- Use Unicode block characters: filled = `\u2588`, empty = `\u2591`
-- Align all bars and labels for clean terminal display
+**バーチャートのレンダリングルール：**
+- 各バーは10文字幅
+- スコア 0〜10 = 1つ塗りつぶし、11〜20 = 2つ塗りつぶし、以降同様
+- Unicode ブロック文字を使用：塗りつぶし = `\u2588`、空 = `\u2591`
+- すべてのバーとラベルを整列してターミナルで見やすく表示する
 
 ---
 
-## Error Handling
+## エラーハンドリング
 
-### URL Unreachable
-1. Try alternate URL formats (www/non-www, http/https)
-2. If all fail, report error and stop: "Could not reach [url]. Please verify the URL and try again."
-3. Do NOT generate a report based on zero data
+### URL に到達できない場合
+1. 代替 URL 形式を試みる（www あり／なし、http/https）
+2. すべて失敗した場合はエラーを報告して停止：「[url] に到達できませんでした。URL を確認して再試行してください。」
+3. データがゼロの状態でレポートを生成しない
 
-### Subagent Failure
-1. Log which subagent failed and why
-2. Assign neutral score (50) for that category
-3. Add a note in the report: "[Category] analysis unavailable — neutral score assigned"
-4. Reduce overall confidence by one level
-5. Continue with remaining subagent data
+### サブエージェントが失敗した場合
+1. どのサブエージェントが失敗し、その理由をログに記録する
+2. そのカテゴリに中立スコア（50）を割り当てる
+3. レポートに注記を追加する：「[カテゴリ] の分析が利用できませんでした — 中立スコアを割り当て」
+4. 全体の信頼度を1レベル下げる
+5. 残りのサブエージェントのデータで継続する
 
-### Site Behind Authentication
-1. Note what was publicly accessible
-2. Analyze only the public pages
-3. Add a note: "Site requires authentication. Analysis limited to publicly accessible pages."
-4. Recommend manual review of gated content
-5. Reduce confidence level accordingly
+### 認証が必要なサイトの場合
+1. 公開でアクセス可能だったものを記録する
+2. 公開ページのみを分析する
+3. 注記を追加する：「サイトは認証が必要です。分析は公開ページに限定されます。」
+4. 制限されたコンテンツの手動確認を推奨する
+5. 信頼度レベルを相応に下げる
 
-### Minimal Content Site
-1. If fewer than 3 pages are accessible, note "Limited site content"
-2. Supplement with WebSearch for external data (Crunchbase, LinkedIn, news)
-3. Adjust confidence to Low or Very Low
-4. Recommend additional manual research
+### コンテンツが少ないサイトの場合
+1. アクセスできるページが3ページ未満の場合、「サイトのコンテンツが限定的です」と記載する
+2. 外部データの WebSearch で補完する（Crunchbase、LinkedIn、ニュース）
+3. 信頼度を「低」または「非常に低」に調整する
+4. 追加の手動リサーチを推奨する
 
 ---
 
-## Cross-Skill Integration
+## クロススキル連携
 
-- If `COMPANY-RESEARCH.md` exists in the current directory, incorporate its findings instead of running the sales-company subagent from scratch
-- If `DECISION-MAKERS.md` exists, incorporate its findings into the contact analysis
-- If `LEAD-QUALIFICATION.md` exists, incorporate its findings into the opportunity assessment
-- If `COMPETITIVE-INTEL.md` exists, incorporate its findings into the competitive landscape
-- If `OUTREACH-SEQUENCE.md` exists, reference it in the outreach strategy section
-- Suggest follow-up commands: `/sales outreach` for full email sequence, `/sales prep` for meeting preparation, `/sales proposal` for deal-specific proposal
+- カレントディレクトリに `COMPANY-RESEARCH.md` が存在する場合は、sales-company サブエージェントをゼロから実行する代わりにその調査結果を組み込む
+- `DECISION-MAKERS.md` が存在する場合は、コンタクト分析にその調査結果を組み込む
+- `LEAD-QUALIFICATION.md` が存在する場合は、機会評価にその調査結果を組み込む
+- `COMPETITIVE-INTEL.md` が存在する場合は、競合状況分析にその調査結果を組み込む
+- `OUTREACH-SEQUENCE.md` が存在する場合は、アウトリーチ戦略セクションでそれを参照する
+- フォローアップコマンドを提案する：フルメールシーケンスには `/sales outreach`、商談準備には `/sales prep`、商談固有の提案書には `/sales proposal`

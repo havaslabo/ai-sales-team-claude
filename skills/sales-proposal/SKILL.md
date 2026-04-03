@@ -1,626 +1,626 @@
-# Sales Proposal Generator
+# 営業提案書ジェネレーター
 
-You generate professional, client-ready sales proposals that persuade, differentiate, and close deals. This is a SALES document — not a statement of work, not a capabilities deck, not a generic brochure. Every section leads with the client's problems, anchors pricing to ROI, uses the client's own language, and drives toward a clear decision.
+クライアントの意思決定を促し、差別化を図り、案件をクローズするためのプロフェッショナルな営業提案書を生成します。これは「営業」ドキュメントです。作業範囲定義書でも機能紹介デッキでも汎用パンフレットでもありません。すべてのセクションはクライアントの課題から始まり、ROIに価格を紐付け、クライアント自身の言葉を使い、明確な意思決定へと導きます。
 
-## Invocation
+## 呼び出し方法
 
 ```
 /sales proposal <client>
 ```
 
-Where `<client>` is the client company name, URL, or description. The skill generates a complete proposal document ready for delivery.
+`<client>` はクライアント企業名、URL、または説明です。スキルは納品可能な完全な提案書ドキュメントを生成します。
 
-## Step 1: Gather Proposal Inputs
+## ステップ1：提案書インプットの収集
 
-Collect the following information. If not provided by the user, ask for each item explicitly. Do not generate a proposal with missing critical inputs — the proposal will be generic and ineffective.
+以下の情報を収集します。ユーザーから提供されない場合は、各項目を明示的に確認してください。重要なインプットが不足している状態で提案書を生成しないでください。提案書が汎用的で効果のないものになってしまいます。
 
-### Required Inputs
+### 必須インプット
 
-1. **Client name and company**: Full legal name and common name
-2. **Industry and business model**: What they do, how they make money, who their customers are
-3. **Pain points and challenges**: The specific problems this proposal solves (minimum 3, ideally 5)
-4. **Proposed solution/service**: What you are proposing to deliver — specific services, products, or engagement
-5. **Engagement model**: Retainer (monthly), Project-based (fixed scope/price), Performance-based (tied to outcomes), or Hybrid
-6. **Budget range**: If known, the client's stated or inferred budget. If unknown, provide three-tier pricing.
-7. **Timeline**: Proposed start date, key milestones, and expected duration
-8. **Relevant case studies**: 2-3 examples of similar work with measurable results
+1. **クライアント名と企業名**：正式名称と通称
+2. **業界とビジネスモデル**：事業内容、収益構造、顧客対象
+3. **課題と問題点**：この提案書が解決する具体的な課題（最低3つ、理想は5つ）
+4. **提案するソリューション/サービス**：提供する具体的なサービス・製品・エンゲージメント
+5. **エンゲージメントモデル**：リテイナー（月額）、プロジェクト型（固定スコープ/価格）、成果報酬型（アウトカム連動）、またはハイブリッド
+6. **予算レンジ**：既知の場合はクライアントが提示または推定される予算。不明な場合は3段階の価格設定を提供。
+7. **スケジュール**：提案開始日、主要マイルストーン、期間
+8. **関連ケーススタディ**：測定可能な成果を含む類似業務の事例2〜3件
 
-### Optional Inputs (Enhance Quality)
+### オプションインプット（品質向上に貢献）
 
-9. **Decision makers**: Who will review and approve this proposal
-10. **Competitive context**: What alternatives they are evaluating
-11. **Urgency factors**: Why they need this now (contract expiry, market window, board pressure)
-12. **Client's own language**: Specific phrases, terminology, or priorities they have used in conversations
-13. **Previous conversations**: Key takeaways from discovery calls, demos, or meetings
+9. **意思決定者**：この提案書をレビューし承認する人物
+10. **競合状況**：クライアントが検討している他の選択肢
+11. **緊急性の要因**：今すぐ必要な理由（契約満了、市場機会、取締役会からの圧力）
+12. **クライアントの言葉**：会話で使用された具体的なフレーズ、用語、優先事項
+13. **過去の会話**：ディスカバリーコール、デモ、商談からの主要な学び
 
-### Automatic Incorporation of Previous Analysis
+### 過去の分析の自動取り込み
 
-Before asking the user for inputs, check for existing analysis files in the working directory:
+ユーザーにインプットを確認する前に、作業ディレクトリ内の既存分析ファイルを確認します。
 
-- **PROSPECT-ANALYSIS.md**: If exists, extract company overview, pain points, opportunity assessment, and prospect score
-- **COMPANY-RESEARCH.md**: If exists, extract firmographics, growth signals, technology stack, and business model details
-- **LEAD-QUALIFICATION.md**: If exists, extract BANT/MEDDIC qualification data, budget signals, decision timeline, and authority mapping
-- **COMPETITIVE-INTEL.md**: If exists, extract current solutions, switching costs, and competitive positioning
-- **DECISION-MAKERS.md**: If exists, extract key contacts, roles, and communication preferences
-- **MEETING-PREP.md**: If exists, extract business situation, attendee profiles, and discovery insights
-- **OBJECTION-PLAYBOOK.md**: If exists, extract likely objections and prepared responses for use in the proposal narrative
+- **PROSPECT-ANALYSIS.md**：存在する場合は、企業概要、課題、機会評価、見込みスコアを抽出
+- **COMPANY-RESEARCH.md**：存在する場合は、企業データ、成長シグナル、技術スタック、ビジネスモデルの詳細を抽出
+- **LEAD-QUALIFICATION.md**：存在する場合は、BANT/MEDDIC の資格確認データ、予算シグナル、意思決定タイムライン、権限マッピングを抽出
+- **COMPETITIVE-INTEL.md**：存在する場合は、現行ソリューション、切り替えコスト、競合ポジショニングを抽出
+- **DECISION-MAKERS.md**：存在する場合は、主要連絡先、役割、コミュニケーション設定を抽出
+- **MEETING-PREP.md**：存在する場合は、ビジネス状況、参加者プロフィール、ディスカバリーの洞察を抽出
+- **OBJECTION-PLAYBOOK.md**：存在する場合は、想定される反論と準備された回答を抽出して提案書のナラティブに活用
 
-If these files exist, inform the user what data was found and incorporate it automatically. Only ask for inputs that are not available from existing files.
-
----
-
-## Step 2: Generate the Proposal
-
-The proposal consists of 11 sections. Follow the structure, tone, and writing principles below exactly.
-
-### Proposal Writing Principles (Apply to ALL Sections)
-
-1. **Lead with THEIR problems, not your services.** The client should feel understood before they feel sold to. Every section starts from their perspective.
-2. **Anchor every price to the ROI it generates.** Never present a price without context. "$10,000/month" is expensive. "$10,000/month that generates $50,000 in additional revenue" is cheap.
-3. **Use the client's own language.** If they said "we need to scale our outbound," do not write "expand your sales development function." Mirror their exact words.
-4. **Keep it under 15 pages.** Proposals over 15 pages do not get read. Be concise and high-impact.
-5. **This is a sales document.** Every paragraph should move the reader closer to saying yes. Remove anything that does not serve that purpose.
-6. **Confidence without arrogance.** Write with authority and specificity. Do not hedge excessively ("we might be able to," "we hope to achieve"). State what you will do and what results to expect.
-7. **Frame everything as opportunity.** Never frame the client's situation as a failure. "You have a significant opportunity to..." not "Your current approach is failing because..."
+これらのファイルが存在する場合は、見つかったデータをユーザーに通知し、自動的に組み込みます。既存ファイルから得られない情報のみ確認します。
 
 ---
 
-### Section 1: Cover Page
+## ステップ2：提案書の生成
 
-Generate a clean, professional cover page with:
+提案書は11のセクションで構成されます。以下の構成、トーン、執筆原則を忠実に守ってください。
+
+### 提案書の執筆原則（全セクションに適用）
+
+1. **自社のサービスではなく、相手の課題から始めます。** クライアントは売り込まれる前に「理解されている」と感じる必要があります。すべてのセクションはクライアントの視点から始めます。
+2. **すべての価格をROIに紐付けます。** 価格をコンテキストなしで提示しません。「月額10万円」は高いです。「月額10万円で月50万円の追加収益を生む」なら安いです。
+3. **クライアント自身の言葉を使います。** 「アウトバウンドを拡大する必要がある」と言われたら、「営業開発機能の拡充」とは書きません。相手の表現をそのまま使います。
+4. **15ページ以内に収めます。** 15ページを超える提案書は読まれません。簡潔でインパクトのある内容にします。
+5. **これは営業ドキュメントです。** すべての段落は読者を「はい」に近づけるものでなければなりません。その目的を果たさない内容は削除します。
+6. **自信を持って、傲慢にならずに。** 権威と具体性を持って書きます。過度な保留表現（「できるかもしれません」「達成できると思います」）は避けます。実施することと期待できる成果を明確に述べます。
+7. **すべてを機会として捉えます。** クライアントの状況を失敗として捉えません。「現在のアプローチが失敗しているため」ではなく「大きな機会があります...」と表現します。
+
+---
+
+### セクション1：表紙
+
+クリーンでプロフェッショナルな表紙を生成します。
 
 ```
-[Your Company Name]
+[自社名]
 
-PROPOSAL FOR [CLIENT COMPANY NAME]
+[クライアント企業名] 様 ご提案書
 
-[Proposal Title — e.g., "Digital Transformation Strategy & Implementation"]
+[提案タイトル — 例：「デジタルトランスフォーメーション戦略・実行計画」]
 
-Prepared for: [Client Contact Name], [Title]
-Prepared by: [Your Contact Name], [Title]
-Date: [Date]
-Valid Until: [Date + 30 days]
+提案先：[クライアント担当者名]、[役職]
+提案者：[自社担当者名]、[役職]
+日付：[日付]
+有効期限：[日付 + 30日]
 
-CONFIDENTIAL
+社外秘
 ```
 
-Rules:
-- Proposal title should be specific to their situation, not generic ("Growth Strategy for Acme Corp" not "Marketing Services Proposal")
-- Always include a validity date (30 days from generation unless specified otherwise)
-- Always mark as CONFIDENTIAL
+ルール：
+- 提案タイトルは状況に固有のものにします（「一般的なマーケティングサービス提案書」ではなく「〇〇社の成長戦略」）
+- 有効期限を必ず記載します（特に指定がない限り生成日から30日）
+- 必ず「社外秘」を明記します
 
 ---
 
-### Section 2: Executive Summary (1 Page)
+### セクション2：エグゼクティブサマリー（1ページ）
 
-The executive summary is the most important section — many decision makers read ONLY this page. Structure it in exactly this order:
+エグゼクティブサマリーは最重要セクションです。多くの意思決定者はこのページしか読みません。以下の順序で正確に構成します。
 
-**Paragraph 1 — Acknowledge Their Situation** (2-3 sentences):
-Demonstrate that you understand their current state, their market position, and the context driving this initiative. Use specific details from discovery conversations and research.
+**第1段落 — 状況の把握**（2〜3文）：
+現在の状況、市場ポジション、このイニシアティブの背景をご理解していることを示します。ディスカバリー会話とリサーチからの具体的な詳細を使用します。
 
-**Paragraph 2 — State the Problem/Opportunity** (2-3 sentences):
-Clearly articulate the core challenge or opportunity this proposal addresses. Use their language. Quantify the impact if possible — "This costs you approximately $X per month" or "This represents a $X opportunity."
+**第2段落 — 課題/機会の提示**（2〜3文）：
+この提案書が対応するコアとなる課題または機会を明確に示します。相手の言葉を使います。可能であれば影響を定量化します（「これにより毎月約X円のコストが発生しています」または「これはX円の機会を表しています」）。
 
-**Paragraph 3 — Preview the Solution** (2-3 sentences):
-Briefly describe what you propose to do. Focus on outcomes, not activities. "We will implement a system that generates X" not "We will configure software and run campaigns."
+**第3段落 — ソリューションの概要**（2〜3文）：
+提案内容を簡潔に説明します。活動ではなくアウトカムに焦点を当てます。「ソフトウェアを設定してキャンペーンを実施する」ではなく「X を生み出すシステムを構築します」。
 
-**Paragraph 4 — Hint at Outcomes** (2-3 sentences):
-Share the expected results with conservative projections. Reference a comparable client result. "Based on results with [similar company], we project [specific outcome] within [timeframe]."
+**第4段落 — 期待されるアウトカムの示唆**（2〜3文）：
+保守的な予測で期待される成果を共有します。類似クライアントの成果を参照します。「[類似企業]での実績に基づき、[期間]内に[具体的なアウトカム]が見込まれます」。
 
-**Paragraph 5 — Create Urgency** (1-2 sentences):
-One factual reason to act now — market window, competitive pressure, cost of delay, seasonal opportunity. Never manufactured urgency.
+**第5段落 — 緊急性の提示**（1〜2文）：
+今すぐ行動すべき1つの事実に基づく理由 — 市場機会、競合の圧力、遅延のコスト、季節的な機会。作為的な緊急性は禁止です。
 
-Rules:
-- The entire executive summary must fit on one page (approximately 250-350 words)
-- No bullet points in the executive summary — it should read as a compelling narrative
-- Every sentence must earn its place — remove any filler
-
----
-
-### Section 3: Situation Analysis (1-2 Pages)
-
-Demonstrate deep understanding of the client's current state. This section proves you have done your homework and builds trust.
-
-**3.1 Current State**:
-Describe their current situation in 2-3 paragraphs. Include:
-- How they currently handle [the area your solution addresses]
-- What tools, processes, and resources they currently use
-- What is working and what is not (framed diplomatically)
-- Quantified impact of the current approach (costs, time, efficiency, missed opportunities)
-
-**3.2 Opportunities Identified**:
-List 3-5 specific opportunities you have identified through discovery and research. For each:
-- The opportunity (one sentence)
-- Why it exists (what is causing it)
-- The estimated impact of addressing it (quantified if possible)
-
-**3.3 Competitive Context** (if applicable):
-Brief overview of the competitive landscape and where the client stands relative to peers. Frame as: "Companies in your space that [take action X] are seeing [results Y]."
-
-**3.4 Key Challenges**:
-List 2-3 challenges that must be addressed for the engagement to succeed. This demonstrates realism and builds trust — a proposal that claims everything will be easy is not believable.
-
-Rules:
-- Frame challenges as opportunities, never as failures
-- Reference specific data points, conversations, or research (e.g., "As you mentioned in our call on [date]...")
-- If COMPANY-RESEARCH.md or PROSPECT-ANALYSIS.md exists, pull specific data from those files
+ルール：
+- エグゼクティブサマリー全体が1ページに収まること（約250〜350語）
+- エグゼクティブサマリーに箇条書きは使用しない — 説得力のある文章として書く
+- すべての文が価値を持つ — 埋め草は削除する
 
 ---
 
-### Section 4: Proposed Solution (2-3 Pages)
+### セクション3：状況分析（1〜2ページ）
 
-This is the core of the proposal — what you will do and how. Structure it as a phased approach.
+クライアントの現状への深い理解を示します。このセクションで事前準備の徹底さを証明し、信頼を構築します。
 
-**4.1 Strategic Framework**:
-Open with a brief description (3-5 sentences) of your overall approach and methodology. Explain WHY this approach works, not just what it is.
+**3.1 現状**：
+現在の状況を2〜3段落で説明します。以下を含めます。
+- 現在どのように[自社ソリューションが対応する領域]を扱っているか
+- 現在使用しているツール、プロセス、リソース
+- うまくいっていることとうまくいっていないこと（外交的な表現で）
+- 現在のアプローチの定量的な影響（コスト、時間、効率、見逃している機会）
 
-**4.2 Phased Approach**:
+**3.2 特定された機会**：
+ディスカバリーとリサーチを通じて特定した3〜5の具体的な機会の一覧。各機会について：
+- 機会（1文で）
+- その背景（何が引き起こしているのか）
+- 対応した場合の推定インパクト（可能であれば定量化）
 
-Structure the engagement in three phases. Use aspirational phase names, not generic ones ("Foundation" not "Phase 1").
+**3.3 競合コンテキスト**（該当する場合）：
+競合状況と、同業他社と比べたクライアントのポジションの概要。「御社と同じ業界で[行動X]を取っている企業は[成果Y]を実現しています」というフレーミングで。
 
-**Phase 1: [Foundation / Discovery / Blueprint]** (Weeks 1-X)
-- Objective: [What this phase achieves]
-- Key activities:
-  - [Activity 1] — [Specific deliverable]
-  - [Activity 2] — [Specific deliverable]
-  - [Activity 3] — [Specific deliverable]
-- Milestone: [How you know this phase is complete]
-- Client involvement: [What they need to do]
+**3.4 主要な課題**：
+エンゲージメントを成功させるために対処すべき2〜3の課題の一覧。これは現実性を示し信頼を構築します — すべてが簡単だと主張する提案書は信用されません。
 
-**Phase 2: [Build / Growth / Activation]** (Weeks X-Y)
-- Objective: [What this phase achieves]
-- Key activities:
-  - [Activity 1] — [Specific deliverable]
-  - [Activity 2] — [Specific deliverable]
-  - [Activity 3] — [Specific deliverable]
-  - [Activity 4] — [Specific deliverable]
-- Milestone: [How you know this phase is complete]
-- Client involvement: [What they need to do]
-
-**Phase 3: [Scale / Optimize / Accelerate]** (Weeks Y-Z)
-- Objective: [What this phase achieves]
-- Key activities:
-  - [Activity 1] — [Specific deliverable]
-  - [Activity 2] — [Specific deliverable]
-  - [Activity 3] — [Specific deliverable]
-- Milestone: [How you know this phase is complete]
-- Ongoing: [What continues after this phase]
-
-Rules:
-- Activities must be specific and measurable — "Implement automated email sequences targeting 3 buyer personas" not "Set up email marketing"
-- Each phase should build on the previous one — show progression
-- Client involvement requirements set realistic expectations upfront
+ルール：
+- 課題は失敗としてではなく機会として表現する
+- 具体的なデータポイント、会話、またはリサーチを参照する（例：「[日付]のお打ち合わせでおっしゃっていたように...」）
+- COMPANY-RESEARCH.md または PROSPECT-ANALYSIS.md が存在する場合は、それらのファイルから具体的なデータを引用する
 
 ---
 
-### Section 5: Scope of Work (1-2 Pages)
+### セクション4：提案ソリューション（2〜3ページ）
 
-Define exactly what is included and what is not. This protects both parties and sets clear expectations.
+提案書のコアとなるセクションです — 実施内容とその方法。フェーズ型アプローチで構成します。
 
-**5.1 Deliverables**:
-List every specific deliverable with quantities where applicable:
-- [Deliverable 1] — [quantity/frequency]
-- [Deliverable 2] — [quantity/frequency]
-- [Deliverable 3] — [quantity/frequency]
-- Continue for all deliverables
+**4.1 戦略的フレームワーク**：
+全体的なアプローチと方法論の簡潔な説明（3〜5文）で開始します。このアプローチが「何か」だけでなく「なぜ機能するのか」を説明します。
 
-**5.2 Meeting Cadence**:
-- Kickoff meeting: [Format and duration]
-- Weekly/bi-weekly status meetings: [Format and duration]
-- Monthly/quarterly reviews: [Format and duration]
-- Ad-hoc communication: [Channel and expected response time]
+**4.2 フェーズ型アプローチ**：
 
-**5.3 Response Times**:
-- Email inquiries: [SLA, e.g., "within 4 business hours"]
-- Urgent requests: [SLA, e.g., "within 2 hours during business hours"]
-- Report delivery: [SLA, e.g., "by end of day Friday weekly"]
+エンゲージメントを3つのフェーズに分けて構成します。「フェーズ1」のような汎用名ではなく、意欲的なフェーズ名を使います（例：「基盤構築」）。
 
-**5.4 Tools and Technology Included**:
-- [Tool 1] — [What it is used for]
-- [Tool 2] — [What it is used for]
-- Note: List only tools YOU provide. Do not list tools the client needs to provide.
+**フェーズ1：[基盤構築 / 発見 / 設計]**（第1〜X週）
+- 目的：[このフェーズで達成すること]
+- 主要アクティビティ：
+  - [アクティビティ1] — [具体的な成果物]
+  - [アクティビティ2] — [具体的な成果物]
+  - [アクティビティ3] — [具体的な成果物]
+- マイルストーン：[このフェーズの完了をどのように確認するか]
+- クライアントの関与：[クライアントが実施すべきこと]
 
-**5.5 Explicit Exclusions**:
-Clearly state what is NOT included to prevent scope creep:
-- [Exclusion 1] — [Why it is excluded and how to add it if needed]
-- [Exclusion 2] — [Why and how to add]
-- [Exclusion 3] — [Why and how to add]
+**フェーズ2：[構築 / 成長 / 立ち上げ]**（第X〜Y週）
+- 目的：[このフェーズで達成すること]
+- 主要アクティビティ：
+  - [アクティビティ1] — [具体的な成果物]
+  - [アクティビティ2] — [具体的な成果物]
+  - [アクティビティ3] — [具体的な成果物]
+  - [アクティビティ4] — [具体的な成果物]
+- マイルストーン：[このフェーズの完了をどのように確認するか]
+- クライアントの関与：[クライアントが実施すべきこと]
 
-**5.6 Client Responsibilities**:
-What the client must provide for the engagement to succeed:
-- [Responsibility 1] — [Timeline for delivery]
-- [Responsibility 2] — [Timeline]
-- [Responsibility 3] — [Timeline]
+**フェーズ3：[スケール / 最適化 / 加速]**（第Y〜Z週）
+- 目的：[このフェーズで達成すること]
+- 主要アクティビティ：
+  - [アクティビティ1] — [具体的な成果物]
+  - [アクティビティ2] — [具体的な成果物]
+  - [アクティビティ3] — [具体的な成果物]
+- マイルストーン：[このフェーズの完了をどのように確認するか]
+- 継続内容：[このフェーズ以降も継続すること]
 
-Rules:
-- Be exhaustive with deliverables — ambiguity creates conflict later
-- Exclusions are as important as inclusions — list at least 3
-- Client responsibilities set expectations early and prevent blame if results lag
+ルール：
+- アクティビティは具体的かつ測定可能にする — 「メールマーケティングの設定」ではなく「3つのバイヤーペルソナを対象とした自動メールシーケンスの実装」
+- 各フェーズは前フェーズの上に積み上がるように — 進捗を示す
+- クライアントの関与要件を事前に設定し、現実的な期待を生む
 
 ---
 
-### Section 6: Timeline (1 Page)
+### セクション5：作業スコープ（1〜2ページ）
 
-Create a visual timeline showing phases, milestones, and key dates.
+含まれる内容と含まれない内容を明確に定義します。これは双方を守り、明確な期待値を設定します。
+
+**5.1 成果物**：
+各成果物を数量が適用できる場合は数量を添えてリストアップします。
+- [成果物1] — [数量/頻度]
+- [成果物2] — [数量/頻度]
+- [成果物3] — [数量/頻度]
+- 全成果物について続ける
+
+**5.2 ミーティングの頻度**：
+- キックオフミーティング：[形式と時間]
+- 週次/隔週のステータスミーティング：[形式と時間]
+- 月次/四半期レビュー：[形式と時間]
+- アドホックコミュニケーション：[チャンネルと期待される応答時間]
+
+**5.3 応答時間**：
+- メールの問い合わせ：[SLA、例：「4営業時間以内」]
+- 緊急リクエスト：[SLA、例：「営業時間中2時間以内」]
+- レポート提出：[SLA、例：「毎週金曜日の営業終了まで」]
+
+**5.4 含まれるツールと技術**：
+- [ツール1] — [用途]
+- [ツール2] — [用途]
+- 注意：自社が提供するツールのみを記載します。クライアントが用意すべきツールは記載しません。
+
+**5.5 明示的な除外事項**：
+スコープクリープを防ぐために含まれない内容を明確に記載します。
+- [除外事項1] — [除外の理由と必要な場合の追加方法]
+- [除外事項2] — [理由と追加方法]
+- [除外事項3] — [理由と追加方法]
+
+**5.6 クライアントの責任**：
+エンゲージメントを成功させるためにクライアントが提供すべきもの：
+- [責任1] — [提供期限]
+- [責任2] — [期限]
+- [責任3] — [期限]
+
+ルール：
+- 成果物は網羅的に — 曖昧さは後の対立を招く
+- 除外事項は包含事項と同様に重要 — 最低3つ記載する
+- クライアントの責任は事前に期待値を設定し、成果が遅れた場合の責任帰属を防ぐ
+
+---
+
+### セクション6：タイムライン（1ページ）
+
+フェーズ、マイルストーン、主要日程を示すビジュアルタイムラインを作成します。
 
 ```
-### Project Timeline
+### プロジェクトタイムライン
 
-| Week | Phase | Key Activities | Milestone |
-|------|-------|---------------|-----------|
-| 1 | Foundation | [Activities] | [Milestone] |
-| 2 | Foundation | [Activities] | |
-| 3 | Foundation | [Activities] | [Phase 1 Complete] |
-| 4 | Growth | [Activities] | |
+| 週 | フェーズ | 主要アクティビティ | マイルストーン |
+|----|---------|----------------|------------|
+| 1 | 基盤構築 | [アクティビティ] | [マイルストーン] |
+| 2 | 基盤構築 | [アクティビティ] | |
+| 3 | 基盤構築 | [アクティビティ] | [フェーズ1完了] |
+| 4 | 成長 | [アクティビティ] | |
 | ... | ... | ... | ... |
 
-### Key Dates
+### 主要日程
 
-| Date | Event |
-|------|-------|
-| [Date] | Project kickoff |
-| [Date] | Phase 1 complete — [Deliverable] |
-| [Date] | Phase 2 complete — [Deliverable] |
-| [Date] | Phase 3 complete — [Deliverable] |
-| [Date] | First results review |
+| 日付 | イベント |
+|------|---------|
+| [日付] | プロジェクトキックオフ |
+| [日付] | フェーズ1完了 — [成果物] |
+| [日付] | フェーズ2完了 — [成果物] |
+| [日付] | フェーズ3完了 — [成果物] |
+| [日付] | 初回成果レビュー |
 ```
 
-Rules:
-- Include buffer time — unrealistic timelines destroy trust
-- Mark key decision points where the client needs to approve or provide input
-- If the client is on a deadline, work backward from their target date
+ルール：
+- バッファ時間を含める — 非現実的なタイムラインは信頼を損なう
+- クライアントが承認または情報提供が必要な主要な意思決定ポイントを示す
+- クライアントに期限がある場合は、目標日から逆算する
 
 ---
 
-### Section 7: Investment (1-2 Pages)
+### セクション7：投資（1〜2ページ）
 
-Present pricing using a three-tier model (Good-Better-Best) with pricing psychology built in.
+Good-Better-Best の3段階モデルと価格心理学を使って価格を提示します。
 
-**Pricing Psychology Rules:**
-- Name tiers aspirationally, not as "Basic-Standard-Premium." Use names that reflect outcomes: "Growth," "Accelerate," "Transform" or "Starter," "Professional," "Enterprise."
-- The highest tier is the anchor — it makes the middle tier look reasonable by comparison.
-- Mark the middle tier as "RECOMMENDED" or "MOST POPULAR" — this is where you want them.
-- Show ROI math for each tier — the price is meaningless without context.
-- If the client stated a budget, the middle tier should align with it.
+**価格心理学のルール：**
+- 段階名は「ベーシック・スタンダード・プレミアム」ではなく、アウトカムを反映した名称を使います。「成長」「加速」「変革」または「スターター」「プロフェッショナル」「エンタープライズ」など。
+- 最高価格段階がアンカーとなり、中間段階を比較において合理的に見せます。
+- 中間段階に「推奨」または「人気 No.1」と記載します — ここに誘導したいためです。
+- 各段階のROI計算を示します — コンテキストなしでは価格は意味をなしません。
+- クライアントが予算を提示している場合、中間段階はその範囲内または若干上回る程度に設定します。
 
 ```
-### Investment Options
+### 投資オプション
 
-| | [Tier 1: Starter Name] | [Tier 2: Recommended Name] ★ | [Tier 3: Premium Name] |
+| | [段階1：スターター名] | [段階2：推奨名] ★ | [段階3：プレミアム名] |
 |---|---|---|---|
-| **Monthly Investment** | $[Price] | $[Price] | $[Price] |
-| **Annual Investment** | $[Price] (save X%) | $[Price] (save X%) | $[Price] (save X%) |
-| [Feature/Service 1] | [What's included] | [What's included] | [What's included] |
-| [Feature/Service 2] | [Limited/Not included] | [Included] | [Included + extra] |
-| [Feature/Service 3] | [Not included] | [Included] | [Included + extra] |
-| [Feature/Service 4] | [Not included] | [Not included] | [Included] |
-| **Expected ROI** | [X]x return | [X]x return | [X]x return |
-| **Best For** | [Description] | [Description] | [Description] |
+| **月額投資** | ¥[金額] | ¥[金額] | ¥[金額] |
+| **年額投資** | ¥[金額]（X%割引） | ¥[金額]（X%割引） | ¥[金額]（X%割引） |
+| [機能/サービス1] | [含まれる内容] | [含まれる内容] | [含まれる内容] |
+| [機能/サービス2] | [限定/非含む] | [含まれる] | [含まれる + 追加] |
+| [機能/サービス3] | [非含む] | [含まれる] | [含まれる + 追加] |
+| [機能/サービス4] | [非含む] | [非含む] | [含まれる] |
+| **期待ROI** | [X]倍 | [X]倍 | [X]倍 |
+| **最適な対象** | [説明] | [説明] | [説明] |
 
-★ Recommended based on your goals and budget
+★ ご目標と予算に基づく推奨プラン
 ```
 
-**ROI Justification** (include for each tier):
+**ROI根拠**（各段階に含める）：
 ```
-[Tier Name] ROI Math:
-- Monthly investment: $[Price]
-- Expected monthly return: $[Projected value] (based on [assumption])
-- Breakeven: [Month X]
-- 12-month ROI: [X]% ([Dollar amount] return on [Dollar amount] investment)
+[段階名] ROI計算：
+- 月額投資：¥[金額]
+- 期待月間リターン：¥[見込み価値]（[前提条件]に基づく）
+- 損益分岐点：[X]ヶ月目
+- 12ヶ月ROI：[X]%（[金額]の投資に対して[金額]のリターン）
 ```
 
-Rules:
-- Never present price without ROI context
-- Include both monthly and annual pricing (with annual discount) if applicable
-- The "Best For" row helps the client self-select the right tier
-- If budget is known, ensure the recommended tier falls within or slightly above their range
+ルール：
+- ROIコンテキストなしでは価格を提示しない
+- 適用可能な場合は月額と年額（年割引込み）を提示する
+- 「最適な対象」の行でクライアントが自ら適切な段階を選べるようにする
+- 予算が既知の場合、推奨段階がその範囲内または若干上回る程度に収まるようにする
 
 ---
 
-### Section 8: ROI Projection
+### セクション8：ROI予測
 
-Provide a detailed ROI projection that builds confidence in the investment decision.
+投資判断に対する確信を高める詳細なROI予測を提供します。
 
 ```
-### Current State vs. Projected State
+### 現状 vs. 予測状態
 
-| Metric | Current State | Projected (Conservative) | Projected (Moderate) | Projected (Aggressive) |
-|--------|-------------|------------------------|---------------------|----------------------|
-| [Metric 1] | [Current value] | [Conservative] | [Moderate] | [Aggressive] |
-| [Metric 2] | [Current value] | [Conservative] | [Moderate] | [Aggressive] |
-| [Metric 3] | [Current value] | [Conservative] | [Moderate] | [Aggressive] |
-| [Revenue/Cost metric] | [Current] | [Conservative] | [Moderate] | [Aggressive] |
+| 指標 | 現状 | 予測（保守的） | 予測（中程度） | 予測（積極的） |
+|------|------|-------------|------------|------------|
+| [指標1] | [現在値] | [保守的] | [中程度] | [積極的] |
+| [指標2] | [現在値] | [保守的] | [中程度] | [積極的] |
+| [指標3] | [現在値] | [保守的] | [中程度] | [積極的] |
+| [売上/コスト指標] | [現在] | [保守的] | [中程度] | [積極的] |
 
-### ROI Calculation
+### ROI計算
 
-| Scenario | Annual Value Created | Annual Investment | Net ROI | ROI % |
-|----------|---------------------|-------------------|---------|-------|
-| Conservative | $[Amount] | $[Amount] | $[Amount] | [X]% |
-| Moderate | $[Amount] | $[Amount] | $[Amount] | [X]% |
-| Aggressive | $[Amount] | $[Amount] | $[Amount] | [X]% |
+| シナリオ | 年間創出価値 | 年間投資額 | 純ROI | ROI率 |
+|---------|-----------|---------|------|------|
+| 保守的 | ¥[金額] | ¥[金額] | ¥[金額] | [X]% |
+| 中程度 | ¥[金額] | ¥[金額] | ¥[金額] | [X]% |
+| 積極的 | ¥[金額] | ¥[金額] | ¥[金額] | [X]% |
 
-### Assumptions
-- [Assumption 1] — [Basis for this assumption]
-- [Assumption 2] — [Basis]
-- [Assumption 3] — [Basis]
+### 前提条件
+- [前提1] — [この前提の根拠]
+- [前提2] — [根拠]
+- [前提3] — [根拠]
 ```
 
-Rules:
-- Always show three scenarios (conservative, moderate, aggressive) — presenting only the best case feels dishonest
-- Clearly state assumptions so the client can evaluate the projections
-- Base projections on real data from comparable clients whenever possible
-- The conservative estimate should still show positive ROI — if it does not, adjust the pricing or scope
-- Use the client's own metrics and language for the KPIs
+ルール：
+- 3つのシナリオ（保守的・中程度・積極的）を常に示す — 最良のケースのみを提示するのは不誠実に見える
+- クライアントが予測を評価できるよう前提条件を明確に記載する
+- 可能な限り類似クライアントの実績データに基づいて予測を行う
+- 保守的な推定でも正のROIを示す — そうでない場合は価格またはスコープを調整する
+- KPIにはクライアント自身の指標と言葉を使用する
 
 ---
 
-### Section 9: Team (0.5 Page)
+### セクション9：チーム（0.5ページ）
 
-Introduce the team members who will work on the engagement.
+エンゲージメントに携わるチームメンバーを紹介します。
 
-For each team member:
+各チームメンバーについて：
 ```
-### [Name] — [Role on This Engagement]
-[2-3 sentences]: Current role, years of experience, relevant expertise. Highlight experience that is specifically relevant to THIS client's industry, challenges, or goals. Include one notable achievement or credential.
+### [氏名] — [このエンゲージメントでの役割]
+[2〜3文]：現在の役職、経験年数、関連する専門知識。このクライアントの業界・課題・目標に特に関連する経験を強調します。注目すべき実績または資格を1つ含めます。
 ```
 
-Rules:
-- Only include team members who will actually work on the engagement
-- Highlight experience relevant to the client's specific industry and challenges
-- Keep it brief — this is not a resume, it is a trust-building exercise
-- If team members have worked with companies similar to the client, mention it
+ルール：
+- 実際にエンゲージメントに携わるチームメンバーのみを含める
+- クライアントの特定の業界と課題に関連する経験を強調する
+- 簡潔に — これは履歴書ではなく信頼構築のための要素です
+- クライアントと類似した企業での実績がある場合は言及する
 
 ---
 
-### Section 10: Case Studies (1-2 Pages)
+### セクション10：ケーススタディ（1〜2ページ）
 
-Include 2-3 case studies that are as close to the client's situation as possible (same industry, size, challenge, or geography).
+クライアントの状況（同業界・規模・課題・地域）にできる限り近い事例を2〜3件含めます。
 
-For each case study, use the Challenge-Solution-Results format:
+各事例に課題-ソリューション-成果のフォーマットを使用します。
 
 ```
-### Case Study: [Client Name or "Leading [Industry] Company"]
+### ケーススタディ：[クライアント名または「業界大手[業界名]企業」]
 
-**Industry**: [Industry] | **Size**: [Size] | **Challenge**: [One-line summary]
+**業界**：[業界] | **規模**：[規模] | **課題**：[1行の概要]
 
-**The Challenge**:
-[2-3 sentences describing the problem they faced — it should mirror the prospect's situation]
+**課題**：
+[直面した問題を2〜3文で — 見込み企業の状況を反映するものであること]
 
-**The Solution**:
-[2-3 sentences describing what you implemented — focus on approach, not features]
+**ソリューション**：
+[実施した内容を2〜3文で — 機能ではなくアプローチに焦点を当てる]
 
-**The Results**:
-- [Specific metric 1]: [Before] → [After] ([X]% improvement)
-- [Specific metric 2]: [Before] → [After] ([X]% improvement)
-- [Specific metric 3]: [Before] → [After] ([X]% improvement)
-- Timeline: [Results achieved in X months]
+**成果**：
+- [具体的な指標1]：[Before] → [After]（[X]%向上）
+- [具体的な指標2]：[Before] → [After]（[X]%向上）
+- [具体的な指標3]：[Before] → [After]（[X]%向上）
+- タイムライン：[X]ヶ月で成果達成
 
-**Client Quote** (if available):
-"[One sentence testimonial]" — [Name], [Title], [Company]
+**クライアントのコメント**（利用可能な場合）：
+「[1文の testimonial]」— [氏名]、[役職]、[企業名]
 ```
 
-Rules:
-- Every case study must include at least 3 specific, measurable results
-- The challenge section should parallel the prospect's situation closely enough that they think "that's exactly our problem"
-- If client names cannot be shared, use descriptive labels ("Leading Series B Fintech" or "Fortune 500 Retailer")
-- Always include timeline — when results were achieved matters
+ルール：
+- すべてのケーススタディに具体的で測定可能な成果を最低3つ含める
+- 課題のセクションが見込み企業の状況と十分に類似し「まさに私たちの問題だ」と思わせること
+- クライアント名を公開できない場合は「シリーズB FinTech企業」や「Fortune 500小売企業」などの説明的なラベルを使用する
+- 成果達成のタイムラインを必ず含める
 
 ---
 
-### Section 11: Next Steps (0.5 Page)
+### セクション11：ネクストステップ（0.5ページ）
 
-Make the path to "yes" as simple and clear as possible.
+「はい」への道筋をできる限りシンプルで明確にします。
 
 ```
-### Next Steps
+### ネクストステップ
 
-To move forward, here is what happens next:
+前進するために、次のステップをご案内します。
 
-1. **Review this proposal** — Take time to review and share with your team. I'm available for questions at any time.
-2. **Proposal walkthrough** — I'd like to schedule a 30-minute call to walk through the investment section and answer any questions. [Suggested date/time].
-3. **Agreement** — Once aligned, we'll finalize the engagement agreement for e-signature.
-4. **Kickoff** — We can begin within [X days/weeks] of signing. Our proposed kickoff date is [specific date].
+1. **提案書のご確認** — ご確認のうえ、チームとご共有ください。ご質問はいつでもお受けします。
+2. **提案書のご説明** — 投資セクションをご案内し、ご質問にお答えする30分のオンラインミーティングを設定させてください。[提案日時]
+3. **合意** — ご合意いただいたら、電子署名のエンゲージメント契約を確定させていただきます。
+4. **キックオフ** — 契約締結後[X日/週]以内に開始できます。提案するキックオフ日は[具体的な日付]です。
 
-### Ready to Start?
+### ご依頼はこちら
 
-[Your Name]
-[Your Title]
-[Your Email]
-[Your Phone]
-[Your Company Website]
+[担当者名]
+[役職]
+[メールアドレス]
+[電話番号]
+[自社ウェブサイト]
 
-*This proposal is valid until [date]. After that date, pricing and availability may change.*
+*この提案書は[日付]まで有効です。それ以降は価格および対応可能状況が変更になる場合があります。*
 ```
 
-Rules:
-- Limit next steps to 3-4 items — more than that feels overwhelming
-- Include a specific proposed date for the walkthrough call
-- Mention e-signature (reducing friction vs. "mail us a signed contract")
-- Restate the validity date to create a natural deadline
-- Include direct contact information — make it easy to reach you
+ルール：
+- ネクストステップは3〜4項目に限定する — それ以上は負担に感じる
+- 説明ミーティングの具体的な提案日時を含める
+- 電子署名に言及する（「署名した契約書を郵送してください」よりも摩擦が少ない）
+- 自然な期限を設けるために有効期限を再度明記する
+- 連絡先情報を含める — 連絡しやすい状態にする
 
 ---
 
-## Step 3: Follow-Up Email Sequence After Sending Proposal
+## ステップ3：提案書送付後のフォローアップメールシーケンス
 
-Generate a follow-up email sequence to accompany the proposal delivery. Each email should be complete and ready to send.
+提案書の送付に合わせたフォローアップメールシーケンスを生成します。各メールはそのまま送信できる完成形で提供します。
 
-### Day 0 — Proposal Delivery Email
+### 0日目 — 提案書送付メール
 
-Subject: "[Client Company] + [Your Company] Proposal"
+件名：「[クライアント企業名] + [自社名] ご提案書」
 
-Body: Short email (50-70 words) that:
-- Attaches or links the proposal
-- Highlights the 2 most important sections to read first
-- Proposes a specific date/time for a walkthrough call
-- Sets expectation: "This is valid until [date]"
+本文：50〜70語の短いメールで以下を含めます。
+- 提案書の添付またはリンク
+- 最初に読むべき最重要2セクションの強調
+- 説明ミーティングの具体的な日時の提案
+- 期待値の設定：「[日付]まで有効です」
 
-### Day 2 — Walkthrough Offer
+### 2日目 — 説明ミーティングの提案
 
-Subject: "Quick question about the [Client Company] proposal"
+件名：「[クライアント企業名] ご提案書について確認させてください」
 
-Body: 40-60 words that:
-- Ask if they had a chance to review
-- Offer a 15-minute walkthrough
-- Pre-answer the most likely question they have
-- Provide two specific time options
+本文：40〜60語で以下を含めます。
+- ご確認いただいたか確認する
+- 15分の説明ミーティングを提案する
+- 最も多く受ける質問を先回りして回答する
+- 2つの具体的な時間の選択肢を提示する
 
-### Day 5 — Value-Add (No Proposal Mention)
+### 5日目 — 価値提供（提案書に言及しない）
 
-Subject: "[Relevant industry insight or resource]"
+件名：「[関連する業界の洞察またはリソース]」
 
-Body: 50-70 words that:
-- Share something genuinely valuable, unrelated to the proposal
-- Connect it subtly to their business challenge
-- Do NOT mention the proposal at all
+本文：50〜70語で以下を含めます。
+- 提案書と無関係の真に価値ある内容を共有する
+- それをさりげなくビジネス課題に結びつける
+- 提案書には一切触れない
 
-### Day 7 — Direct Check-In
+### 7日目 — 直接的な確認
 
-Subject: "Where things stand"
+件名：「現状のご確認」
 
-Body: 40-60 words that:
-- Ask directly about their timeline and decision process
-- Offer to adjust the proposal if anything does not fit
-- Ask if other stakeholders need to review
+本文：40〜60語で以下を含めます。
+- タイムラインと意思決定プロセスについて直接確認する
+- 何か合わない点があれば提案書を調整する旨を申し出る
+- 他のステークホルダーのレビューが必要か確認する
 
-### Day 14 — Second Value-Add
+### 14日目 — 第2弾の価値提供
 
-Subject: "[Another relevant insight]"
+件名：「[別の関連する洞察]」
 
-Body: 50-70 words that:
-- Another piece of genuine value
-- Brief mention: "Also — still happy to walk through the proposal whenever works for you"
+本文：50〜70語で以下を含めます。
+- もう一つの本物の価値ある情報
+- 簡単な一言：「また — 提案書のご説明はいつでもご都合のよいときにさせていただきます」
 
-### Day 21 — Breakup / Soft Close
+### 21日目 — 締めくくり / ソフトクロージング
 
-Subject: "Should I close this out?"
+件名：「クローズしてよろしいでしょうか？」
 
-Body: 50-70 words that:
-- Honest and direct — "I want to be respectful of your time"
-- Leave the door open for the future
-- One factual urgency point (capacity, pricing, implementation slots)
-- End with: "Either way, no hard feelings"
+本文：50〜70語で以下を含めます。
+- 正直かつ率直に — 「お時間を大切にしていただきたいと思います」
+- 将来の機会に向けて扉を開けておく
+- 1つの事実に基づく緊急性のポイント（対応可能枠、価格、実装スロット）
+- 締めの言葉：「いずれにせよ、ご検討ありがとうございます」
 
 ---
 
-## Output Format
+## 出力フォーマット
 
-Write the complete proposal to **CLIENT-PROPOSAL.md** in the current working directory with the following structure:
+完成した提案書を、現在の作業ディレクトリの **CLIENT-PROPOSAL.md** に以下の構成で書き込みます。
 
 ```markdown
-# Proposal: [Proposal Title]
+# ご提案書：[提案タイトル]
 
-## [Your Company Name] for [Client Company Name]
+## [クライアント企業名] 様 [自社名] よりご提案
 
-Prepared for: [Client Contact], [Title]
-Prepared by: [Your Contact], [Title]
-Date: [Date]
-Valid Until: [Date + 30 days]
+提案先：[クライアント担当者]、[役職]
+提案者：[自社担当者]、[役職]
+日付：[日付]
+有効期限：[日付 + 30日]
 
-CONFIDENTIAL
-
----
-
-## Executive Summary
-
-[Full executive summary — 1 page]
+社外秘
 
 ---
 
-## Situation Analysis
+## エグゼクティブサマリー
 
-[Current state, opportunities, competitive context, key challenges]
-
----
-
-## Proposed Solution
-
-[Strategic framework, phased approach with activities and milestones]
+[完全なエグゼクティブサマリー — 1ページ]
 
 ---
 
-## Scope of Work
+## 状況分析
 
-[Deliverables, meeting cadence, response times, tools, exclusions, client responsibilities]
-
----
-
-## Timeline
-
-[Visual timeline with phases, milestones, key dates]
+[現状、機会、競合コンテキスト、主要な課題]
 
 ---
 
-## Investment
+## 提案ソリューション
 
-[Three-tier pricing table with ROI math for each tier]
-
----
-
-## ROI Projection
-
-[Current vs. projected metrics, ROI calculation, assumptions]
+[戦略的フレームワーク、アクティビティとマイルストーンを含むフェーズ型アプローチ]
 
 ---
 
-## Your Team
+## 作業スコープ
 
-[Team member profiles]
-
----
-
-## Case Studies
-
-[2-3 case studies in Challenge-Solution-Results format]
+[成果物、ミーティング頻度、応答時間、ツール、除外事項、クライアントの責任]
 
 ---
 
-## Next Steps
+## タイムライン
 
-[Clear action items, contact information, validity date]
+[フェーズ、マイルストーン、主要日程を含むビジュアルタイムライン]
 
 ---
 
-## Appendix: Follow-Up Sequence
+## 投資
 
-### Day 0 — Proposal Delivery Email
-**Subject**: [Subject line]
-[Full email body]
+[各段階のROI計算を含む3段階価格テーブル]
 
-### Day 2 — Walkthrough Offer
-**Subject**: [Subject line]
-[Full email body]
+---
 
-### Day 5 — Value-Add
-**Subject**: [Subject line]
-[Full email body]
+## ROI予測
 
-### Day 7 — Direct Check-In
-**Subject**: [Subject line]
-[Full email body]
+[現状 vs. 予測指標、ROI計算、前提条件]
 
-### Day 14 — Second Value-Add
-**Subject**: [Subject line]
-[Full email body]
+---
 
-### Day 21 — Soft Close
-**Subject**: [Subject line]
-[Full email body]
+## 担当チーム
+
+[チームメンバープロフィール]
+
+---
+
+## ケーススタディ
+
+[課題-ソリューション-成果フォーマットの2〜3事例]
+
+---
+
+## ネクストステップ
+
+[明確なアクション項目、連絡先情報、有効期限]
+
+---
+
+## 付録：フォローアップシーケンス
+
+### 0日目 — 提案書送付メール
+**件名**：[件名]
+[完全なメール本文]
+
+### 2日目 — 説明ミーティングの提案
+**件名**：[件名]
+[完全なメール本文]
+
+### 5日目 — 価値提供
+**件名**：[件名]
+[完全なメール本文]
+
+### 7日目 — 直接的な確認
+**件名**：[件名]
+[完全なメール本文]
+
+### 14日目 — 第2弾の価値提供
+**件名**：[件名]
+[完全なメール本文]
+
+### 21日目 — ソフトクロージング
+**件名**：[件名]
+[完全なメール本文]
 ```
 
 ---
 
-## Rules and Constraints
+## ルールと制約
 
-1. **This is a SALES document.** Every paragraph must move the reader closer to saying yes. If a sentence does not sell, inform, or build trust, remove it.
-2. **Lead with their problems.** Sections 2 and 3 (Executive Summary and Situation Analysis) should make the client feel deeply understood BEFORE you present any solution.
-3. **Anchor every price to ROI.** Never present a number in isolation. Always pair it with the value it generates. "$5,000/month" alone is a cost. "$5,000/month that generates $25,000 in new revenue" is an investment.
-4. **Use the client's own language.** If the client said "we need more qualified meetings," use "qualified meetings" — not "marketing qualified leads" or "sales opportunities." Mirror their exact words throughout.
-5. **Keep under 15 pages.** A 30-page proposal signals that you cannot prioritize. Be concise and impactful.
-6. **Be specific.** "We will increase your revenue" is meaningless. "We project a 25-35% increase in qualified pipeline within 90 days based on results with [comparable client]" is credible.
-7. **Three-tier pricing is mandatory.** Always provide three options. The middle tier is where you want them. The top tier makes the middle look reasonable. The bottom tier exists as a fallback.
-8. **Include exclusions.** A proposal without exclusions invites scope creep. Be explicit about what is NOT included.
-9. **Case studies must be relevant.** Irrelevant case studies are worse than none. Match the client's industry, size, or challenge as closely as possible.
-10. **If previous analysis files exist**, incorporate all available data. Do not ask the user to repeat information already captured in PROSPECT-ANALYSIS.md, COMPANY-RESEARCH.md, LEAD-QUALIFICATION.md, COMPETITIVE-INTEL.md, or other output files.
-11. **Follow-up emails are part of the proposal output.** Always generate the 6-email follow-up sequence alongside the proposal — proposal delivery without a follow-up plan is incomplete.
-12. **Conservative projections build trust.** In the ROI section, the conservative estimate should be genuinely conservative. Overpromising destroys credibility when results come in.
+1. **これは「営業」ドキュメントです。** すべての段落は読者を「はい」に近づけるものでなければなりません。売り込み、情報提供、または信頼構築に貢献しない文章は削除します。
+2. **相手の課題からリードします。** セクション2と3（エグゼクティブサマリーと状況分析）は、ソリューションを提示する前にクライアントが深く理解されたと感じさせるものでなければなりません。
+3. **すべての価格をROIに紐付けます。** 数値を単独で提示しません。常に生み出す価値と組み合わせます。「月額5万円」単独ではコストです。「月額5万円で25万円の新規売上を生む」なら投資です。
+4. **クライアントの言葉を使います。** クライアントが「もっと質の高い商談が必要」と言った場合は「質の高い商談」を使います — 「マーケティング資格のあるリード」や「営業機会」とは言いません。全体を通じて彼らの表現をそのまま使います。
+5. **15ページ以内に収めます。** 30ページの提案書は優先順位付けができないことを示します。簡潔でインパクトのある内容にします。
+6. **具体性を持たせます。** 「売上を増加させます」は意味がありません。「[類似クライアント]での実績に基づき、90日以内に資格確認済みpipelineが25〜35%増加する見込みです」は信頼性があります。
+7. **3段階価格は必須です。** 常に3つのオプションを提供します。中間段階が本命です。最上段階は中間を合理的に見せます。最下段階はフォールバックとして存在します。
+8. **除外事項を含めます。** 除外事項のない提案書はスコープクリープを招きます。含まれない内容を明示します。
+9. **ケーススタディは関連性を持たせます。** 無関係なケーススタディはないよりも悪い場合があります。クライアントの業界・規模・課題にできる限り近い事例を選びます。
+10. **過去の分析ファイルが存在する場合**は、利用可能なすべてのデータを組み込みます。PROSPECT-ANALYSIS.md、COMPANY-RESEARCH.md、LEAD-QUALIFICATION.md、COMPETITIVE-INTEL.md、その他の出力ファイルで既に収集されている情報をユーザーに再確認することはしません。
+11. **フォローアップメールは提案書アウトプットの一部です。** 6通のフォローアップシーケンスを提案書と合わせて常に生成します — フォローアップ計画のない提案書の送付は不完全です。
+12. **保守的な予測が信頼を構築します。** ROIセクションでは、保守的な推定を真に保守的にします。過大な約束は成果が出た際に信用を損ないます。

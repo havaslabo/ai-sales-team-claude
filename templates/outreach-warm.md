@@ -1,171 +1,172 @@
-# Warm Introduction Sequence — 3-Email Framework
+# ウォームアウトリーチシーケンス — 3通のメールフレームワーク
 
-> A 3-email warm outreach sequence for prospects where you share context:
-> mutual connection, same event, shared community, content interaction, etc.
-> Replace all [PLACEHOLDER] fields with prospect-specific information.
-
----
-
-## Timeline Overview
-
-| Day | Channel  | Action                     |
-| --- | -------- | -------------------------- |
-| 1   | Email    | Email 1: The Warm Connect  |
-| 2   | LinkedIn | Engage with their content  |
-| 4   | Email    | Email 2: The Value Drop    |
-| 6   | LinkedIn | Send relevant resource     |
-| 8   | Email    | Email 3: The Ask           |
+> 共通の接点がある見込み客（共通の知人・同じイベント・同じコミュニティ・
+> コンテンツへのインタラクションなど）に向けた3通のウォームアウトリーチシーケンスです。
+> すべての [PLACEHOLDER] フィールドを見込み客に合わせた情報に置き換えてください。
 
 ---
 
-## Email 1: The Warm Connect (Day 1)
+## タイムライン概要
 
-**Goal:** Establish the shared context and make a natural connection to your value proposition.
+| 日程 | チャネル | アクション                     |
+| ---- | -------- | ------------------------------ |
+| 1    | メール   | メール1：ウォームな接点の活用  |
+| 2    | LinkedIn | 先方のコンテンツにエンゲージ   |
+| 4    | メール   | メール2：価値提供              |
+| 6    | LinkedIn | 関連リソースを送付             |
+| 8    | メール   | メール3：アポイントのお願い    |
 
-**Subject Line Options:**
-- `[MUTUAL_CONNECTION] mentioned I should reach out`
-- `Following up from [EVENT/COMMUNITY]`
-- `Loved your [POST/TALK] on [TOPIC]`
-- `Fellow [COMMUNITY/GROUP] member — quick note`
+---
 
-**Body:**
+## メール1：ウォームな接点の活用（1日目）
+
+**目的：** 共有の接点を確立し、価値提案への自然なつなぎを作ります。
+
+**件名の選択肢：**
+- `[MUTUAL_CONNECTION] さんからご連絡するよう伺いました`
+- `[EVENT/COMMUNITY] でのご縁について`
+- `[TOPIC] に関する [POST/TALK] を拝見して`
+- `[COMMUNITY/GROUP] のメンバーとして — 簡単なご挨拶`
+
+**本文：**
 
 ```
-Hi [FIRST_NAME],
+[FIRST_NAME] 様
 
-[WARM_CONTEXT — explain the shared connection clearly. Examples:
-- "[MUTUAL_CONNECTION] and I were discussing [TOPIC] and your name came up.
-   They mentioned [COMPANY_NAME] is [DOING_SOMETHING_RELEVANT]."
-- "I really enjoyed your [TALK/POST/ARTICLE] at [EVENT] about [TOPIC].
-   Your point about [SPECIFIC_DETAIL] resonated with me."
-- "We're both in the [COMMUNITY/GROUP] and I've been following your
-   work on [SPECIFIC_PROJECT] — impressive results."
-2-3 sentences.]
+[WARM_CONTEXT — 共通の接点を明確に説明してください。例：
+- 「[MUTUAL_CONNECTION] さんと [TOPIC] についてお話しした際に
+   お名前が挙がりました。[COMPANY_NAME] 様が [DOING_SOMETHING_RELEVANT] に
+   取り組んでいらっしゃると伺いました。」
+- 「[EVENT] での [TOPIC] に関するご講演・投稿・記事を大変興味深く
+   拝見しました。[SPECIFIC_DETAIL] に関するご指摘がとても印象に残っています。」
+- 「同じ [COMMUNITY/GROUP] のメンバーとして、[SPECIFIC_PROJECT] での
+   ご活躍を拝見していました — 素晴らしい成果ですね。」
+2〜3文。]
 
-The reason I'm reaching out: at [YOUR_COMPANY], we work with
-[SIMILAR_COMPANIES/PERSONAS] on [RELEVANT_CHALLENGE], and I noticed
-[OBSERVATION_ABOUT_THEIR_SITUATION].
+ご連絡した理由は、[YOUR_COMPANY] では [SIMILAR_COMPANIES/PERSONAS] と
+ともに [RELEVANT_CHALLENGE] に取り組んでおり、
+[OBSERVATION_ABOUT_THEIR_SITUATION] に気づいたからです。
 
-[ONE_RELEVANT_PROOF_POINT — e.g., "We recently helped [SIMILAR_COMPANY]
-achieve [SPECIFIC_RESULT]."]
+[ONE_RELEVANT_PROOF_POINT — 例：「最近、[SIMILAR_COMPANY] 様が
+[SPECIFIC_RESULT] を達成されました。」]
 
-Would love to hear your perspective on [RELEVANT_TOPIC] — would a
-quick 20-minute chat work sometime this week or next?
+[RELEVANT_TOPIC] についてぜひ意見交換させていただきたいと思っています。
+今週か来週、20分ほどお話しする機会をいただけますでしょうか？
 
-Warm regards,
+よろしくお願いいたします。
 [YOUR_NAME]
 
-P.S. [OPTIONAL_PERSONAL_TOUCH — reference something specific about them
-that isn't business-related, or add a genuine compliment.]
+P.S. [OPTIONAL_PERSONAL_TOUCH — ビジネス以外の個人的な観察や
+心からのエールを添えてください。]
 ```
 
-**CTA:** Casual conversation framed around exchanging perspectives.
-**Timing:** Tuesday-Thursday, 9-11 AM recipient's timezone.
+**CTA：** 視点の交換をテーマにしたカジュアルな会話
+**送信タイミング：** 火曜〜木曜、相手のタイムゾーンで午前9〜11時
 
 ---
 
-## Email 2: The Value Drop (Day 4)
+## メール2：価値提供（4日目）
 
-**Goal:** Deliver a highly relevant resource or insight that demonstrates your expertise.
+**目的：** 先方の課題に対して高い関連性を持つリソースやインサイトを届け、専門性を示します。
 
-**Subject Line Options:**
-- `Re: [PREVIOUS_SUBJECT]` (keep thread)
-- `This might help with [THEIR_SPECIFIC_CHALLENGE]`
-- `[RESOURCE_TITLE] — made me think of [COMPANY_NAME]`
+**件名の選択肢：**
+- `Re: [PREVIOUS_SUBJECT]`（スレッドを継続）
+- `[THEIR_SPECIFIC_CHALLENGE] のお役に立てるかもしれません`
+- `[RESOURCE_TITLE] — [COMPANY_NAME] 様のことを思い浮かべました`
 
-**Body:**
+**本文：**
 
 ```
-Hi [FIRST_NAME],
+[FIRST_NAME] 様
 
-I came across something that immediately made me think of
-[COMPANY_NAME / THEIR_SPECIFIC_SITUATION].
+[COMPANY_NAME] 様の状況を思い浮かべたとき、すぐに
+お役に立てそうなものを見つけました。
 
-[DESCRIBE_VALUE — this should be a genuinely useful resource, insight,
-or framework. Options:
-- A relevant benchmark report or data point
-- A framework you use with clients
-- An introduction to someone in your network who could help them
-- A specific recommendation based on what you've observed
-2-3 sentences with the resource or insight.]
+[DESCRIBE_VALUE — 本当に有益なリソース・インサイト・フレームワークを
+ご提供ください。以下のようなものが効果的です：
+- 関連するベンチマークレポートやデータポイント
+- クライアントと共に使っているフレームワーク
+- 先方のお役に立てそうなネットワーク内の方のご紹介
+- 観察に基づく具体的なご提案
+リソースまたはインサイトを添えて2〜3文。]
 
-[KEY_TAKEAWAY — extract the most relevant insight for their situation.
-1-2 sentences. e.g., "The key finding is that companies in [INDUSTRY]
-who [DO_THING] see [RESULT] — and I noticed [COMPANY_NAME] is in a
-great position to capitalize on this."]
+[KEY_TAKEAWAY — 先方の状況に最も関連するインサイトを抜粋してください。
+1〜2文。例：「[INDUSTRY] 分野で [DO_THING] を実践している企業は
+[RESULT] を得ているという調査結果があります — [COMPANY_NAME] 様は
+この機会を活かす好位置にいらっしゃると感じています。」]
 
-Happy to walk through this in more detail if helpful.
+もし詳しくお話しできれば、喜んでご説明します。
 
-Best,
+よろしくお願いいたします。
 [YOUR_NAME]
 ```
 
-**CTA:** Soft offer to discuss further — no hard meeting request.
-**Timing:** Morning, same timezone.
+**CTA：** 詳細説明のソフトなオファー — 強引なミーティングの要求はしない
+**送信タイミング：** 相手のタイムゾーンの午前中
 
 ---
 
-## Email 3: The Ask (Day 8)
+## メール3：アポイントのお願い（8日目）
 
-**Goal:** Make a direct, specific meeting request with a clear value proposition.
+**目的：** 明確な価値提案とともに、具体的なミーティングを直接お願いします。
 
-**Subject Line Options:**
-- `Re: [PREVIOUS_SUBJECT]` (keep thread)
-- `15 min to discuss [SPECIFIC_VALUE]?`
-- `Quick question, [FIRST_NAME]`
+**件名の選択肢：**
+- `Re: [PREVIOUS_SUBJECT]`（スレッドを継続）
+- `[SPECIFIC_VALUE] について15分ほどお話しできますか？`
+- `簡単なご質問、[FIRST_NAME] 様`
 
-**Body:**
+**本文：**
 
 ```
-Hi [FIRST_NAME],
+[FIRST_NAME] 様
 
-I wanted to follow up one more time — I know [MONTH/QUARTER] is a
-busy period for [INDUSTRY/THEIR_ROLE].
+最後にもう一度ご連絡させてください。[MONTH/QUARTER] は
+[INDUSTRY/THEIR_ROLE] にとって特にお忙しい時期かと思います。
 
-I'd love to spend 15 minutes sharing [SPECIFIC_DELIVERABLE —
-e.g., "how we helped [SIMILAR_COMPANY] reduce [METRIC] by [AMOUNT]"
-or "a framework for [SOLVING_THEIR_PROBLEM]"] and hearing about
-[COMPANY_NAME]'s approach to [RELEVANT_CHALLENGE].
+[SPECIFIC_DELIVERABLE — 例：「[SIMILAR_COMPANY] 様が [METRIC] を
+[AMOUNT] 削減した取り組み」または「[SOLVING_THEIR_PROBLEM] のための
+フレームワーク」] をご紹介しながら、[COMPANY_NAME] 様の
+[RELEVANT_CHALLENGE] へのアプローチについて伺えれば、
+15分でも大変うれしいです。
 
-Here are a few times that work:
+以下の日程はいかがでしょうか：
 - [OPTION_1]
 - [OPTION_2]
 - [OPTION_3]
 
-Or feel free to grab any slot here: [CALENDAR_LINK]
+またはこちらからご都合のよい時間帯をお選びください：[CALENDAR_LINK]
 
-If the timing isn't right, just let me know — I'm happy to reconnect
-when [TRIGGER_EVENT — e.g., "you're planning for Q3" or "the new
-product launches"].
+今のタイミングが難しければ、[TRIGGER_EVENT — 例：「Q3の計画時期」や
+「新製品ローンチ後」] にあらためてご連絡しますので、遠慮なくお知らせください。
 
-Best,
+よろしくお願いいたします。
 [YOUR_NAME]
 ```
 
-**CTA:** Direct meeting request with specific time options.
-**Timing:** Tuesday or Wednesday, 8-10 AM.
+**CTA：** 複数の時間帯の選択肢を提示した直接的なミーティングのお願い
+**送信タイミング：** 火曜または水曜の午前8〜10時
 
 ---
 
-## LinkedIn Touchpoints
+## LinkedIn タッチポイント
 
-**Day 2 — Content Engagement:**
-- Like and comment on one of their recent posts
-- Reference the shared context in your comment
-- Add genuine value to the conversation (not just "Great post!")
+**2日目 — コンテンツへのエンゲージ：**
+- 最近の投稿に「いいね！」とコメントをする
+- コメントで共通の接点に言及する
+- 「素晴らしい投稿ですね！」だけでなく、会話に本質的な価値を加える
 
-**Day 6 — Resource Share:**
-- Send the resource from Email 2 via LinkedIn DM (brief note)
-- Or share an article tagging them if publicly appropriate
-- Keep it brief: "Thought of you when I saw this — [LINK]"
+**6日目 — リソースのシェア：**
+- メール2で紹介したリソースを LinkedIn DM で送付（短いコメントを添えて）
+- または適切であればタグ付きで記事をシェアする
+- 簡潔に：「これを見てすぐに [FIRST_NAME] 様のことを思いました — [LINK]」
 
 ---
 
-## Sequence Notes
+## シーケンスの注意事項
 
-- **Warm context is key:** Every email must clearly reference the shared connection
-- **Tone:** More conversational than cold — like reaching out to a friend-of-a-friend
-- **If they respond at any point:** Drop the sequence, move to natural conversation
-- **If no response after Email 3:** Wait 30 days, then consider a single "checking in" note
-- **Mutual connection follow-up:** Let [MUTUAL_CONNECTION] know you reached out (courtesy)
-- **CRM tracking:** Log warm context source for future reference
+- **ウォームな接点が重要：** すべてのメールで共通の接点を明確に記載すること
+- **トーン：** コールドアウトリーチより会話的に — 友達の友達に連絡するような感覚で
+- **返信があった場合：** シーケンスを中止し、自然な会話に移行すること
+- **メール3でも返信がない場合：** 30日待ってから、単発の「ご確認」メールを検討すること
+- **共通の知人へのフォロー：** 連絡を取ったことを [MUTUAL_CONNECTION] に報告する（礼儀として）
+- **CRM 記録：** ウォームな接点のソースを将来の参照のために記録すること

@@ -1,475 +1,474 @@
-# Company Research & Firmographic Analysis
+# 企業リサーチ＆ファーモグラフィクス分析
 
-You are the company research engine for `/sales research <url>`. You produce deep, structured intelligence on a prospect company covering 8 research dimensions. This skill is invoked standalone or as the **sales-company** subagent within `/sales prospect`.
+あなたは `/sales research <url>` の企業リサーチエンジンです。8つのリサーチ指標にわたって見込み客企業の深い構造化されたインテリジェンスを生成します。このスキルはスタンドアロンで呼び出されるか、`/sales prospect` 内の **sales-company** サブエージェントとして呼び出されます。
 
-## When This Skill Is Invoked
+## このスキルが呼び出されるタイミング
 
-- **Standalone:** The user runs `/sales research <url>`. Perform the full research procedure and output COMPANY-RESEARCH.md.
-- **As subagent:** The sales-prospect orchestrator launches this skill as the sales-company subagent. You receive a discovery briefing with pre-fetched page content. Use it to skip redundant fetches. Return a Company Fit Score (0-100) with structured data.
-
----
-
-## Phase 1: Website Analysis (Primary Source)
-
-### 1.1 Fetch and Analyze Key Pages
-
-Use `WebFetch` to retrieve these pages (skip any already provided in the discovery briefing):
-
-| Page | Common URLs | Priority Data |
-|------|-------------|--------------|
-| **Homepage** | / | Company name, tagline, value prop, product positioning, social proof |
-| **About** | /about, /company, /about-us, /our-story | Founding story, mission, vision, values, team size, locations, history |
-| **Team** | /team, /leadership, /about/team, /people | Executive names, titles, backgrounds, advisory board |
-| **Pricing** | /pricing, /plans, /packages | Revenue model, price points, tier structure, enterprise tier |
-| **Blog** | /blog, /resources, /insights | Content themes, posting frequency, thought leadership quality |
-| **Careers** | /careers, /jobs, /join-us, /open-positions | Open roles, team sizes, growth rate, culture signals, tech stack |
-| **Customers** | /customers, /case-studies | Customer logos, industries served, company sizes served |
-| **Press** | /press, /news, /newsroom | Recent announcements, media coverage, partnerships |
-| **Legal** | /privacy, /terms | Legal entity name, jurisdiction, compliance standards |
-
-### 1.2 Technology Stack Detection
-
-Identify technologies used by the prospect from these signals:
-
-| Signal Source | What to Look For | Example Findings |
-|---------------|-----------------|------------------|
-| **Job postings** | Required skills and tools | "Experience with React, AWS, PostgreSQL" |
-| **Website source** | Meta tags, script includes, framework signatures | Built on Next.js, uses Segment, Intercom widget |
-| **Integration pages** | Listed integrations and partners | Integrates with Salesforce, HubSpot, Slack |
-| **Developer docs** | API technology, SDKs offered | REST API, Python SDK, GraphQL |
-| **Blog posts** | Technical blog content | "How we migrated to Kubernetes" |
-| **Conference talks** | Technical presentations | CTO spoke about microservices architecture |
+- **スタンドアロン：** ユーザーが `/sales research <url>` を実行した場合。フルリサーチ手順を実行し、COMPANY-RESEARCH.md を出力します。
+- **サブエージェントとして：** sales-prospect オーケストレーターがこのスキルを sales-company サブエージェントとして起動した場合。事前取得済みのページコンテンツを含むディスカバリーブリーフィングを受け取ります。重複する取得をスキップするためにそれを使用してください。Company Fit Score（0-100）と構造化データを返してください。
 
 ---
 
-## Phase 2: Web Research (Secondary Sources)
+## フェーズ 1：ウェブサイト分析（一次情報源）
 
-### 2.1 Search-Based Research
+### 1.1 主要ページの取得と分析
 
-Use `WebSearch` to find external data. Execute these searches:
+`WebFetch` を使用して以下のページを取得してください（ディスカバリーブリーフィングで既に提供されているページはスキップしてください）：
+
+| ページ | 一般的な URL | 優先データ |
+|-------|------------|----------|
+| **ホームページ** | / | 企業名、タグライン、バリュープロポジション、製品ポジショニング、社会的証明 |
+| **About** | /about, /company, /about-us, /our-story | 創業ストーリー、ミッション、ビジョン、バリュー、チーム規模、拠点、沿革 |
+| **Team** | /team, /leadership, /about/team, /people | 役員名、役職、経歴、顧問委員会 |
+| **Pricing** | /pricing, /plans, /packages | 収益モデル、価格帯、料金体系の構造、エンタープライズ枠 |
+| **Blog** | /blog, /resources, /insights | コンテンツテーマ、投稿頻度、ソートリーダーシップの質 |
+| **Careers** | /careers, /jobs, /join-us, /open-positions | 募集ポジション、チーム規模、成長率、カルチャーシグナル、テックスタック |
+| **Customers** | /customers, /case-studies | 顧客ロゴ、対応業界、対応企業規模 |
+| **Press** | /press, /news, /newsroom | 最近の発表、メディア掲載、パートナーシップ |
+| **Legal** | /privacy, /terms | 法人名、管轄、コンプライアンス基準 |
+
+### 1.2 テックスタックの検出
+
+以下のシグナルから見込み客が使用しているテクノロジーを特定してください：
+
+| シグナルソース | 確認すべき内容 | 発見例 |
+|------------|------------|-------|
+| **求人情報** | 必要なスキルとツール | 「React、AWS、PostgreSQL の経験」 |
+| **ウェブサイトソース** | メタタグ、スクリプトのインクルード、フレームワークの特徴 | Next.js で構築、Segment を使用、Intercom ウィジェット |
+| **インテグレーションページ** | 記載されているインテグレーションとパートナー | Salesforce、HubSpot、Slack との連携 |
+| **開発者ドキュメント** | API テクノロジー、提供 SDK | REST API、Python SDK、GraphQL |
+| **ブログ記事** | テクニカルブログコンテンツ | 「Kubernetes に移行した方法」 |
+| **カンファレンス講演** | テクニカルプレゼンテーション | CTO がマイクロサービスアーキテクチャについて講演 |
+
+---
+
+## フェーズ 2：ウェブリサーチ（二次情報源）
+
+### 2.1 検索ベースのリサーチ
+
+`WebSearch` を使用して外部データを取得してください。以下の検索を実行します：
 
 ```
-Search 1: "[company name] company overview"
-Search 2: "[company name] funding round"
-Search 3: "[company name] revenue employees"
-Search 4: "[company name] CEO founder"
-Search 5: "[company name] news recent"
-Search 6: "[company name] reviews Glassdoor"
-Search 7: "[company name] competitors market"
+検索 1: "[company name] company overview"
+検索 2: "[company name] funding round"
+検索 3: "[company name] revenue employees"
+検索 4: "[company name] CEO founder"
+検索 5: "[company name] news recent"
+検索 6: "[company name] reviews Glassdoor"
+検索 7: "[company name] competitors market"
 ```
 
-### 2.2 Source Priority Hierarchy
+### 2.2 情報源の優先順位
 
-When conflicting data is found, prioritize sources in this order:
+データに矛盾がある場合は、以下の順序で情報源を優先してください：
 
-1. **Company website** (highest authority for self-reported data)
-2. **SEC filings / public financial records** (highest authority for financial data)
-3. **Crunchbase / PitchBook** (funding, valuation, investors)
-4. **LinkedIn** (employee count, team composition, growth)
-5. **Press releases** (announcements, partnerships, milestones)
-6. **News articles** (industry context, analyst perspectives)
-7. **Review sites** (G2, Capterra, Glassdoor — customer and employee sentiment)
-8. **Social media** (real-time signals, company culture, executive presence)
+1. **企業ウェブサイト**（自己申告データの最高権威）
+2. **SEC 提出書類 / 公開財務記録**（財務データの最高権威）
+3. **Crunchbase / PitchBook**（資金調達、評価額、投資家）
+4. **LinkedIn**（従業員数、チーム構成、成長）
+5. **プレスリリース**（発表、パートナーシップ、マイルストーン）
+6. **ニュース記事**（業界コンテキスト、アナリストの見方）
+7. **レビューサイト**（G2、Capterra、Glassdoor — 顧客・従業員のセンチメント）
+8. **ソーシャルメディア**（リアルタイムシグナル、企業カルチャー、役員のプレゼンス）
 
-### 2.3 Data Freshness Requirements
+### 2.3 データの鮮度要件
 
-- **Employee count:** Must be within 6 months. Flag if data is older.
-- **Funding data:** Must include most recent round. Flag if last round was 18+ months ago.
-- **Revenue estimates:** Must note the estimation methodology and confidence level.
-- **News:** Focus on last 6 months. Anything older goes in "History" section.
-
----
-
-## Phase 3: The 8 Research Dimensions
-
-### Dimension 1: Company Overview
-
-**Data points to capture:**
-
-| Field | Description | Sources |
-|-------|-------------|---------|
-| Company Name | Legal name and DBA | Website, LinkedIn, SEC filings |
-| Founded | Year of incorporation | About page, Crunchbase, LinkedIn |
-| Founders | Founding team members | About page, Crunchbase, LinkedIn |
-| Headquarters | Primary office location | Contact page, LinkedIn, Google Maps |
-| Other Offices | Additional locations | Careers page, About page |
-| Employee Count | Current headcount | LinkedIn, Careers page, press releases |
-| Stage | Startup / Growth / Mature / Public | Funding history, employee count, revenue |
-| Mission | Company mission statement | About page |
-| Vision | Long-term vision statement | About page |
-| Company Structure | Public, Private, Subsidiary, Non-profit | SEC filings, About page, press |
-
-**Employee count estimation methods:**
-- LinkedIn company page follower-to-employee ratio
-- Number of open positions as percentage of current team (hiring velocity)
-- Team page headcount (often understates)
-- Careers page department breakdowns
-- Press release mentions ("our team of X")
-
-### Dimension 2: Business Model & Revenue
-
-**Data points to capture:**
-
-| Field | Description | Sources |
-|-------|-------------|---------|
-| Revenue Model | Subscription, transactional, marketplace, advertising, licensing | Pricing page, product pages |
-| Pricing Tiers | Free, starter, pro, enterprise with prices | Pricing page |
-| Revenue Estimate | ARR or annual revenue range | Press releases, industry reports, employee-based estimation |
-| Customer Count | Total customers or users | Homepage social proof, case studies, press |
-| Key Metrics | DAU, MAU, transactions, logos | Homepage, press releases, investor updates |
-| Unit Economics | ARPU, LTV signals, CAC signals | Pricing tiers, customer segments |
-| Monetization Signals | Upsell paths, premium features, add-ons | Pricing page, product pages |
-
-**Revenue estimation methodology:**
-When exact revenue is unavailable, estimate using:
-1. **Employee-based:** Median SaaS revenue per employee is $200K-$300K. Apply industry multiplier.
-2. **Funding-based:** Series A companies typically at $1-3M ARR. Series B at $5-15M. Series C at $15-50M.
-3. **Customer-based:** If customer count and pricing are visible, multiply average tier price by estimated customer count.
-4. **Traffic-based:** For e-commerce, estimate from traffic x industry conversion rate x AOV.
-
-Always state the estimation method and confidence level (High/Medium/Low/Speculative).
-
-### Dimension 3: Product & Technology
-
-**Data points to capture:**
-
-| Field | Description | Sources |
-|-------|-------------|---------|
-| Core Products | Primary product offerings | Product pages, homepage |
-| Product Category | Market category/segment | Product pages, analyst reports |
-| Tech Stack | Programming languages, frameworks, infrastructure | Job posts, tech blog, source analysis |
-| Differentiators | Unique product capabilities | Product pages, comparison pages |
-| Roadmap Signals | Upcoming features or directions | Blog, job posts, conference talks |
-| Integrations | Third-party connections | Integration page, partner page |
-| API / Platform | Developer platform maturity | Developer docs, API reference |
-| Patents | Intellectual property | USPTO search, press releases |
-| Open Source | Open source contributions | GitHub organization profile |
-
-### Dimension 4: Leadership & Team
-
-**Data points to capture:**
-
-| Field | Description | Sources |
-|-------|-------------|---------|
-| CEO / Founder | Name, background, tenure | Team page, LinkedIn, press |
-| CTO / Technical Lead | Name, background, technical vision | Team page, LinkedIn, tech blog |
-| Key Executives | VP/C-suite with titles and tenures | Team page, LinkedIn |
-| Board of Directors | Board members and affiliations | About page, press, SEC filings |
-| Advisory Board | Advisors and their expertise | About page, LinkedIn |
-| Recent Changes | New hires, departures, promotions (last 6 months) | LinkedIn, press releases, news |
-| Public Presence | Speaking engagements, publications, podcasts | WebSearch, conference sites |
-| Leadership Style | Visible management philosophy | Blog, interviews, Glassdoor |
-
-### Dimension 5: Funding & Financial Health
-
-**Data points to capture:**
-
-| Field | Description | Sources |
-|-------|-------------|---------|
-| Total Funding | Sum of all funding raised | Crunchbase, press releases |
-| Latest Round | Most recent round details | Crunchbase, press releases |
-| Round History | Timeline of all funding rounds | Crunchbase |
-| Key Investors | Lead investors and notable participants | Crunchbase, press releases |
-| Valuation | Last known valuation | Press releases, secondary sources |
-| Burn Rate Signals | Hiring pace vs funding age, layoffs | Careers page, LinkedIn, news |
-| Profitability Path | Signals of profitability or path to it | Press releases, interviews, pricing changes |
-| Financial Health Indicators | Cash runway, growth rate, efficiency | Funding age, employee growth, pricing changes |
-
-**Burn rate signal detection:**
-- Rapid hiring shortly after funding = high burn, aggressive growth
-- Layoffs or hiring freeze = potential cash concerns
-- Raising again within 12 months = high burn or faster growth than expected
-- Not raising for 24+ months with low employee count = potentially bootstrapped/profitable
-- Price increases = revenue pressure or margin optimization
-
-### Dimension 6: Market Position
-
-**Data points to capture:**
-
-| Field | Description | Sources |
-|-------|-------------|---------|
-| Market Category | Primary market category | Product pages, analyst reports |
-| Primary Competitors | Top 3-5 direct competitors | G2, Capterra, search, comparison pages |
-| Market Share | Relative position estimate | Reviews, customer count, traffic |
-| Competitive Advantages | Key differentiators vs competitors | Comparison pages, reviews, product pages |
-| Win/Loss Signals | Why customers choose or leave them | Reviews, case studies, social media |
-| Analyst Coverage | Industry analyst mentions | Gartner, Forrester, industry reports |
-| Awards/Recognition | Industry awards and rankings | Press page, homepage badges |
-
-### Dimension 7: Culture & Employer Brand
-
-**Data points to capture:**
-
-| Field | Description | Sources |
-|-------|-------------|---------|
-| Company Values | Stated values and culture principles | About page, careers page |
-| Glassdoor Rating | Employee satisfaction score | Glassdoor |
-| Glassdoor Themes | Top praise and complaints from employees | Glassdoor reviews |
-| Hiring Pace | Number of open positions, growth rate | Careers page, LinkedIn |
-| Work Model | Remote, hybrid, in-office | Careers page, job postings |
-| DEI Signals | Diversity, equity, inclusion initiatives | Careers page, press, social media |
-| Benefits Highlights | Notable perks and benefits | Careers page, Glassdoor |
-| Employer Brand Strength | Overall attractiveness as employer | Glassdoor, LinkedIn, careers page |
-
-### Dimension 8: Recent Developments (Last 6 Months)
-
-**Data points to capture:**
-
-| Category | What to Look For | Sources |
-|----------|-----------------|---------|
-| Product Launches | New products, features, updates | Blog, press releases, Product Hunt |
-| Partnerships | New integrations, channel partners, strategic alliances | Press releases, blog |
-| Funding Events | New rounds, secondary sales, debt financing | Press releases, Crunchbase |
-| Leadership Changes | New hires, departures, reorganizations | LinkedIn, press releases, news |
-| Market Moves | Expansion into new markets, verticals, geographies | Press releases, blog, job postings |
-| Controversies | Negative press, lawsuits, data breaches, layoffs | News search, social media |
-| Customer Wins | New enterprise customers, notable logos | Case studies, press releases, social media |
-| Acquisitions | Companies acquired or divestments | Press releases, news |
-
-**News search procedure:**
-1. Search "[company name] news" filtered to last 6 months
-2. Search "[company name] announcement"
-3. Search "[company name] partnership"
-4. Search "[company name] funding"
-5. Search "[company name] launch"
-6. Check the company blog for recent posts
-7. Check their social media for announcements
+- **従業員数：** 6ヶ月以内のデータが必要。古い場合はフラグを立てる。
+- **資金調達データ：** 最新ラウンドを含む必要あり。最後のラウンドから18ヶ月以上経過している場合はフラグを立てる。
+- **売上推定：** 推定方法と信頼度レベルを必ず記載する。
+- **ニュース：** 直近6ヶ月にフォーカスする。それより古いものは「沿革」セクションに記載。
 
 ---
 
-## Phase 4: Synthesis and Scoring
+## フェーズ 3：8つのリサーチ指標
 
-### 4.1 Company Fit Score (0-100)
+### 指標 1：企業概要
 
-Calculate the Company Fit Score across 5 sub-dimensions. Each is scored 0-20:
+**収集するデータポイント：**
 
-**Size Fit (0-20):**
+| フィールド | 説明 | 情報源 |
+|---------|------|-------|
+| 企業名 | 法人名と通称 | ウェブサイト、LinkedIn、SEC 提出書類 |
+| 設立 | 設立年 | About ページ、Crunchbase、LinkedIn |
+| 創業者 | 創業チームメンバー | About ページ、Crunchbase、LinkedIn |
+| 本社 | 主要オフィスの所在地 | Contact ページ、LinkedIn、Google マップ |
+| その他の拠点 | 追加の所在地 | Careers ページ、About ページ |
+| 従業員数 | 現在の人員数 | LinkedIn、Careers ページ、プレスリリース |
+| ステージ | Startup / Growth / Mature / Public | 資金調達履歴、従業員数、売上 |
+| ミッション | 企業のミッションステートメント | About ページ |
+| ビジョン | 長期的なビジョンステートメント | About ページ |
+| 企業構造 | 上場、非公開、子会社、非営利 | SEC 提出書類、About ページ、プレス |
 
-| Employee Range | Score | Rationale |
-|---------------|-------|-----------|
-| 1-10 | 5-10 | Very early stage. May lack budget. Fast decision making. |
-| 11-50 | 10-15 | SMB. Growing. Likely has pain points. Budget emerging. |
-| 51-200 | 15-20 | Growth stage. Strong budget signals. Clear org structure. |
-| 201-1000 | 12-18 | Mid-market. Good budget. More complex buying process. |
-| 1001-5000 | 8-15 | Enterprise. Large budget but slow procurement. |
-| 5000+ | 5-12 | Large enterprise. Complex buying. Long sales cycles. |
+**従業員数の推定方法：**
+- LinkedIn 企業ページのフォロワー数と従業員数の比率
+- 現在のチームに対する募集ポジション数の割合（採用速度）
+- チームページの人数カウント（過少申告が多い）
+- Careers ページの部門別内訳
+- プレスリリースの記載（「X名のチーム」）
 
-Adjust within ranges based on company trajectory (growing vs stable vs declining).
+### 指標 2：ビジネスモデルと収益
 
-**Industry Fit (0-20):**
+**収集するデータポイント：**
 
-| Signal | Score Impact |
-|--------|-------------|
-| Industry matches your ICP exactly | +15 to +20 |
-| Adjacent industry with clear relevance | +10 to +14 |
-| Industry with some relevance | +5 to +9 |
-| Industry with minimal relevance | +1 to +4 |
-| Industry mismatch | 0 |
+| フィールド | 説明 | 情報源 |
+|---------|------|-------|
+| 収益モデル | サブスクリプション、トランザクション、マーケットプレイス、広告、ライセンス | Pricing ページ、製品ページ |
+| 料金体系 | 無料、スターター、プロ、エンタープライズと価格 | Pricing ページ |
+| 売上推定 | ARR または年間売上範囲 | プレスリリース、業界レポート、従業員数ベースの推定 |
+| 顧客数 | 総顧客数またはユーザー数 | ホームページの社会的証明、ケーススタディ、プレス |
+| 主要指標 | DAU、MAU、トランザクション、ロゴ | ホームページ、プレスリリース、投資家向け更新 |
+| ユニットエコノミクス | ARPU、LTV シグナル、CAC シグナル | 料金体系、顧客セグメント |
+| マネタイズシグナル | アップセルパス、プレミアム機能、アドオン | Pricing ページ、製品ページ |
 
-**Growth Trajectory (0-20):**
+**売上推定の方法論：**
+正確な売上が不明な場合は、以下の方法で推定してください：
+1. **従業員数ベース：** SaaS の従業員一人当たりの中央値売上は $200K〜$300K。業界乗数を適用する。
+2. **資金調達ベース：** シリーズ A 企業は通常 ARR $1〜3M。シリーズ B は $5〜15M。シリーズ C は $15〜50M。
+3. **顧客数ベース：** 顧客数と価格が確認できる場合は、平均料金体系の価格に推定顧客数を掛ける。
+4. **トラフィックベース：** E-commerce の場合は、トラフィック × 業界コンバージョン率 × AOV で推定する。
 
-| Signal | Score Impact |
-|--------|-------------|
-| Rapid hiring (20%+ headcount growth in 6 months) | +15 to +20 |
-| Recent funding round (last 6 months) | +12 to +18 |
-| New product launches or market expansion | +10 to +15 |
-| Steady growth (5-15% headcount growth) | +8 to +12 |
-| Stable (flat headcount, no major changes) | +3 to +7 |
-| Declining (layoffs, office closures, negative press) | 0 to +3 |
+常に推定方法と信頼度レベル（高／中／低／推測的）を明記してください。
 
-**Tech Sophistication (0-20):**
+### 指標 3：製品＆テクノロジー
 
-| Signal | Score Impact |
-|--------|-------------|
-| Modern tech stack, API-first, developer-focused | +15 to +20 |
-| Uses modern SaaS tools, integrations | +10 to +14 |
-| Standard technology, some modern tools | +5 to +9 |
-| Legacy technology, limited integrations | +1 to +4 |
+**収集するデータポイント：**
 
-**Budget Signals (0-20):**
+| フィールド | 説明 | 情報源 |
+|---------|------|-------|
+| コア製品 | 主要製品ライン | 製品ページ、ホームページ |
+| 製品カテゴリ | 市場カテゴリ／セグメント | 製品ページ、アナリストレポート |
+| テックスタック | プログラミング言語、フレームワーク、インフラ | 求人情報、テックブログ、ソース分析 |
+| 差別化要因 | 独自の製品機能 | 製品ページ、比較ページ |
+| ロードマップシグナル | 今後の機能や方向性 | ブログ、求人情報、カンファレンス講演 |
+| インテグレーション | サードパーティ連携 | インテグレーションページ、パートナーページ |
+| API / プラットフォーム | 開発者プラットフォームの成熟度 | 開発者ドキュメント、API リファレンス |
+| 特許 | 知的財産 | USPTO 検索、プレスリリース |
+| オープンソース | オープンソースへの貢献 | GitHub 組織プロフィール |
 
-| Signal | Score Impact |
-|--------|-------------|
-| Enterprise pricing page or "Contact Sales" tier | +15 to +20 |
-| Recent funding (Series B+) | +12 to +18 |
-| Hiring for roles that use your product category | +10 to +15 |
-| Multiple paid tools visible in tech stack | +8 to +12 |
-| Bootstrap / early stage / price-sensitive signals | +2 to +6 |
-| Clear budget constraints (free tools only, tiny team) | 0 to +2 |
+### 指標 4：リーダーシップ＆チーム
 
-### 4.2 Strength and Risk Assessment
+**収集するデータポイント：**
 
-**Strengths (3-5 items):**
-For each strength, provide:
-- The strength statement
-- Specific evidence (with source)
-- Relevance to sales opportunity (why this matters for the deal)
+| フィールド | 説明 | 情報源 |
+|---------|------|-------|
+| CEO / 創業者 | 名前、経歴、在職期間 | チームページ、LinkedIn、プレス |
+| CTO / テクニカルリード | 名前、経歴、技術ビジョン | チームページ、LinkedIn、テックブログ |
+| 主要役員 | VP / C クラスと役職・在職期間 | チームページ、LinkedIn |
+| 取締役会 | 取締役と所属 | About ページ、プレス、SEC 提出書類 |
+| 顧問委員会 | アドバイザーと専門分野 | About ページ、LinkedIn |
+| 最近の変化 | 新規採用、退職、昇進（直近6ヶ月） | LinkedIn、プレスリリース、ニュース |
+| 公の露出 | 講演、出版物、ポッドキャスト | WebSearch、カンファレンスサイト |
+| リーダーシップスタイル | 見えるマネジメント哲学 | ブログ、インタビュー、Glassdoor |
 
-**Risks (3-5 items):**
-For each risk, provide:
-- The risk statement
-- Specific evidence (with source)
-- Mitigation strategy (how to address this in the sales process)
+### 指標 5：資金調達と財務健全性
 
-### 4.3 Key Insights
+**収集するデータポイント：**
 
-Extract the 5 most important insights for the sales team. Each insight should:
-- Be non-obvious (not something you could learn in 30 seconds on their homepage)
-- Be actionable (directly informs sales approach)
-- Include the specific source/evidence
-- Include a recommendation on how to use the insight
+| フィールド | 説明 | 情報源 |
+|---------|------|-------|
+| 資金調達総額 | 全調達資金の合計 | Crunchbase、プレスリリース |
+| 最新ラウンド | 最近のラウンドの詳細 | Crunchbase、プレスリリース |
+| ラウンド履歴 | 全資金調達ラウンドのタイムライン | Crunchbase |
+| 主要投資家 | リード投資家と主な参加者 | Crunchbase、プレスリリース |
+| 評価額 | 最後に確認された評価額 | プレスリリース、二次情報源 |
+| バーンレートシグナル | 資金調達後の採用ペースと調達からの期間、レイオフ | Careers ページ、LinkedIn、ニュース |
+| 収益化への道筋 | 黒字化または黒字化への道筋のシグナル | プレスリリース、インタビュー、価格変更 |
+| 財務健全性指標 | キャッシュランウェイ、成長率、効率性 | 資金調達からの経過期間、従業員成長、価格変更 |
+
+**バーンレートシグナルの検出：**
+- 資金調達直後の急速な採用 = 高バーン、積極的な成長
+- レイオフや採用凍結 = キャッシュ懸念の可能性
+- 12ヶ月以内の追加調達 = 高バーンまたは予想より速い成長
+- 24ヶ月以上調達なしで従業員数が少ない = ブートストラップ／収益化の可能性
+- 価格値上げ = 収益圧力またはマージン最適化
+
+### 指標 6：市場ポジション
+
+**収集するデータポイント：**
+
+| フィールド | 説明 | 情報源 |
+|---------|------|-------|
+| 市場カテゴリ | 主要市場カテゴリ | 製品ページ、アナリストレポート |
+| 主要競合 | 上位3〜5社の直接競合 | G2、Capterra、検索、比較ページ |
+| 市場シェア | 相対的ポジションの推定 | レビュー、顧客数、トラフィック |
+| 競合優位性 | 競合に対する主な差別化要因 | 比較ページ、レビュー、製品ページ |
+| 勝ち負けシグナル | 顧客が選ぶ理由または離脱する理由 | レビュー、ケーススタディ、ソーシャルメディア |
+| アナリストカバレッジ | 業界アナリストの記載 | Gartner、Forrester、業界レポート |
+| 受賞／認定 | 業界賞とランキング | プレスページ、ホームページのバッジ |
+
+### 指標 7：カルチャー＆エンプロイヤーブランド
+
+**収集するデータポイント：**
+
+| フィールド | 説明 | 情報源 |
+|---------|------|-------|
+| 企業の価値観 | 明示されたバリューとカルチャー原則 | About ページ、Careers ページ |
+| Glassdoor 評価 | 従業員満足度スコア | Glassdoor |
+| Glassdoor のテーマ | 従業員レビューでの主な称賛と不満 | Glassdoor レビュー |
+| 採用ペース | 募集ポジション数、成長率 | Careers ページ、LinkedIn |
+| 働き方モデル | リモート、ハイブリッド、オフィス勤務 | Careers ページ、求人情報 |
+| DEI シグナル | 多様性・公平性・包括性の取り組み | Careers ページ、プレス、ソーシャルメディア |
+| 福利厚生のハイライト | 注目すべき特典と福利厚生 | Careers ページ、Glassdoor |
+| エンプロイヤーブランドの強さ | 採用先としての総合的な魅力 | Glassdoor、LinkedIn、Careers ページ |
+
+### 指標 8：最近の動向（直近6ヶ月）
+
+**収集するデータポイント：**
+
+| カテゴリ | 確認すべき内容 | 情報源 |
+|---------|------------|-------|
+| 製品ローンチ | 新製品、機能、アップデート | ブログ、プレスリリース、Product Hunt |
+| パートナーシップ | 新しいインテグレーション、チャネルパートナー、戦略的提携 | プレスリリース、ブログ |
+| 資金調達イベント | 新ラウンド、セカンダリー、デットファイナンス | プレスリリース、Crunchbase |
+| リーダーシップ変更 | 新規採用、退職、組織再編 | LinkedIn、プレスリリース、ニュース |
+| 市場移動 | 新市場、バーティカル、地域への拡張 | プレスリリース、ブログ、求人情報 |
+| 論争 | ネガティブな報道、訴訟、データ漏洩、レイオフ | ニュース検索、ソーシャルメディア |
+| 顧客獲得 | 新しいエンタープライズ顧客、注目ロゴ | ケーススタディ、プレスリリース、ソーシャルメディア |
+| 買収 | 買収した企業または売却 | プレスリリース、ニュース |
+
+**ニュース検索手順：**
+1. 「[company name] news」を直近6ヶ月でフィルタリングして検索する
+2. 「[company name] announcement」を検索する
+3. 「[company name] partnership」を検索する
+4. 「[company name] funding」を検索する
+5. 「[company name] launch」を検索する
+6. 企業ブログで最近の投稿を確認する
+7. ソーシャルメディアで発表を確認する
 
 ---
 
-## Output Format: COMPANY-RESEARCH.md
+## フェーズ 4：統合とスコアリング
 
-Write the full output to `COMPANY-RESEARCH.md` in the current directory:
+### 4.1 Company Fit Score（0-100）
+
+5つのサブ指標で Company Fit Score を計算してください。各指標は0〜20点で採点します：
+
+**規模適合度（0-20）：**
+
+| 従業員数範囲 | スコア | 根拠 |
+|-----------|-------|------|
+| 1〜10名 | 5〜10 | 非常に初期段階。予算不足の可能性。迅速な意思決定。 |
+| 11〜50名 | 10〜15 | SMB。成長中。ペインポイントを持つ可能性が高い。予算が生まれつつある。 |
+| 51〜200名 | 15〜20 | 成長ステージ。強い予算シグナル。明確な組織構造。 |
+| 201〜1,000名 | 12〜18 | ミッドマーケット。十分な予算。より複雑な購買プロセス。 |
+| 1,001〜5,000名 | 8〜15 | エンタープライズ。大きな予算だが調達が遅い。 |
+| 5,000名以上 | 5〜12 | 大企業。複雑な購買プロセス。長い営業サイクル。 |
+
+企業の方向性（成長中、安定、衰退中）に基づいて範囲内で調整してください。
+
+**業界適合度（0-20）：**
+
+| シグナル | スコアへの影響 |
+|---------|------------|
+| 業界が ICP に完全一致 | +15〜+20 |
+| 隣接する業界で明確な関連性あり | +10〜+14 |
+| ある程度の関連性がある業界 | +5〜+9 |
+| 関連性が低い業界 | +1〜+4 |
+| 業界のミスマッチ | 0 |
+
+**成長軌道（0-20）：**
+
+| シグナル | スコアへの影響 |
+|---------|------------|
+| 急速な採用（6ヶ月で20%以上の人員増加） | +15〜+20 |
+| 最近の資金調達ラウンド（直近6ヶ月） | +12〜+18 |
+| 新製品ローンチまたは市場拡張 | +10〜+15 |
+| 安定した成長（5〜15%の人員増加） | +8〜+12 |
+| 安定（人員横ばい、主な変化なし） | +3〜+7 |
+| 衰退（レイオフ、オフィス閉鎖、ネガティブな報道） | 0〜+3 |
+
+**テック成熟度（0-20）：**
+
+| シグナル | スコアへの影響 |
+|---------|------------|
+| モダンなテックスタック、API ファースト、開発者重視 | +15〜+20 |
+| モダンな SaaS ツール、インテグレーションを使用 | +10〜+14 |
+| 標準的なテクノロジー、一部モダンなツール | +5〜+9 |
+| レガシーテクノロジー、インテグレーションが限定的 | +1〜+4 |
+
+**予算シグナル（0-20）：**
+
+| シグナル | スコアへの影響 |
+|---------|------------|
+| エンタープライズ料金ページまたは「営業に問い合わせ」枠 | +15〜+20 |
+| 最近の資金調達（シリーズ B 以上） | +12〜+18 |
+| 製品カテゴリを使用するポジションへの採用 | +10〜+15 |
+| テックスタックに複数の有償ツールが見える | +8〜+12 |
+| ブートストラップ／初期段階／価格感度のシグナル | +2〜+6 |
+| 明確な予算制約（無料ツールのみ、少人数チーム） | 0〜+2 |
+
+### 4.2 強みとリスクの評価
+
+**強み（3〜5項目）：**
+各強みについて以下を記載してください：
+- 強みのステートメント
+- 具体的な根拠（情報源付き）
+- 営業機会との関連性（この商談でなぜ重要なのか）
+
+**リスク（3〜5項目）：**
+各リスクについて以下を記載してください：
+- リスクのステートメント
+- 具体的な根拠（情報源付き）
+- 軽減策（営業プロセスでどう対処するか）
+
+### 4.3 主要インサイト
+
+営業チームにとって最も重要な5つのインサイトを抽出してください。各インサイトは以下を満たす必要があります：
+- 非自明である（ホームページを30秒見ればわかるようなものではない）
+- 実行可能である（営業アプローチに直接役立つ）
+- 具体的な情報源と根拠を含む
+- そのインサイトをどう活用するかの推奨を含む
+
+---
+
+## 出力フォーマット：COMPANY-RESEARCH.md
+
+以下の内容をカレントディレクトリの `COMPANY-RESEARCH.md` に書き込んでください：
 
 ```markdown
-# Company Research: [Company Name]
+# 企業リサーチ：[Company Name]
 **URL:** [url]
-**Date:** [current date]
-**Company Type:** [type]
-**Industry:** [vertical]
+**日付:** [現在の日付]
+**企業タイプ:** [type]
+**業界:** [vertical]
 **Company Fit Score: [X]/100**
 
 ---
 
-## Executive Summary
+## エグゼクティブサマリー
 
-[2-3 paragraph summary covering who the company is, what they do,
-their current trajectory, and why they are or are not a good fit.
-Written for a sales rep who needs to get up to speed in 60 seconds.]
-
----
-
-## Company Snapshot
-
-| Field | Value |
-|-------|-------|
-| **Company Name** | [name] |
-| **Founded** | [year] |
-| **Founders** | [names] |
-| **Headquarters** | [location] |
-| **Employees** | [count] (source: [source]) |
-| **Stage** | [Startup/Growth/Mature/Public] |
-| **Total Funding** | [amount] |
-| **Latest Round** | [round type, amount, date] |
-| **Revenue Estimate** | [range] (confidence: [H/M/L]) |
-| **Key Investors** | [names] |
-| **Tech Stack** | [key technologies] |
+[その企業が何者で何をしているか、現在の軌道、そして良い見込み客かどうかの
+理由を説明する2〜3段落のサマリー。60秒で状況を把握する必要がある営業担当者向けに書く。]
 
 ---
 
-## 1. Company Overview
-[Full findings for Dimension 1]
+## 企業スナップショット
 
-## 2. Business Model & Revenue
-[Full findings for Dimension 2, including pricing tier table]
-
-## 3. Product & Technology
-[Full findings for Dimension 3, including tech stack table]
-
-## 4. Leadership & Team
-[Full findings for Dimension 4, including key executive profiles]
-
-## 5. Funding & Financial Health
-[Full findings for Dimension 5, including round history table]
-
-## 6. Market Position
-[Full findings for Dimension 6, including competitor mentions]
-
-## 7. Culture & Employer Brand
-[Full findings for Dimension 7]
-
-## 8. Recent Developments
-[Full findings for Dimension 8, in reverse chronological order]
+| フィールド | 値 |
+|---------|---|
+| **企業名** | [name] |
+| **設立** | [year] |
+| **創業者** | [names] |
+| **本社** | [location] |
+| **従業員数** | [count]（情報源：[source]） |
+| **ステージ** | [Startup/Growth/Mature/Public] |
+| **資金調達総額** | [amount] |
+| **最新ラウンド** | [round type, amount, date] |
+| **売上推定** | [range]（信頼度：[H/M/L]） |
+| **主要投資家** | [names] |
+| **テックスタック** | [key technologies] |
 
 ---
 
-## Company Fit Score: [X]/100
+## 1. 企業概要
+[指標 1 の全調査結果]
 
-| Sub-Dimension | Score | Evidence |
-|--------------|-------|----------|
-| Size Fit | [X]/20 | [key evidence] |
-| Industry Fit | [X]/20 | [key evidence] |
-| Growth Trajectory | [X]/20 | [key evidence] |
-| Tech Sophistication | [X]/20 | [key evidence] |
-| Budget Signals | [X]/20 | [key evidence] |
-| **Total** | **[X]/100** | |
+## 2. ビジネスモデルと収益
+[指標 2 の全調査結果（料金体系テーブルを含む）]
 
----
+## 3. 製品＆テクノロジー
+[指標 3 の全調査結果（テックスタックテーブルを含む）]
 
-## Strengths
-1. **[Strength]** — [Evidence]. *Sales implication: [how to use this]*
-2. **[Strength]** — [Evidence]. *Sales implication: [how to use this]*
-3. **[Strength]** — [Evidence]. *Sales implication: [how to use this]*
+## 4. リーダーシップ＆チーム
+[指標 4 の全調査結果（主要役員プロフィールを含む）]
 
-## Risks
-1. **[Risk]** — [Evidence]. *Mitigation: [how to address this]*
-2. **[Risk]** — [Evidence]. *Mitigation: [how to address this]*
-3. **[Risk]** — [Evidence]. *Mitigation: [how to address this]*
+## 5. 資金調達と財務健全性
+[指標 5 の全調査結果（ラウンド履歴テーブルを含む）]
 
-## Key Insights for Sales
-1. **[Insight]** — [Evidence]. *Action: [what to do with this]*
-2. **[Insight]** — [Evidence]. *Action: [what to do with this]*
-3. **[Insight]** — [Evidence]. *Action: [what to do with this]*
-4. **[Insight]** — [Evidence]. *Action: [what to do with this]*
-5. **[Insight]** — [Evidence]. *Action: [what to do with this]*
+## 6. 市場ポジション
+[指標 6 の全調査結果（競合の記載を含む）]
+
+## 7. カルチャー＆エンプロイヤーブランド
+[指標 7 の全調査結果]
+
+## 8. 最近の動向
+[指標 8 の全調査結果（逆時系列順）]
 
 ---
 
-*Generated by AI Sales Team — `/sales research`*
+## Company Fit Score：[X]/100
+
+| サブ指標 | スコア | 根拠 |
+|---------|-------|------|
+| 規模適合度 | [X]/20 | [key evidence] |
+| 業界適合度 | [X]/20 | [key evidence] |
+| 成長軌道 | [X]/20 | [key evidence] |
+| テック成熟度 | [X]/20 | [key evidence] |
+| 予算シグナル | [X]/20 | [key evidence] |
+| **合計** | **[X]/100** | |
+
+---
+
+## 強み
+1. **[Strength]** — [Evidence]. *営業への示唆：[how to use this]*
+2. **[Strength]** — [Evidence]. *営業への示唆：[how to use this]*
+3. **[Strength]** — [Evidence]. *営業への示唆：[how to use this]*
+
+## リスク
+1. **[Risk]** — [Evidence]. *軽減策：[how to address this]*
+2. **[Risk]** — [Evidence]. *軽減策：[how to address this]*
+3. **[Risk]** — [Evidence]. *軽減策：[how to address this]*
+
+## 営業チーム向け主要インサイト
+1. **[Insight]** — [Evidence]. *アクション：[what to do with this]*
+2. **[Insight]** — [Evidence]. *アクション：[what to do with this]*
+3. **[Insight]** — [Evidence]. *アクション：[what to do with this]*
+4. **[Insight]** — [Evidence]. *アクション：[what to do with this]*
+5. **[Insight]** — [Evidence]. *アクション：[what to do with this]*
+
+---
+
+*AI Sales Team により生成 — `/sales research`*
 ```
 
 ---
 
-## Terminal Output
+## ターミナル出力
 
-Display a condensed summary in the terminal:
+ターミナルに簡潔なサマリーを表示してください：
 
 ```
-=== COMPANY RESEARCH COMPLETE ===
+=== 企業リサーチ 完了 ===
 
-Company: [name] ([type])
-Industry: [vertical]
-Stage: [Startup/Growth/Mature/Public]
-Employees: [count]
-Funding: [total]
-Revenue Est.: [range]
+企業名:      [name] ([type])
+業界:        [vertical]
+ステージ:    [Startup/Growth/Mature/Public]
+従業員数:    [count]
+資金調達:    [total]
+売上推定:    [range]
 
 Company Fit Score: [X]/100
-  Size Fit:           [XX]/20 ████████░░
-  Industry Fit:       [XX]/20 ██████░░░░
-  Growth Trajectory:  [XX]/20 ███████░░░
-  Tech Sophistication:[XX]/20 █████░░░░░
-  Budget Signals:     [XX]/20 ████████░░
+  規模適合度:   [XX]/20 ████████░░
+  業界適合度:   [XX]/20 ██████░░░░
+  成長軌道:     [XX]/20 ███████░░░
+  テック成熟度: [XX]/20 █████░░░░░
+  予算シグナル: [XX]/20 ████████░░
 
-Top Strengths:
+主な強み:
   1. [strength]
   2. [strength]
   3. [strength]
 
-Top Risks:
+主なリスク:
   1. [risk]
   2. [risk]
 
-Full report saved to: COMPANY-RESEARCH.md
+フルレポートの保存先: COMPANY-RESEARCH.md
 ```
 
 ---
 
-## Error Handling
+## エラーハンドリング
 
-- If the URL is unreachable, attempt alternate formats then report the error
-- If a specific page (e.g., pricing, careers) is not found, note it as "Not publicly available" and proceed
-- If web search returns limited results, note the data gap and reduce confidence
-- If the company appears to be very new or stealth, note limited public data availability
-- Always produce a report with whatever data is available, clearly noting gaps
+- URL に到達できない場合は、代替フォーマットを試みてからエラーを報告する
+- 特定のページ（例：料金、採用）が見つからない場合は「公開されていません」と記載して続行する
+- ウェブ検索の結果が限定的な場合は、データギャップを記載して信頼度を下げる
+- 企業が非常に新しいかステルス状態に見える場合は、公開データが限定的であることを記載する
+- 利用可能なデータでレポートを生成し、ギャップを明確に記載する
 
-## Cross-Skill Integration
+## クロススキル連携
 
-- If `PROSPECT-ANALYSIS.md` exists, reference overall prospect context
-- If `DECISION-MAKERS.md` exists, cross-reference leadership findings
-- If `COMPETITIVE-INTEL.md` exists, incorporate competitive context
-- Suggest follow-up: `/sales contacts` for decision maker deep dive, `/sales qualify` for opportunity assessment
+- `PROSPECT-ANALYSIS.md` が存在する場合は、見込み客の全体的なコンテキストを参照する
+- `DECISION-MAKERS.md` が存在する場合は、リーダーシップの調査結果とクロスリファレンスする
+- `COMPETITIVE-INTEL.md` が存在する場合は、競合コンテキストを組み込む
+- フォローアップを提案する：意思決定者の詳細調査には `/sales contacts`、機会評価には `/sales qualify`

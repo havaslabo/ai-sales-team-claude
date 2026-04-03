@@ -1,261 +1,257 @@
-# Client Proposal
+# クライアント提案書
 
-> Professional client proposal template with all 11 sections.
-> Customize all [PLACEHOLDER] fields for each prospect.
+> 全11セクションを含む、プロフェッショナルなクライアント提案書テンプレートです。
+> 見込み客ごとにすべての [PLACEHOLDER] フィールドをカスタマイズしてください。
 
 ---
 
-## 1. Cover Page
+## 1. 表紙
 
 ---
 
 # [PROPOSAL_TITLE]
 
-**Prepared for:** [CLIENT_COMPANY_NAME]
-**Prepared by:** [YOUR_NAME], [YOUR_TITLE]
-**Company:** [YOUR_COMPANY_NAME]
-**Date:** [DATE]
-**Valid Until:** [EXPIRATION_DATE]
-**Confidential**
+**提出先：** [CLIENT_COMPANY_NAME]
+**作成者：** [YOUR_NAME]、[YOUR_TITLE]
+**会社名：** [YOUR_COMPANY_NAME]
+**作成日：** [DATE]
+**有効期限：** [EXPIRATION_DATE]
+**社外秘**
 
 ---
 
-## 2. Executive Summary
+## 2. エグゼクティブサマリー
 
-Dear [CLIENT_CONTACT_NAME],
+[CLIENT_CONTACT_NAME] 様
 
-Thank you for the opportunity to present this proposal. After our conversations
-on [MEETING_DATES] and our research into [CLIENT_COMPANY_NAME]'s situation,
-we're confident we can help you [PRIMARY_OUTCOME].
+このたびはご提案の機会をいただき、誠にありがとうございます。[MEETING_DATES] の打ち合わせおよび [CLIENT_COMPANY_NAME] 様の状況に関する調査を踏まえ、[PRIMARY_OUTCOME] の実現にお役立てできると確信しております。
 
-**The Challenge:**
-[2-3 sentences summarizing the client's current pain points and the cost of
-inaction. Be specific and reference their words from discovery conversations.]
+**課題：**
+[現在の課題と対処しない場合のコストを2〜3文でまとめてください。
+具体的に記述し、ディスカバリー商談での先方のお言葉を引用してください。]
 
-**The Opportunity:**
-[2-3 sentences describing the potential impact of solving this challenge.
-Use quantified outcomes where possible — e.g., "Based on companies of
-similar size, we project [X]% improvement in [METRIC] within [TIMEFRAME]."]
+**機会：**
+[この課題を解決した場合の潜在的なインパクトを2〜3文で説明してください。
+可能であれば数値化した成果を記載してください。例：「同規模の企業のデータに基づくと、
+[TIMEFRAME] 以内に [METRIC] が [X]% 改善すると見込まれます。」]
 
-**Our Approach:**
-[2-3 sentences on why your solution is uniquely positioned to deliver
-this outcome. Reference specific differentiators relevant to their needs.]
+**弊社のアプローチ：**
+[この成果を実現するにあたって、なぜ弊社ソリューションが最適なのかを2〜3文で説明してください。
+先方のニーズに関連する具体的な差別化ポイントを記載してください。]
 
 ---
 
-## 3. Situation Analysis
+## 3. 状況分析
 
-### Current State
-[DESCRIBE_CURRENT_TOOLS_PROCESSES_AND_PAIN_POINTS]
+### 現状
+[現在のツール・プロセス・課題を記述してください]
 
-- **Process:** [HOW_THEY_CURRENTLY_HANDLE_THE_FUNCTION]
-- **Tools:** [CURRENT_TOOLS_AND_SYSTEMS]
-- **Team:** [WHO_IS_INVOLVED_AND_THEIR_ROLES]
-- **Challenges:** [SPECIFIC_PAIN_POINTS_FROM_DISCOVERY]
+- **プロセス：** [FUNCTION を現在どのように処理しているか]
+- **ツール：** [現在使用しているツール・システム]
+- **チーム：** [関与している担当者とその役割]
+- **課題：** [ディスカバリーで把握した具体的な課題]
 
-### Impact Assessment
+### インパクト評価
 
-| Impact Area         | Current Cost / Risk                    |
-| ------------------- | -------------------------------------- |
-| Revenue             | [LOST_REVENUE_OR_MISSED_OPPORTUNITY]   |
-| Productivity        | [HOURS_WASTED_OR_INEFFICIENCY]         |
-| Risk                | [COMPLIANCE_SECURITY_OPERATIONAL_RISK] |
-| Customer Experience | [IMPACT_ON_END_CUSTOMERS]              |
+| インパクト領域   | 現在のコスト / リスク                  |
+| ---------------- | -------------------------------------- |
+| 売上             | [LOST_REVENUE_OR_MISSED_OPPORTUNITY]   |
+| 生産性           | [HOURS_WASTED_OR_INEFFICIENCY]         |
+| リスク           | [COMPLIANCE_SECURITY_OPERATIONAL_RISK] |
+| 顧客体験         | [IMPACT_ON_END_CUSTOMERS]              |
 
-### Desired Future State
-[DESCRIBE_WHAT_SUCCESS_LOOKS_LIKE — their vision for the ideal outcome,
-as expressed during discovery. 2-3 sentences.]
+### 理想の将来像
+[成功した状態がどのようなものか — ディスカバリーで先方が語ったビジョンを
+2〜3文で記述してください。]
 
 ---
 
-## 4. Proposed Solution
+## 4. 提案ソリューション
 
-### Overview
-[HIGH_LEVEL_DESCRIPTION of your proposed solution and how it addresses
-each identified challenge. 3-4 sentences.]
+### 概要
+[特定された各課題をどのように解決するか、提案ソリューションの概要を3〜4文で説明してください。]
 
-### Key Capabilities
+### 主要機能
 
 **[CAPABILITY_1_NAME]**
-[DESCRIPTION — what it does and how it solves PAIN_POINT_1. 2-3 sentences.]
+[説明 — この機能が何をするか、PAIN_POINT_1 をどのように解決するか。2〜3文。]
 
 **[CAPABILITY_2_NAME]**
-[DESCRIPTION — what it does and how it solves PAIN_POINT_2. 2-3 sentences.]
+[説明 — この機能が何をするか、PAIN_POINT_2 をどのように解決するか。2〜3文。]
 
 **[CAPABILITY_3_NAME]**
-[DESCRIPTION — what it does and how it solves PAIN_POINT_3. 2-3 sentences.]
+[説明 — この機能が何をするか、PAIN_POINT_3 をどのように解決するか。2〜3文。]
 
-### Why [YOUR_COMPANY]
+### なぜ [YOUR_COMPANY] なのか
 
-1. **[DIFFERENTIATOR_1]:** [EXPLANATION — why this matters for the client]
-2. **[DIFFERENTIATOR_2]:** [EXPLANATION]
-3. **[DIFFERENTIATOR_3]:** [EXPLANATION]
+1. **[DIFFERENTIATOR_1]：** [説明 — これがなぜ先方にとって重要なのか]
+2. **[DIFFERENTIATOR_2]：** [説明]
+3. **[DIFFERENTIATOR_3]：** [説明]
 
 ---
 
-## 5. Scope of Work
+## 5. 作業範囲
 
-### Phase 1: [PHASE_NAME — e.g., Discovery & Setup] — [DURATION]
+### フェーズ1：[PHASE_NAME — 例：調査・セットアップ] — [DURATION]
 - [DELIVERABLE_1]
 - [DELIVERABLE_2]
 - [DELIVERABLE_3]
-- **Milestone:** [PHASE_1_MILESTONE]
+- **マイルストーン：** [PHASE_1_MILESTONE]
 
-### Phase 2: [PHASE_NAME — e.g., Implementation] — [DURATION]
+### フェーズ2：[PHASE_NAME — 例：実装] — [DURATION]
 - [DELIVERABLE_4]
 - [DELIVERABLE_5]
 - [DELIVERABLE_6]
-- **Milestone:** [PHASE_2_MILESTONE]
+- **マイルストーン：** [PHASE_2_MILESTONE]
 
-### Phase 3: [PHASE_NAME — e.g., Optimization & Handoff] — [DURATION]
+### フェーズ3：[PHASE_NAME — 例：最適化・引き継ぎ] — [DURATION]
 - [DELIVERABLE_7]
 - [DELIVERABLE_8]
 - [DELIVERABLE_9]
-- **Milestone:** [PHASE_3_MILESTONE]
+- **マイルストーン：** [PHASE_3_MILESTONE]
 
-### Out of Scope
-The following are explicitly excluded from this engagement:
+### 対象外
+本契約の対象外となる内容：
 - [EXCLUSION_1]
 - [EXCLUSION_2]
 - [EXCLUSION_3]
 
 ---
 
-## 6. Timeline
+## 6. スケジュール
 
-| Week    | Phase                 | Key Activities              | Milestone           |
-| ------- | --------------------- | --------------------------- | ------------------- |
-| 1-2     | Discovery & Setup     | [ACTIVITIES]                | [MILESTONE]         |
-| 3-6     | Implementation        | [ACTIVITIES]                | [MILESTONE]         |
-| 7-8     | Testing & QA          | [ACTIVITIES]                | [MILESTONE]         |
-| 9-10    | Optimization          | [ACTIVITIES]                | [MILESTONE]         |
-| 11-12   | Handoff & Training    | [ACTIVITIES]                | [MILESTONE]         |
+| 週     | フェーズ              | 主な活動                    | マイルストーン      |
+| ------ | --------------------- | --------------------------- | ------------------- |
+| 1〜2   | 調査・セットアップ    | [ACTIVITIES]                | [MILESTONE]         |
+| 3〜6   | 実装                  | [ACTIVITIES]                | [MILESTONE]         |
+| 7〜8   | テスト・QA            | [ACTIVITIES]                | [MILESTONE]         |
+| 9〜10  | 最適化                | [ACTIVITIES]                | [MILESTONE]         |
+| 11〜12 | 引き継ぎ・トレーニング | [ACTIVITIES]               | [MILESTONE]         |
 
-**Estimated Start Date:** [START_DATE]
-**Estimated Completion:** [END_DATE]
+**開始予定日：** [START_DATE]
+**完了予定日：** [END_DATE]
 
-*Timeline assumes timely access to stakeholders, systems, and data as outlined
-in the assumptions section.*
-
----
-
-## 7. Investment
-
-### Option A: [TIER_NAME — e.g., Essential]
-
-| Item                 | Details                        | Price         |
-| -------------------- | ------------------------------ | ------------- |
-| [LINE_ITEM_1]        | [DESCRIPTION]                  | $[AMOUNT]     |
-| [LINE_ITEM_2]        | [DESCRIPTION]                  | $[AMOUNT]     |
-| [LINE_ITEM_3]        | [DESCRIPTION]                  | $[AMOUNT]     |
-| **Total**            |                                | **$[TOTAL]**  |
-
-### Option B: [TIER_NAME — e.g., Professional] *(Recommended)*
-
-| Item                 | Details                        | Price         |
-| -------------------- | ------------------------------ | ------------- |
-| Everything in Essential | Plus:                       |               |
-| [LINE_ITEM_4]        | [DESCRIPTION]                  | $[AMOUNT]     |
-| [LINE_ITEM_5]        | [DESCRIPTION]                  | $[AMOUNT]     |
-| **Total**            |                                | **$[TOTAL]**  |
-
-### Option C: [TIER_NAME — e.g., Enterprise]
-
-| Item                 | Details                        | Price         |
-| -------------------- | ------------------------------ | ------------- |
-| Everything in Professional | Plus:                    |               |
-| [LINE_ITEM_6]        | [DESCRIPTION]                  | $[AMOUNT]     |
-| [LINE_ITEM_7]        | [DESCRIPTION]                  | $[AMOUNT]     |
-| **Total**            |                                | **$[TOTAL]**  |
-
-**Payment Terms:** [TERMS — e.g., 50% upfront, 25% at Phase 2 milestone, 25% on completion]
+*スケジュールは、前提条件のセクションに記載のとおり、関係者・システム・データへの
+タイムリーなアクセスが確保されることを前提としています。*
 
 ---
 
-## 8. ROI Projection
+## 7. 投資
 
-### Quantified Benefits
+### オプション A：[TIER_NAME — 例：エッセンシャル]
 
-| Benefit Area         | Conservative Est. | Likely Est.    | Optimistic Est. |
-| -------------------- | ------------------ | -------------- | --------------- |
-| [BENEFIT_1]          | $[AMOUNT]          | $[AMOUNT]      | $[AMOUNT]       |
-| [BENEFIT_2]          | $[AMOUNT]          | $[AMOUNT]      | $[AMOUNT]       |
-| [BENEFIT_3]          | $[AMOUNT]          | $[AMOUNT]      | $[AMOUNT]       |
-| **Total Annual**     | **$[TOTAL]**       | **$[TOTAL]**   | **$[TOTAL]**    |
+| 項目             | 詳細          | 金額          |
+| ---------------- | ------------- | ------------- |
+| [LINE_ITEM_1]    | [DESCRIPTION] | $[AMOUNT]     |
+| [LINE_ITEM_2]    | [DESCRIPTION] | $[AMOUNT]     |
+| [LINE_ITEM_3]    | [DESCRIPTION] | $[AMOUNT]     |
+| **合計**         |               | **$[TOTAL]**  |
 
-### Return Timeline
-- **Break-even:** [MONTHS] months (based on conservative estimates)
-- **12-month ROI:** [X]x return on investment
-- **24-month ROI:** [X]x return on investment
+### オプション B：[TIER_NAME — 例：プロフェッショナル] *（推奨）*
 
-### Assumptions
+| 項目                       | 詳細          | 金額          |
+| -------------------------- | ------------- | ------------- |
+| エッセンシャルの全内容＋    |               |               |
+| [LINE_ITEM_4]              | [DESCRIPTION] | $[AMOUNT]     |
+| [LINE_ITEM_5]              | [DESCRIPTION] | $[AMOUNT]     |
+| **合計**                   |               | **$[TOTAL]**  |
+
+### オプション C：[TIER_NAME — 例：エンタープライズ]
+
+| 項目                         | 詳細          | 金額          |
+| ---------------------------- | ------------- | ------------- |
+| プロフェッショナルの全内容＋  |               |               |
+| [LINE_ITEM_6]                | [DESCRIPTION] | $[AMOUNT]     |
+| [LINE_ITEM_7]                | [DESCRIPTION] | $[AMOUNT]     |
+| **合計**                     |               | **$[TOTAL]**  |
+
+**支払い条件：** [TERMS — 例：着手時50%、フェーズ2マイルストーン達成時25%、完了時25%]
+
+---
+
+## 8. ROI 試算
+
+### 定量的な効果
+
+| 効果領域         | 保守的な試算       | 通常の試算     | 楽観的な試算    |
+| ---------------- | ------------------ | -------------- | --------------- |
+| [BENEFIT_1]      | $[AMOUNT]          | $[AMOUNT]      | $[AMOUNT]       |
+| [BENEFIT_2]      | $[AMOUNT]          | $[AMOUNT]      | $[AMOUNT]       |
+| [BENEFIT_3]      | $[AMOUNT]          | $[AMOUNT]      | $[AMOUNT]       |
+| **年間合計**     | **$[TOTAL]**       | **$[TOTAL]**   | **$[TOTAL]**    |
+
+### 回収スケジュール
+- **損益分岐点：** [MONTHS] ヶ月（保守的な試算に基づく）
+- **12ヶ月後のROI：** 投資対効果 [X] 倍
+- **24ヶ月後のROI：** 投資対効果 [X] 倍
+
+### 前提条件
 - [ASSUMPTION_1]
 - [ASSUMPTION_2]
 - [ASSUMPTION_3]
 
 ---
 
-## 9. Your Team
+## 9. 担当チーム
 
 ### [TEAM_MEMBER_1_NAME] — [ROLE]
-[BIO — 2-3 sentences highlighting relevant experience and qualifications.
-Focus on experience with similar companies or industries.]
+[経歴 — 類似企業・業界での関連経験と資格を中心に2〜3文で説明してください。]
 
 ### [TEAM_MEMBER_2_NAME] — [ROLE]
-[BIO]
+[経歴]
 
 ### [TEAM_MEMBER_3_NAME] — [ROLE]
-[BIO]
+[経歴]
 
-**Support Model:** [DESCRIBE_ONGOING_SUPPORT — dedicated account manager,
-response times, escalation process, etc.]
+**サポート体制：** [継続的なサポート内容 — 専任アカウントマネージャー・
+対応時間・エスカレーションプロセスなどを説明してください。]
 
 ---
 
-## 10. Case Studies
+## 10. 導入事例
 
 ### [CASE_STUDY_1_COMPANY] — [INDUSTRY]
 
-**Challenge:** [BRIEF_CHALLENGE_DESCRIPTION]
-**Solution:** [WHAT_YOU_DID]
-**Results:**
-- [METRIC_1 — e.g., "45% increase in conversion rate"]
-- [METRIC_2 — e.g., "Reduced onboarding time from 3 weeks to 3 days"]
-- [METRIC_3 — e.g., "$2.1M in incremental revenue within 12 months"]
+**課題：** [課題の簡単な説明]
+**ソリューション：** [実施した内容]
+**成果：**
+- [METRIC_1 — 例：「コンバージョン率が45%向上」]
+- [METRIC_2 — 例：「オンボーディング期間が3週間から3日間に短縮」]
+- [METRIC_3 — 例：「12ヶ月以内に$210万の追加収益を実現」]
 
-> "[CUSTOMER_QUOTE — brief testimonial from the client]"
-> — [NAME], [TITLE] at [COMPANY]
+> 「[CUSTOMER_QUOTE — クライアントからの簡単な推薦文]」
+> — [NAME]、[COMPANY] [TITLE]
 
 ### [CASE_STUDY_2_COMPANY] — [INDUSTRY]
 
-**Challenge:** [BRIEF_CHALLENGE_DESCRIPTION]
-**Solution:** [WHAT_YOU_DID]
-**Results:**
+**課題：** [課題の簡単な説明]
+**ソリューション：** [実施した内容]
+**成果：**
 - [METRIC_1]
 - [METRIC_2]
 - [METRIC_3]
 
-> "[CUSTOMER_QUOTE]"
-> — [NAME], [TITLE] at [COMPANY]
+> 「[CUSTOMER_QUOTE]」
+> — [NAME]、[COMPANY] [TITLE]
 
 ---
 
-## 11. Next Steps
+## 11. 次のステップ
 
-To move forward, here's what we recommend:
+ご契約に向けて、以下の手順を推奨いたします：
 
-| Step | Action                                    | Owner                | By When        |
-| ---- | ----------------------------------------- | -------------------- | -------------- |
-| 1    | Review proposal and share feedback        | [CLIENT_CONTACT]     | [DATE]         |
-| 2    | Proposal Q&A / follow-up call             | Both teams           | [DATE]         |
-| 3    | Internal alignment and approval           | [CLIENT_TEAM]        | [DATE]         |
-| 4    | Sign agreement and schedule kickoff       | Both teams           | [DATE]         |
-| 5    | Kickoff meeting and Phase 1 start         | [YOUR_TEAM]          | [DATE]         |
+| ステップ | アクション                            | 担当                 | 期限           |
+| -------- | ------------------------------------- | -------------------- | -------------- |
+| 1        | 提案書の確認とフィードバックのご共有  | [CLIENT_CONTACT]     | [DATE]         |
+| 2        | 提案書に関するQ&A / フォローアップ打ち合わせ | 両社          | [DATE]         |
+| 3        | 社内の調整と承認                      | [CLIENT_TEAM]        | [DATE]         |
+| 4        | 契約書の締結とキックオフの日程調整    | 両社                 | [DATE]         |
+| 5        | キックオフミーティングとフェーズ1開始 | [YOUR_TEAM]          | [DATE]         |
 
-**Questions?** Contact [YOUR_NAME] at [YOUR_EMAIL] or [YOUR_PHONE].
+**ご質問は：** [YOUR_NAME]（[YOUR_EMAIL] / [YOUR_PHONE]）までお気軽にお問い合わせください。
 
 ---
 
-*This proposal is confidential and intended solely for [CLIENT_COMPANY_NAME].
-Valid until [EXPIRATION_DATE]. [YOUR_COMPANY_NAME] reserves the right to
-modify scope and pricing after expiration.*
+*本提案書は社外秘であり、[CLIENT_COMPANY_NAME] 様専用の資料です。
+有効期限は [EXPIRATION_DATE] です。有効期限を過ぎた場合、[YOUR_COMPANY_NAME] は
+スコープおよび価格を変更する権利を有します。*

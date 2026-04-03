@@ -1,230 +1,234 @@
-# Cold Outreach Sequence — 5-Email Framework
+# コールドアウトリーチシーケンス — 5通のメールフレームワーク
 
-> A structured 5-email cold outreach sequence with integrated LinkedIn touchpoints.
-> Replace all [PLACEHOLDER] fields with prospect-specific information.
-
----
-
-## Timeline Overview
-
-| Day  | Channel   | Action                     |
-| ---- | --------- | -------------------------- |
-| 1    | Email     | Email 1: The Hook          |
-| 2    | LinkedIn  | Connect request + note     |
-| 3    | Email     | Email 2: The Value Add     |
-| 5    | LinkedIn  | Engage with their content  |
-| 7    | Email     | Email 3: The Social Proof  |
-| 10   | LinkedIn  | Share relevant article     |
-| 14   | Email     | Email 4: Different Angle   |
-| 21   | Email     | Email 5: The Breakup       |
+> LinkedIn のタッチポイントを組み合わせた、体系的な5通のコールドアウトリーチシーケンスです。
+> すべての [PLACEHOLDER] フィールドを見込み客に合わせた情報に置き換えてください。
 
 ---
 
-## Email 1: The Hook (Day 1)
+## タイムライン概要
 
-**Goal:** Capture attention with a personalized observation and clear value proposition.
+| 日程 | チャネル  | アクション                     |
+| ---- | --------- | ------------------------------ |
+| 1    | メール    | メール1：フック                |
+| 2    | LinkedIn  | 接続リクエスト＋コメント       |
+| 3    | メール    | メール2：価値提供              |
+| 5    | LinkedIn  | 先方のコンテンツにエンゲージ   |
+| 7    | メール    | メール3：社会的証明            |
+| 10   | LinkedIn  | 関連記事のシェア               |
+| 14   | メール    | メール4：別の切り口            |
+| 21   | メール    | メール5：クロージング          |
 
-**Subject Line Options:**
-- `[OBSERVATION_TOPIC] at [COMPANY_NAME]`
-- `Quick question about [SPECIFIC_INITIATIVE]`
-- `Noticed [SPECIFIC_DETAIL] — thought of something`
+---
 
-**Body:**
+## メール1：フック（1日目）
+
+**目的：** パーソナライズされた観察と明確な価値提案で注目を集めます。
+
+**件名の選択肢：**
+- `[COMPANY_NAME] の [OBSERVATION_TOPIC] について`
+- `[SPECIFIC_INITIATIVE] に関する簡単なご質問`
+- `[SPECIFIC_DETAIL] を拝見し、ふと思ったことがありまして`
+
+**本文：**
 
 ```
-Hi [FIRST_NAME],
+[FIRST_NAME] 様
 
-[PERSONALIZED_OBSERVATION — reference something specific: a recent blog post,
-product launch, job posting, funding round, or conference talk. 1-2 sentences.]
+[PERSONALIZED_OBSERVATION — 具体的な内容に言及してください：最近のブログ記事、
+製品ローンチ、求人情報、資金調達ラウンド、登壇内容など。1〜2文。]
 
-That caught my attention because [CONNECTION_TO_YOUR_VALUE_PROP — explain why
-this observation is relevant to what you do. 1 sentence.]
+これが気になったのは、[CONNECTION_TO_YOUR_VALUE_PROP — この観察が
+弊社の提供価値にどう関連するかを説明してください。1文。]
 
-At [YOUR_COMPANY], we help [TARGET_PERSONA] [ACHIEVE_OUTCOME] by [HOW_YOU_DO_IT].
-[ONE_PROOF_POINT — a specific metric or result. e.g., "Our customers typically
-see a 40% reduction in X within 90 days."]
+[YOUR_COMPANY] では、[TARGET_PERSONA] が [HOW_YOU_DO_IT] によって
+[ACHIEVE_OUTCOME] を実現するお手伝いをしています。
+[ONE_PROOF_POINT — 具体的な指標や成果。例：「弊社のお客様は90日以内に
+Xを40%削減しています。」]
 
-Would it make sense to spend 15 minutes exploring whether this could help
-[COMPANY_NAME] with [SPECIFIC_CHALLENGE]?
+[COMPANY_NAME] 様の [SPECIFIC_CHALLENGE] においてもお役に立てるか、
+15分ほどお話しする機会をいただけないでしょうか？
 
-Best,
+よろしくお願いいたします。
 [YOUR_NAME]
 ```
 
-**CTA:** Low-commitment ask (15-minute conversation).
-**Timing:** Tuesday-Thursday, 8-10 AM recipient's timezone.
+**CTA：** 負担の少ないお願い（15分の会話）
+**送信タイミング：** 火曜〜木曜、相手のタイムゾーンで午前8〜10時
 
 ---
 
-## Email 2: The Value Add (Day 3)
+## メール2：価値提供（3日目）
 
-**Goal:** Provide genuine value with no ask — position yourself as a helpful resource.
+**目的：** 何も求めずに純粋な価値を提供し、頼れるリソースとして自分を位置づけます。
 
-**Subject Line Options:**
-- `Re: [PREVIOUS_SUBJECT]` (keep thread)
-- `[RESOURCE_TITLE] — thought you'd find this useful`
+**件名の選択肢：**
+- `Re: [PREVIOUS_SUBJECT]`（スレッドを継続）
+- `[RESOURCE_TITLE] — お役に立てるかと思いまして`
 
-**Body:**
+**本文：**
 
 ```
-Hi [FIRST_NAME],
+[FIRST_NAME] 様
 
-Following up with something I thought would be relevant to [COMPANY_NAME].
+[COMPANY_NAME] 様に関連しそうな情報をご共有したくご連絡しました。
 
-[DESCRIBE_RESOURCE — a report, benchmark, article, tool, or framework that
-is genuinely useful for their role/industry. 1-2 sentences.]
+[DESCRIBE_RESOURCE — 先方の役職・業界にとって本当に有益なレポート・
+ベンチマーク・記事・ツール・フレームワークを説明してください。1〜2文。]
 
 [LINK_TO_RESOURCE]
 
-[BRIEF_INSIGHT — share one key takeaway from the resource that relates to
-their specific situation. 2-3 sentences.]
+[BRIEF_INSIGHT — 先方の具体的な状況に関連する主要な示唆を
+1つシェアしてください。2〜3文。]
 
-No response needed — just thought this might help with [THEIR_INITIATIVE].
-
-[YOUR_NAME]
-```
-
-**CTA:** No explicit ask — pure value delivery.
-**Timing:** Morning, same timezone.
-
----
-
-## Email 3: The Social Proof (Day 7)
-
-**Goal:** Build credibility with a relevant case study or metric from a similar company.
-
-**Subject Line Options:**
-- `How [SIMILAR_COMPANY] solved [PROBLEM]`
-- `[METRIC_RESULT] — here's how [SIMILAR_COMPANY] did it`
-
-**Body:**
-
-```
-Hi [FIRST_NAME],
-
-I wanted to share a quick story that reminded me of [COMPANY_NAME].
-
-[SIMILAR_COMPANY] — a [BRIEF_DESCRIPTION_OF_SIMILAR_COMPANY] — was facing
-[SPECIFIC_CHALLENGE_THEY_SHARE]. They were [DESCRIBE_PAIN_POINT_SITUATION].
-
-After working with us, they [SPECIFIC_RESULT — use exact numbers].
-[ADDITIONAL_OUTCOME_OR_QUOTE_FROM_CUSTOMER].
-
-I see [COMPANY_NAME] in a similar position, especially with [REFERENCE_TO
-_THEIR_SPECIFIC_SITUATION].
-
-Would a 15-minute call to walk through how they did it be worth your time?
-
-Best,
-[YOUR_NAME]
-
-P.S. [OPTIONAL_ADDITIONAL_SOCIAL_PROOF — e.g., "We've helped 50+ companies
-in [INDUSTRY] achieve similar results."]
-```
-
-**CTA:** Specific value promise (learn how a peer solved a similar problem).
-**Timing:** Tuesday or Wednesday morning.
-
----
-
-## Email 4: The Different Angle (Day 14)
-
-**Goal:** Reframe with a new pain point, stakeholder perspective, or timely trigger.
-
-**Subject Line Options:**
-- `Different thought on [TOPIC]`
-- `[NEW_ANGLE_TOPIC] — worth considering?`
-- `Quick question for [DIFFERENT_STAKEHOLDER_ROLE]`
-
-**Body:**
-
-```
-Hi [FIRST_NAME],
-
-I've been thinking about [COMPANY_NAME] from a different angle.
-
-[NEW_PERSPECTIVE — introduce a different pain point, department impact,
-or business outcome they may not have considered. Could reference:
-- A new industry trend affecting them
-- A cost/risk they may not have quantified
-- Impact on a different team/stakeholder
-2-3 sentences.]
-
-[QUESTION_THAT_REFRAMES — ask a thought-provoking question that positions
-your solution as the answer. 1 sentence.]
-
-I'd be happy to share [SPECIFIC_INSIGHT_OR_ANALYSIS] that might help
-[COMPANY_NAME] think through this. Would that be useful?
+ご返信は不要です — [THEIR_INITIATIVE] のお役に立てればと思い
+お送りしました。
 
 [YOUR_NAME]
 ```
 
-**CTA:** Offer specific insight in exchange for a conversation.
-**Timing:** Thursday morning (gives weekend to reflect).
+**CTA：** 明示的なお願いなし — 純粋な価値提供
+**送信タイミング：** 相手のタイムゾーンの午前中
 
 ---
 
-## Email 5: The Breakup (Day 21)
+## メール3：社会的証明（7日目）
 
-**Goal:** Respectful close that leaves the door open and sometimes triggers a response.
+**目的：** 類似企業の関連する成功事例や指標で信頼性を構築します。
 
-**Subject Line Options:**
-- `Should I close the file?`
-- `One last thing, [FIRST_NAME]`
-- `Closing the loop`
+**件名の選択肢：**
+- `[SIMILAR_COMPANY] が [PROBLEM] を解決した方法`
+- `[METRIC_RESULT] — [SIMILAR_COMPANY] の取り組み`
 
-**Body:**
+**本文：**
 
 ```
-Hi [FIRST_NAME],
+[FIRST_NAME] 様
 
-I've reached out a few times and haven't heard back, which is completely fine —
-I know how busy things get at [COMPANY_NAME].
+[COMPANY_NAME] 様のことを思い出す出来事があり、ご紹介したいと思いました。
 
-I don't want to be a nuisance, so this will be my last note for now.
+[SIMILAR_COMPANY] — [BRIEF_DESCRIPTION_OF_SIMILAR_COMPANY] — は
+[SPECIFIC_CHALLENGE_THEY_SHARE] という課題に直面していました。
+[DESCRIBE_PAIN_POINT_SITUATION] という状況でした。
 
-If [PAIN_POINT_OR_INITIATIVE] ever becomes a priority, I'd love to help.
-You can always reach me at [YOUR_EMAIL] or book time here: [CALENDAR_LINK].
+弊社との取り組みを通じて、[SPECIFIC_RESULT — 具体的な数字を使用してください]
+を達成されました。[ADDITIONAL_OUTCOME_OR_QUOTE_FROM_CUSTOMER]
 
-In the meantime, I wish you and the [COMPANY_NAME] team all the best with
-[SPECIFIC_INITIATIVE_OR_GOAL].
+[COMPANY_NAME] 様も、特に [REFERENCE_TO_THEIR_SPECIFIC_SITUATION] の点で
+同様の状況にあると感じています。
 
-Cheers,
+どのように取り組んだかを15分でご説明する機会をいただけますでしょうか？
+
+よろしくお願いいたします。
 [YOUR_NAME]
 
-P.S. If this isn't the right time but you know someone who might benefit,
-I'd really appreciate the introduction.
+P.S. [OPTIONAL_ADDITIONAL_SOCIAL_PROOF — 例：「弊社は [INDUSTRY] 分野の
+50社以上で同様の成果を実現しています。」]
 ```
 
-**CTA:** Permission to reconnect in the future + referral request.
-**Timing:** Monday or Tuesday morning.
+**CTA：** 具体的な価値の約束（同業他社が類似課題をどう解決したかを学ぶ）
+**送信タイミング：** 火曜または水曜の午前中
 
 ---
 
-## LinkedIn Touchpoints
+## メール4：別の切り口（14日目）
 
-**Day 2 — Connect Request:**
+**目的：** 新たな課題・別の関係者の視点・タイムリーなきっかけで再アプローチします。
+
+**件名の選択肢：**
+- `[TOPIC] について別の視点から`
+- `[NEW_ANGLE_TOPIC] — ご参考になれば`
+- `[DIFFERENT_STAKEHOLDER_ROLE] の方へ簡単なご質問`
+
+**本文：**
+
 ```
-Hi [FIRST_NAME] — I came across [COMPANY_NAME] while researching
-[INDUSTRY/TOPIC]. Would love to connect and share ideas on [RELEVANT_TOPIC].
+[FIRST_NAME] 様
+
+[COMPANY_NAME] 様のことを別の角度から考えていました。
+
+[NEW_PERSPECTIVE — まだ検討されていないかもしれない別の課題・部門への影響・
+ビジネス上の成果を提示してください。次のような観点が考えられます：
+- 先方に影響を与えている新たな業界トレンド
+- 数値化されていないかもしれないコスト・リスク
+- 別のチーム・関係者への影響
+2〜3文。]
+
+[QUESTION_THAT_REFRAMES — ソリューションが答えとなるような、
+示唆に富んだ質問を1文。]
+
+[COMPANY_NAME] 様のご検討にお役立ていただけそうな
+[SPECIFIC_INSIGHT_OR_ANALYSIS] をご共有できます。
+ご関心はございますか？
+
+[YOUR_NAME]
 ```
 
-**Day 5 — Content Engagement:**
-- Like and comment on one of their recent posts
-- Comment should add genuine insight, not just "Great post!"
-- Reference their content in a follow-up if relevant
-
-**Day 10 — Share Relevant Content:**
-- Share an article or resource tagging them (if appropriate)
-- Or send via LinkedIn message: a brief, relevant insight
+**CTA：** 会話と引き換えに具体的なインサイトを提供する
+**送信タイミング：** 木曜の午前中（週末にじっくり考えていただける）
 
 ---
 
-## Sequence Notes
+## メール5：クロージング（21日目）
 
-- **Personalization minimum:** Each email must have at least 2 prospect-specific details
-- **Subject lines:** A/B test subject lines for Emails 1 and 3
-- **Opt-out:** Respect unsubscribes immediately; remove from all sequences
-- **CRM tracking:** Log all touches, opens, and replies in CRM
-- **Pause triggers:** Stop sequence immediately if prospect replies (positive or negative)
-- **Time between emails:** Minimum 48 hours; adjust based on engagement signals
+**目的：** 丁重に締めくくりつつ、将来の接触を可能にします。返信を引き出すこともあります。
+
+**件名の選択肢：**
+- `このまま終わりにしてよいでしょうか？`
+- `最後にひとつだけ、[FIRST_NAME] 様`
+- `ご連絡のご挨拶として`
+
+**本文：**
+
+```
+[FIRST_NAME] 様
+
+何度かご連絡しましたが、お返事をいただけておりません。
+[COMPANY_NAME] 様のご多忙の中、完全に理解できます。
+
+これ以上ご迷惑をおかけしないよう、今回で最後のご連絡とさせていただきます。
+
+[PAIN_POINT_OR_INITIATIVE] がいつか優先事項になった際は、
+喜んでお力添えいたします。
+[YOUR_EMAIL] またはこちらからご都合のよいお時間をお選びください：[CALENDAR_LINK]
+
+[COMPANY_NAME] 様と皆様の [SPECIFIC_INITIATIVE_OR_GOAL] のご成功をお祈りしています。
+
+よろしくお願いいたします。
+[YOUR_NAME]
+
+P.S. 今はタイミングが合わなくても、お役に立てそうな方がいらっしゃれば、
+ご紹介いただけると大変ありがたいです。
+```
+
+**CTA：** 将来の再接触の許可＋紹介のお願い
+**送信タイミング：** 月曜または火曜の午前中
+
+---
+
+## LinkedIn タッチポイント
+
+**1日目 — 接続リクエスト：**
+```
+[FIRST_NAME] 様、[INDUSTRY/TOPIC] を調べていて [COMPANY_NAME] を拝見しました。
+[RELEVANT_TOPIC] についてぜひ情報交換させてください。
+```
+
+**5日目 — コンテンツへのエンゲージ：**
+- 最近の投稿に「いいね！」とコメントをする
+- コメントは「素晴らしい投稿ですね！」ではなく、本質的なインサイトを加える
+- 関連する場合はフォローアップでそのコンテンツに言及する
+
+**10日目 — 関連コンテンツのシェア：**
+- 適切であればタグ付きで記事や情報をシェアする
+- または LinkedIn メッセージで送信：簡潔に関連するインサイトを添えて
+
+---
+
+## シーケンスの注意事項
+
+- **パーソナライゼーションの最低基準：** 各メールに見込み客固有の詳細を最低2つ盛り込むこと
+- **件名：** メール1と3の件名はA/Bテストを実施すること
+- **配信停止：** 配信停止リクエストは即座に対応し、すべてのシーケンスから除外すること
+- **CRM 記録：** すべてのタッチ・開封・返信を CRM に記録すること
+- **一時停止のトリガー：** 見込み客から返信があった場合（肯定・否定を問わず）はシーケンスを即停止すること
+- **メール間隔：** 最低48時間空けること；エンゲージメント状況に応じて調整すること

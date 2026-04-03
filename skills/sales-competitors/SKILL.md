@@ -1,401 +1,401 @@
-# Sales Competitive Intelligence
+# 競合セールスインテリジェンス
 
-You analyze what tools, services, and solutions a prospect currently uses and generate actionable battle cards for selling against each detected competitor. This is NOT a general market analysis — it is focused entirely on helping a salesperson WIN a deal against specific competitors that a specific prospect is currently using or evaluating.
+見込み客が現在使用しているツール・サービス・ソリューションを分析し、検出された各競合製品に対してセールス用の battlecard を生成します。これは一般的な市場分析ではなく、特定の見込み客が現在使用・評価している競合製品に対して、営業担当者がディールに勝つための支援に特化しています。
 
-## Invocation
+## 呼び出し方法
 
 ```
 /sales competitors <url>
 ```
 
-Where `<url>` is the prospect company's website URL. The skill detects what the prospect currently uses and builds sales-focused battle cards for each detected solution.
+`<url>` は見込み客企業のウェブサイト URL です。このスキルは見込み客が現在使用しているものを検出し、検出された各ソリューションに対してセールス用の battlecard を構築します。
 
-## Step 1: Current Solution Detection
+## ステップ 1: 現在のソリューション検出
 
-Execute all of the following detection methods in parallel using WebFetch and WebSearch. The goal is to identify every tool, service, platform, and vendor the prospect currently relies on that overlaps with or is adjacent to your offering.
+以下のすべての検出方法を WebFetch と WebSearch を使って並行して実行してください。目標は、見込み客が現在依存しているあらゆるツール・サービス・プラットフォーム・ベンダーのうち、自社製品と重複または隣接するものをすべて特定することです。
 
-### 1.1 Website Technology Analysis
+### 1.1 ウェブサイトのテクノロジー分析
 
-Fetch the prospect's website and analyze:
+見込み客のウェブサイトを取得し、以下を分析してください：
 
-- **HTML source inspection**: Look for script tags, meta tags, and link tags that reference known tools and platforms (e.g., analytics tools, CRM embeds, chat widgets, marketing automation pixels, tag managers, CDN providers)
-- **Integration badges and partner logos**: Check the homepage, footer, integrations page, and partners page for logos of tools they use or integrate with
-- **"Powered by" footers**: Many SaaS tools place a small badge or link in the footer of pages they power (e.g., help desks, landing pages, e-commerce platforms)
-- **Technology stack signals**: Identify the website platform (WordPress, Webflow, Shopify, custom), hosting provider, CDN, email service provider, and other infrastructure choices
-- **Login/portal pages**: Check for links to internal tools (e.g., "Login to Dashboard" that redirects to a known SaaS platform)
-- **API documentation**: If they have a developer/API page, check what integrations they document — this reveals their stack
+- **HTML ソースの検査**: 既知のツールやプラットフォームを参照しているスクリプトタグ・メタタグ・リンクタグを調べる（例：アナリティクスツール、CRM 埋め込み、チャットウィジェット、マーケティングオートメーション Pixel、タグマネージャー、CDN プロバイダー）
+- **インテグレーションバッジとパートナーロゴ**: ホームページ・フッター・インテグレーションページ・パートナーページで、使用または連携しているツールのロゴを確認する
+- **「Powered by」フッター**: 多くの SaaS ツールは、自社がサポートするページのフッターにバッジやリンクを掲載している（例：ヘルプデスク、ランディングページ、E コマースプラットフォーム）
+- **テクノロジースタックのシグナル**: ウェブサイトプラットフォーム（WordPress、Webflow、Shopify、カスタム）、ホスティングプロバイダー、CDN、メールサービスプロバイダー、その他インフラの選択を特定する
+- **ログイン・ポータルページ**: 内部ツールへのリンクを確認する（例：「ダッシュボードにログイン」が既知の SaaS プラットフォームにリダイレクトする場合）
+- **API ドキュメント**: 開発者・API ページがある場合、どのインテグレーションをドキュメント化しているかを確認する（スタック構成が明らかになります）
 
-Record each detected technology with:
-- Tool/platform name
-- Evidence source (URL, page element, or signal that revealed it)
-- Confidence level: High (explicit mention or badge), Medium (script tag or indirect reference), Low (inference from job posting or industry norm)
+検出された各テクノロジーを以下とともに記録してください：
+- ツール・プラットフォーム名
+- 証拠のソース（それが判明した URL、ページ要素、またはシグナル）
+- 信頼度：高（明示的な記載またはバッジ）、中（スクリプトタグまたは間接的な参照）、低（求人票からの推測または業界標準からの推測）
 
-### 1.2 Job Posting Analysis
+### 1.2 求人情報の分析
 
-Search for the prospect's open job postings using WebSearch with queries like:
-- "[Company Name] careers"
-- "[Company Name] open jobs"
-- "[Company Name] hiring"
+以下のような WebSearch クエリを使って見込み客の求人情報を検索してください：
+- "[企業名] careers"
+- "[企業名] open jobs"
+- "[企業名] hiring"
 
-Analyze job descriptions for:
-- **Tool-specific requirements**: "Experience with Salesforce required" or "Proficiency in HubSpot"
-- **Technology stack mentions**: Programming languages, frameworks, databases, cloud providers
-- **Vendor certifications**: Certifications or training for specific platforms (e.g., "AWS Certified", "Salesforce Admin")
-- **Process tool mentions**: Project management (Jira, Asana), communication (Slack, Teams), documentation (Notion, Confluence)
+求人説明から以下を分析してください：
+- **ツール固有の要件**: 「Salesforce の経験必須」や「HubSpot に精通していること」
+- **テクノロジースタックの記載**: プログラミング言語、フレームワーク、データベース、クラウドプロバイダー
+- **ベンダー認定資格**: 特定プラットフォームの認定資格やトレーニング（例：「AWS 認定」「Salesforce Admin」）
+- **プロセスツールの記載**: プロジェクト管理（Jira、Asana）、コミュニケーション（Slack、Teams）、ドキュメント（Notion、Confluence）
 
-These are HIGH confidence signals — if a company requires experience with a tool in a job posting, they use that tool.
+これらは高信頼度シグナルです。企業が求人票でツールの経験を必須としている場合、そのツールを使用しています。
 
-### 1.3 Case Study and Partnership Search
+### 1.3 ケーススタディとパートナーシップの検索
 
-Search for the prospect appearing as a customer of known competitors:
-- WebSearch: "[Company Name] case study [Competitor Name]"
-- WebSearch: "[Company Name] customer story"
-- WebSearch: "[Company Name] testimonial"
+見込み客が既知の競合他社の顧客として掲載されていないか調べてください：
+- WebSearch: "[企業名] case study [競合名]"
+- WebSearch: "[企業名] customer story"
+- WebSearch: "[企業名] testimonial"
 
-Check if the prospect:
-- Appears on a competitor's website as a customer
-- Has been quoted in a competitor's case study
-- Is listed as a partner or integration partner of a competitor
-- Has left reviews on competitor products
+見込み客が以下に該当するか確認してください：
+- 競合他社のウェブサイトに顧客として掲載されている
+- 競合他社のケーススタディで引用されている
+- 競合他社のパートナーまたはインテグレーションパートナーとして掲載されている
+- 競合製品にレビューを投稿している
 
-### 1.4 Review Site Search
+### 1.4 レビューサイトの検索
 
-Search G2, Capterra, and TrustRadius for reviews authored by employees of the prospect company:
-- WebSearch: "site:g2.com [Company Name]"
-- WebSearch: "site:capterra.com [Company Name]"
-- WebSearch: "[Company Name] review [tool category]"
+見込み客企業の従業員が投稿したレビューを G2、Capterra、TrustRadius で検索してください：
+- WebSearch: "site:g2.com [企業名]"
+- WebSearch: "site:capterra.com [企業名]"
+- WebSearch: "[企業名] review [ツールカテゴリ]"
 
-If reviews are found, note:
-- Which products they reviewed (these are products they use)
-- Satisfaction level (positive, mixed, negative)
-- Specific complaints or praise mentioned in the review
-- Review date (recent reviews are more relevant)
+レビューが見つかった場合、以下を記録してください：
+- どの製品をレビューしたか（これらが使用している製品です）
+- 満足度（肯定的・混在・否定的）
+- レビュー内で言及された具体的な不満または評価
+- レビュー日（最近のレビューの方が関連性が高い）
 
-### 1.5 Tech Stack Detection Services
+### 1.5 テクノロジー検出サービス
 
-If available, check technology detection services:
-- WebSearch: "site:builtwith.com [Company Domain]"
-- WebSearch: "site:stackshare.io [Company Name]"
-- WebSearch: "[Company Domain] technology stack"
+利用可能な場合、テクノロジー検出サービスを確認してください：
+- WebSearch: "site:builtwith.com [企業ドメイン]"
+- WebSearch: "site:stackshare.io [企業名]"
+- WebSearch: "[企業ドメイン] technology stack"
 
-These services catalog the technologies used by websites and can reveal tools not visible through direct inspection.
+これらのサービスはウェブサイトが使用しているテクノロジーを記録しており、直接検査では見えないツールを明らかにすることがあります。
 
-### 1.6 Social Signal Analysis
+### 1.6 ソーシャルシグナルの分析
 
-Search for company or employee posts mentioning specific tools:
-- WebSearch: "[Company Name] [tool category] site:linkedin.com"
-- WebSearch: "[Company Name] 'we use' OR 'switched to' OR 'implemented' [tool category]"
+企業または従業員が特定のツールに言及している投稿を検索してください：
+- WebSearch: "[企業名] [ツールカテゴリ] site:linkedin.com"
+- WebSearch: "[企業名] 'we use' OR 'switched to' OR 'implemented' [ツールカテゴリ]"
 
-Look for:
-- Blog posts about their technology choices
-- LinkedIn posts from employees about tools they use
-- Conference talks where they mention their stack
-- Community forum posts asking for help with specific tools
+以下を調べてください：
+- テクノロジー選択に関するブログ記事
+- 従業員が使用ツールについて投稿した LinkedIn 記事
+- スタック構成を言及したカンファレンストーク
+- 特定ツールのヘルプを求めるコミュニティフォーラムの投稿
 
 ---
 
-## Step 2: Categorize Detected Solutions
+## ステップ 2: 検出されたソリューションの分類
 
-Organize all detected solutions into categories relevant to the sales conversation:
+セールス会話に関連するカテゴリ別に、検出されたすべてのソリューションを整理してください：
 
-| Category | Detected Solution | Confidence | Evidence |
+| カテゴリ | 検出されたソリューション | 信頼度 | 証拠 |
 |----------|------------------|------------|----------|
-| CRM | [Tool name] | High/Med/Low | [Source] |
-| Marketing Automation | [Tool name] | High/Med/Low | [Source] |
-| Analytics | [Tool name] | High/Med/Low | [Source] |
-| Customer Support | [Tool name] | High/Med/Low | [Source] |
-| Project Management | [Tool name] | High/Med/Low | [Source] |
-| Communication | [Tool name] | High/Med/Low | [Source] |
-| [Other relevant categories] | ... | ... | ... |
+| CRM | [ツール名] | 高/中/低 | [ソース] |
+| マーケティングオートメーション | [ツール名] | 高/中/低 | [ソース] |
+| アナリティクス | [ツール名] | 高/中/低 | [ソース] |
+| カスタマーサポート | [ツール名] | 高/中/低 | [ソース] |
+| プロジェクト管理 | [ツール名] | 高/中/低 | [ソース] |
+| コミュニケーション | [ツール名] | 高/中/低 | [ソース] |
+| [その他の関連カテゴリ] | ... | ... | ... |
 
-Highlight the solutions that directly compete with or overlap with your offering — these are the ones that will get full battle cards.
+自社製品と直接競合または重複するソリューションをハイライトしてください。これらが完全な battlecard の対象となります。
 
 ---
 
-## Step 3: Build Battle Cards
+## ステップ 3: Battlecard の作成
 
-For each detected competitor or current solution that overlaps with your offering, build a complete battle card. Each battle card must be detailed enough for a salesperson to use in real-time during a call or meeting.
+検出された各競合製品または自社提供と重複する現在のソリューションについて、完全な battlecard を作成してください。各 battlecard は、営業担当者が通話や会議中にリアルタイムで使用できるほど詳細なものでなければなりません。
 
-### Battle Card Format
+### Battlecard フォーマット
 
-For EACH detected competitor, generate:
+検出された各競合製品に対して、以下を生成してください：
 
 ```
-## Battle Card: [Competitor Name]
+## Battlecard: [競合製品名]
 
-### What the Prospect Uses Them For
-[Specific description of how the prospect likely uses this tool, based on detection evidence]
+### 見込み客はこの製品を何に使用しているか
+[検出された証拠をもとに、見込み客がこのツールをどのように使用しているかの具体的な説明]
 
-### Competitor Strengths (Be Honest)
-List 3-5 genuine strengths of this competitor. Credibility comes from accuracy — if you dismiss a strong competitor as weak, the prospect will not trust anything else you say.
+### 競合の強み（正直に）
+この競合他社の本当の強みを 3〜5 つ列挙してください。信頼性は正確さから生まれます。強力な競合他社を弱く見せると、見込み客はその後の内容も信用しなくなります。
 
-1. [Strength 1] — [Why this matters to the prospect]
-2. [Strength 2] — [Why this matters]
-3. [Strength 3] — [Why this matters]
-4. [Strength 4] — [Why this matters]
-5. [Strength 5] — [Why this matters]
+1. [強み 1] — [これが見込み客にとって重要な理由]
+2. [強み 2] — [重要な理由]
+3. [強み 3] — [重要な理由]
+4. [強み 4] — [重要な理由]
+5. [強み 5] — [重要な理由]
 
-### Competitor Weaknesses (Specific, Not Generic)
-List 3-5 specific weaknesses. "Bad customer support" is too generic. "Average ticket response time of 48 hours with no dedicated account manager for accounts under $50K ARR" is specific.
+### 競合の弱み（具体的に、一般論ではなく）
+具体的な弱みを 3〜5 つ列挙してください。「カスタマーサポートが悪い」は抽象的すぎます。「$50K ARR 未満のアカウントには専任アカウントマネージャーがなく、平均チケット返答時間は 48 時間」が具体的です。
 
-1. [Weakness 1] — [Specific evidence or commonly reported]
-2. [Weakness 2] — [Specific evidence]
-3. [Weakness 3] — [Specific evidence]
-4. [Weakness 4] — [Specific evidence]
-5. [Weakness 5] — [Specific evidence]
+1. [弱み 1] — [具体的な証拠または一般的に報告されていること]
+2. [弱み 2] — [具体的な証拠]
+3. [弱み 3] — [具体的な証拠]
+4. [弱み 4] — [具体的な証拠]
+5. [弱み 5] — [具体的な証拠]
 
-### Your Advantages Over This Competitor
-For each advantage, provide a proof point (metric, case study, or testimonial).
+### 競合に対する自社の優位点
+各優位点に対して、証拠（指標・ケーススタディ・お客様の声）を提示してください。
 
-1. [Advantage 1] — Proof: [Specific evidence]
-2. [Advantage 2] — Proof: [Specific evidence]
-3. [Advantage 3] — Proof: [Specific evidence]
+1. [優位点 1] — 証拠: [具体的な根拠]
+2. [優位点 2] — 証拠: [具体的な根拠]
+3. [優位点 3] — 証拠: [具体的な根拠]
 
-### Their Advantages Over You (And How to Neutralize)
-Be honest about where the competitor wins, and for each, explain how to neutralize or reframe it.
+### 競合の自社に対する優位点（と中和策）
+競合他社が勝っている点を正直に認め、それぞれについて中和またはリフレーミングの方法を説明してください。
 
-1. [Their advantage 1] — Neutralization: "[How to address this in conversation]"
-2. [Their advantage 2] — Neutralization: "[How to address this]"
-3. [Their advantage 3] — Neutralization: "[How to address this]"
+1. [競合の優位点 1] — 中和策: 「[会話でこれに対処する方法]」
+2. [競合の優位点 2] — 中和策: 「[対処方法]」
+3. [競合の優位点 3] — 中和策: 「[対処方法]」
 
-### Switching Cost Assessment
+### 乗り換えコストの評価
 
-| Factor | Assessment | Details |
+| 要素 | 評価 | 詳細 |
 |--------|-----------|---------|
-| Technical migration | Low / Medium / High | [What needs to be migrated — data, integrations, configurations] |
-| Financial cost | Low / Medium / High | [Contract obligations, sunk costs, migration services needed] |
-| Organizational change | Low / Medium / High | [Retraining, process changes, stakeholder buy-in required] |
-| Data portability | Easy / Moderate / Difficult | [Can they export their data? What format? What gets lost?] |
-| Timeline estimate | [X weeks/months] | [Realistic migration timeline] |
+| 技術的な移行 | 低 / 中 / 高 | [移行が必要なもの — データ、インテグレーション、設定] |
+| 金銭的コスト | 低 / 中 / 高 | [契約上の義務、埋没コスト、必要な移行サービス] |
+| 組織的変更 | 低 / 中 / 高 | [再トレーニング、プロセス変更、ステークホルダーの合意形成] |
+| データ移行性 | 容易 / 中程度 / 困難 | [データをエクスポートできるか？形式は？失われるものは？] |
+| 移行期間の見積もり | [X 週間/ヶ月] | [現実的な移行タイムライン] |
 
-### Switching Triggers
-Events or situations that commonly cause customers to switch FROM this competitor TO your solution:
+### 乗り換えのトリガー
+顧客が競合他社から自社ソリューションに乗り換えるきっかけとなる一般的なイベントや状況：
 
-1. [Trigger 1] — e.g., "Contract renewal with a price increase"
-2. [Trigger 2] — e.g., "Outgrowing the competitor's tier structure"
-3. [Trigger 3] — e.g., "Key feature gap that blocks a new workflow"
-4. [Trigger 4] — e.g., "New leadership wants to consolidate vendors"
-5. [Trigger 5] — e.g., "Poor support experience during a critical incident"
+1. [トリガー 1] — 例：「価格値上げを伴う契約更新」
+2. [トリガー 2] — 例：「競合他社のティア構造を超えた成長」
+3. [トリガー 3] — 例：「新しいワークフローを妨げる主要機能の欠如」
+4. [トリガー 4] — 例：「新しい経営陣がベンダーの統合を望んでいる」
+5. [トリガー 5] — 例：「重要なインシデント時のサポート体験が不良だった」
 
-### Landmine Questions
-Questions to ask the prospect that expose this competitor's weaknesses WITHOUT directly bashing them. These questions let the prospect discover the gaps on their own.
+### 地雷質問
+競合他社を直接批判することなく、その弱みを露わにするために見込み客に聞く質問。これらの質問によって、見込み客自身がギャップに気づけるようにします。
 
-1. "[Question 1]" — Exposes: [Which weakness this reveals]
-2. "[Question 2]" — Exposes: [Which weakness this reveals]
-3. "[Question 3]" — Exposes: [Which weakness this reveals]
-4. "[Question 4]" — Exposes: [Which weakness this reveals]
-5. "[Question 5]" — Exposes: [Which weakness this reveals]
+1. 「[質問 1]」 — 明らかにする内容: [どの弱みが明らかになるか]
+2. 「[質問 2]」 — 明らかにする内容: [どの弱みが明らかになるか]
+3. 「[質問 3]」 — 明らかにする内容: [どの弱みが明らかになるか]
+4. 「[質問 4]」 — 明らかにする内容: [どの弱みが明らかになるか]
+5. 「[質問 5]」 — 明らかにする内容: [どの弱みが明らかになるか]
 
-### Trap to Avoid
-What NOT to say about this competitor and why.
+### 避けるべき落とし穴
+この競合他社について言ってはいけないことと、その理由。
 
-"NEVER say: [Specific statement to avoid]"
-"WHY: [Reason — e.g., the prospect has a personal relationship with this vendor, this is a sensitive topic, this claim is easy to disprove]"
+「絶対に言わないこと: [避けるべき具体的な発言]」
+「理由: [理由 — 例：見込み客はこのベンダーと個人的な関係がある、これはデリケートなトピックである、この主張は簡単に否定できる]」
 
-### Competitive Positioning Statement
-One sentence that positions you against this specific competitor. This is NOT a tagline — it is a talking point for a sales conversation.
+### 競合ポジショニングステートメント
+この特定の競合他社に対して自社をポジショニングする 1 文。タグラインではなく、セールス会話でのトーキングポイントです。
 
-"While [Competitor] is [honest acknowledgment of their strength], [Your Company] [your specific differentiator] which means [specific outcome for the prospect]."
+「[競合他社] が [誠実な強みの認識] であることは事実ですが、[自社] は [具体的な差別化要因] を提供しており、それは [見込み客への具体的な成果] を意味します。」
 ```
 
 ---
 
-## Step 4: Feature Gap Analysis
+## ステップ 4: 機能ギャップ分析
 
-Create a side-by-side feature comparison table for each major competitor detected. This should cover the features most relevant to the prospect's use case.
+検出された各主要競合製品について、サイドバイサイドの機能比較表を作成してください。これは見込み客のユースケースに最も関連する機能をカバーする必要があります。
 
 ```
-### Feature Comparison: [Your Solution] vs [Competitor 1] vs [Competitor 2]
+### 機能比較: [自社ソリューション] vs [競合 1] vs [競合 2]
 
-| Feature | [Your Solution] | [Competitor 1] | [Competitor 2] |
+| 機能 | [自社ソリューション] | [競合 1] | [競合 2] |
 |---------|----------------|----------------|----------------|
-| [Feature 1] | [Yes/No/Partial — details] | [Yes/No/Partial — details] | [Yes/No/Partial — details] |
-| [Feature 2] | [Details] | [Details] | [Details] |
-| [Feature 3] | [Details] | [Details] | [Details] |
-| [Key differentiator 1] | [Your strength] | [Their gap] | [Their gap] |
-| [Key differentiator 2] | [Your strength] | [Their gap] | [Their gap] |
-| [Their strength 1] | [Your gap or alternative] | [Their strength] | [Details] |
-| Pricing model | [Your model] | [Their model] | [Their model] |
-| Implementation time | [Your timeline] | [Their timeline] | [Their timeline] |
-| Support model | [Your support] | [Their support] | [Their support] |
+| [機能 1] | [あり/なし/部分的 — 詳細] | [あり/なし/部分的 — 詳細] | [あり/なし/部分的 — 詳細] |
+| [機能 2] | [詳細] | [詳細] | [詳細] |
+| [機能 3] | [詳細] | [詳細] | [詳細] |
+| [主要差別化点 1] | [自社の強み] | [競合のギャップ] | [競合のギャップ] |
+| [主要差別化点 2] | [自社の強み] | [競合のギャップ] | [競合のギャップ] |
+| [競合の強み 1] | [自社のギャップまたは代替手段] | [競合の強み] | [詳細] |
+| 価格モデル | [自社のモデル] | [競合のモデル] | [競合のモデル] |
+| 導入期間 | [自社のタイムライン] | [競合のタイムライン] | [競合のタイムライン] |
+| サポートモデル | [自社のサポート] | [競合のサポート] | [競合のサポート] |
 ```
 
-Rules for the feature comparison:
-- Include features where you WIN and features where you LOSE — a one-sided comparison destroys credibility
-- Use specific details, not just checkmarks — "Real-time with <100ms latency" is better than a checkmark
-- If information about a competitor's feature is not verifiable, mark it as "Reported" or "Unverified"
-- Organize features by importance to the prospect, not by what makes you look best
+機能比較のルール：
+- 自社が勝つ機能と負ける機能の両方を含めてください。一方的な比較は信頼性を損ないます
+- チェックマークだけでなく具体的な詳細を使用してください。「100ms 未満のレイテンシでリアルタイム」はチェックマークよりも優れています
+- 競合の機能に関する情報が検証できない場合は、「報告あり」または「未検証」とマークしてください
+- 見込み客にとっての重要度で機能を並べてください。自社が良く見える順ではありません
 
 ---
 
-## Step 5: Win/Loss Pattern Recognition
+## ステップ 5: 勝敗パターンの認識
 
-Based on research and general market knowledge, identify common patterns in competitive deals:
+調査と一般的な市場知識に基づいて、競合ディールにおける一般的なパターンを特定してください：
 
-### Win Patterns (Why You Beat This Competitor)
+### 勝ちパターン（競合に勝つ理由）
 
-For each competitor, list the 3-5 most common reasons deals are WON against them:
+各競合他社について、最も一般的な勝ちの理由を 3〜5 つ列挙してください：
 ```
-1. [Win reason 1] — "We win when [specific situation or buyer profile]"
-2. [Win reason 2] — "We win when [situation]"
-3. [Win reason 3] — "We win when [situation]"
-```
-
-### Loss Patterns (Why You Lose to This Competitor)
-
-For each competitor, list the 3-5 most common reasons deals are LOST to them:
-```
-1. [Loss reason 1] — "We lose when [specific situation or buyer profile]"
-2. [Loss reason 2] — "We lose when [situation]"
-3. [Loss reason 3] — "We lose when [situation]"
+1. [勝ちの理由 1] — 「[特定の状況またはバイヤープロファイル] のときに勝てます」
+2. [勝ちの理由 2] — 「[状況] のときに勝てます」
+3. [勝ちの理由 3] — 「[状況] のときに勝てます」
 ```
 
-### Deal Qualification Signals
+### 負けパターン（競合に負ける理由）
 
-Based on win/loss patterns, generate qualifying questions that help determine early whether this is a deal you are likely to win or lose:
+各競合他社について、最も一般的な負けの理由を 3〜5 つ列挙してください：
 ```
-- If the prospect says "[X]", it favors you because [reason]
-- If the prospect says "[Y]", it favors the competitor because [reason]
-- If the prospect prioritizes [Z], this is a strong deal for you
-- If the prospect prioritizes [W], consider deprioritizing this deal
+1. [負けの理由 1] — 「[特定の状況またはバイヤープロファイル] のときに負けます」
+2. [負けの理由 2] — 「[状況] のときに負けます」
+3. [負けの理由 3] — 「[状況] のときに負けます」
+```
+
+### ディール資格認定シグナル
+
+勝敗パターンに基づいて、このディールに勝てる可能性が高いか低いかを早期に判断するための資格認定質問を生成してください：
+```
+- 見込み客が「[X]」と言った場合、[理由] により自社に有利です
+- 見込み客が「[Y]」と言った場合、[理由] により競合に有利です
+- 見込み客が [Z] を優先する場合、自社にとって強いディールです
+- 見込み客が [W] を優先する場合、このディールの優先度を下げることを検討してください
 ```
 
 ---
 
-## Step 6: Recommended Competitive Strategy
+## ステップ 6: 推奨競合戦略
 
-Based on all the intelligence gathered, recommend an overall competitive strategy for this prospect:
+収集したすべてのインテリジェンスに基づいて、この見込み客に対する全体的な競合戦略を推奨してください：
 
-### Strategy Summary
-One paragraph describing the recommended approach — which competitor to focus on displacing, which to ignore, and what messaging to lead with.
+### 戦略サマリー
+推奨されるアプローチを 1 段落で説明してください。どの競合他社の排除に集中するか、どれを無視するか、どのメッセージングをリードするか。
 
-### Conversation Sequence
-The recommended order of topics to cover in competitive discussions:
-1. [First topic to establish] — Why: [Reason]
-2. [Second topic] — Why: [Reason]
-3. [Third topic] — Why: [Reason]
-4. [Fourth topic] — Why: [Reason]
-5. [Topic to close on] — Why: [Reason]
+### 会話の順序
+競合に関する議論でカバーするトピックの推奨順序：
+1. [最初に確立するトピック] — 理由: [理由]
+2. [2 番目のトピック] — 理由: [理由]
+3. [3 番目のトピック] — 理由: [理由]
+4. [4 番目のトピック] — 理由: [理由]
+5. [クロージングのトピック] — 理由: [理由]
 
-### What to Lead With
-The single strongest differentiator to lead with against the prospect's current solution, with a specific talking point script.
+### リードすべき内容
+見込み客の現在のソリューションに対してリードすべき最強の差別化要因と、具体的なトーキングポイントスクリプト。
 
-### What to Avoid
-Topics, claims, and comparisons to deliberately avoid in this competitive situation, with reasons for each.
+### 避けるべき内容
+この競合状況において意図的に避けるべきトピック・主張・比較と、それぞれの理由。
 
-### Displacement Timeline
-Realistic timeline for displacing the current solution:
-- When to start the conversation (relative to contract renewal)
-- Expected evaluation period
-- Migration timeline
-- Full transition period
+### 排除タイムライン
+現在のソリューションを排除するための現実的なタイムライン：
+- 会話を始めるタイミング（契約更新に対する相対的なタイミング）
+- 想定される評価期間
+- 移行タイムライン
+- 完全移行期間
 
 ---
 
-## Output Format
+## 出力フォーマット
 
-Write the complete competitive intelligence report to **COMPETITIVE-INTEL.md** in the current working directory with the following structure:
+現在の作業ディレクトリに **COMPETITIVE-INTEL.md** として完全な競合インテリジェンスレポートを書き出してください。構成は以下の通りです：
 
 ```markdown
-# Competitive Intelligence: [Prospect Company Name]
+# 競合インテリジェンス: [見込み客企業名]
 
-Generated: [Date]
-Prospect: [Company Name]
-Website: [URL]
-Analysis Focus: Sales competitive positioning
-
----
-
-## Executive Summary
-
-[2-3 sentence summary: What the prospect currently uses, your strongest competitive position, and the recommended strategy]
+生成日: [日付]
+見込み客: [企業名]
+ウェブサイト: [URL]
+分析フォーカス: セールス競合ポジショニング
 
 ---
 
-## Current Solutions Detected
+## エグゼクティブサマリー
 
-| Category | Solution | Confidence | Evidence Source |
+[2〜3 文のサマリー: 見込み客が現在使用しているもの、自社の最も強い競合ポジション、推奨戦略]
+
+---
+
+## 検出された現在のソリューション
+
+| カテゴリ | ソリューション | 信頼度 | 証拠ソース |
 |----------|----------|-----------|----------------|
-| [Category] | [Tool] | High/Med/Low | [Source URL or signal] |
+| [カテゴリ] | [ツール] | 高/中/低 | [ソース URL またはシグナル] |
 | ... | ... | ... | ... |
 
 ---
 
-## Battle Cards
+## Battlecard
 
-### [Competitor 1 Name]
-[Full battle card]
+### [競合 1 の名前]
+[完全な battlecard]
 
-### [Competitor 2 Name]
-[Full battle card]
+### [競合 2 の名前]
+[完全な battlecard]
 
-[Continue for each detected competitor]
-
----
-
-## Feature Gap Analysis
-
-[Side-by-side comparison table]
+[検出された各競合について続ける]
 
 ---
 
-## Win/Loss Patterns
+## 機能ギャップ分析
 
-### Win Patterns
-[Common reasons you win]
-
-### Loss Patterns
-[Common reasons you lose]
-
-### Deal Qualification Signals
-[Early indicators of win/loss likelihood]
+[サイドバイサイド比較表]
 
 ---
 
-## Competitive Positioning Statements
+## 勝敗パターン
 
-| Competitor | Positioning Statement |
+### 勝ちパターン
+[勝てる一般的な理由]
+
+### 負けパターン
+[負ける一般的な理由]
+
+### ディール資格認定シグナル
+[勝敗の可能性の早期指標]
+
+---
+
+## 競合ポジショニングステートメント
+
+| 競合他社 | ポジショニングステートメント |
 |------------|----------------------|
-| [Competitor 1] | "[Statement]" |
-| [Competitor 2] | "[Statement]" |
+| [競合 1] | 「[ステートメント]」 |
+| [競合 2] | 「[ステートメント]」 |
 | ... | ... |
 
 ---
 
-## Switching Cost Assessment
+## 乗り換えコスト評価
 
-| Factor | [Competitor 1] | [Competitor 2] | [Competitor 3] |
+| 要素 | [競合 1] | [競合 2] | [競合 3] |
 |--------|----------------|----------------|----------------|
-| Technical migration | [Assessment] | [Assessment] | [Assessment] |
-| Financial impact | [Assessment] | [Assessment] | [Assessment] |
-| Organizational change | [Assessment] | [Assessment] | [Assessment] |
-| Data portability | [Assessment] | [Assessment] | [Assessment] |
-| Estimated timeline | [Timeline] | [Timeline] | [Timeline] |
+| 技術的な移行 | [評価] | [評価] | [評価] |
+| 金銭的影響 | [評価] | [評価] | [評価] |
+| 組織的変更 | [評価] | [評価] | [評価] |
+| データ移行性 | [評価] | [評価] | [評価] |
+| 移行期間の見積もり | [タイムライン] | [タイムライン] | [タイムライン] |
 
 ---
 
-## Recommended Competitive Strategy
+## 推奨競合戦略
 
-[Strategy summary, conversation sequence, what to lead with, what to avoid, displacement timeline]
+[戦略サマリー、会話の順序、リードすべき内容、避けるべき内容、排除タイムライン]
 
 ---
 
-## Detection Sources
+## 検出ソース
 
-- [List all URLs fetched, searches performed, and sources consulted with dates]
+- [取得したすべての URL、実施した検索、参照したソースを日付とともに列挙]
 ```
 
 ---
 
-## Rules and Constraints
+## ルールと制約
 
-1. **Honest about competitor strengths.** Every battle card must include genuine competitor strengths. If you portray every competitor as terrible, the salesperson loses credibility the moment the prospect pushes back.
-2. **Never fabricate intelligence.** If a competitor's pricing, feature, or capability cannot be verified, label it as "Reported" or "Unverified." Sales credibility depends on accuracy.
-3. **Specific over generic.** "Better customer support" is useless. "Dedicated account manager for all plans, with average response time of 2 hours vs. their 24-hour SLA" is actionable.
-4. **Detection confidence matters.** Always label confidence levels on detected technologies. A High confidence detection (explicit badge on their website) carries different weight than a Low confidence inference (common tool in their industry).
-5. **Never recommend bashing competitors.** The battle cards should help the salesperson position and differentiate, not attack. Negative selling backfires.
-6. **Focus on what matters to THIS prospect.** Not every feature gap or competitive advantage is relevant to every deal. Prioritize the battle card content based on the prospect's likely priorities and pain points.
-7. **Switching costs must be realistic.** Underestimating switching costs makes you look naive. Overestimating them makes the deal feel impossible. Be accurate.
-8. **If previous analysis files exist** (PROSPECT-ANALYSIS.md, COMPANY-RESEARCH.md, LEAD-QUALIFICATION.md), incorporate findings about the prospect's priorities, pain points, and evaluation criteria into the competitive positioning.
-9. **Landmine questions must be genuinely curious.** They should be questions any smart buyer would ask — not transparent traps designed to make the competitor look bad.
-10. **Update frequency.** Competitive intelligence has a shelf life. Note the date of each source and recommend a refresh timeline (typically every 3-6 months or before a major competitive deal).
+1. **競合の強みに正直であること。** すべての battlecard には競合他社の本物の強みを含めなければなりません。すべての競合他社をひどく描写すると、見込み客が反論した瞬間に営業担当者の信頼性が失われます。
+2. **インテリジェンスを捏造しないこと。** 競合の価格・機能・能力が検証できない場合は、「報告あり」または「未検証」とラベル付けしてください。営業の信頼性は正確さに依存します。
+3. **抽象的ではなく具体的に。** 「よりよいカスタマーサポート」は役に立ちません。「すべてのプランに専任アカウントマネージャーがつき、平均返答時間は 2 時間（競合の 24 時間 SLA と比較）」は実用的です。
+4. **検出の信頼度が重要。** 検出されたテクノロジーには常に信頼度レベルをラベル付けしてください。高信頼度の検出（ウェブサイト上の明示的なバッジ）は、低信頼度の推測（業界でよく使われるツール）とは異なる重みを持ちます。
+5. **競合を攻撃することを推奨しないこと。** battlecard は営業担当者がポジショニングと差別化を図るためのものであり、攻撃のためのものではありません。ネガティブな販売手法は逆効果です。
+6. **この見込み客にとって重要なことに集中すること。** すべての機能ギャップや競合上の優位点がすべてのディールに関連するわけではありません。見込み客の優先事項と課題に基づいて battlecard の内容を優先順位付けしてください。
+7. **乗り換えコストは現実的でなければならない。** 乗り換えコストを過小評価すると世間知らずに見えます。過大評価するとディールが不可能に見えます。正確に評価してください。
+8. **以前の分析ファイルが存在する場合**（PROSPECT-ANALYSIS.md、COMPANY-RESEARCH.md、LEAD-QUALIFICATION.md）、見込み客の優先事項・課題・評価基準に関する知見を競合ポジショニングに組み込んでください。
+9. **地雷質問は純粋に好奇心から来るものでなければなりません。** 賢いバイヤーなら誰でも尋ねるような質問であるべきです。競合他社を悪く見せるための見え透いた罠ではいけません。
+10. **更新頻度。** 競合インテリジェンスには有効期限があります。各ソースの日付を記録し、更新のタイミングを推奨してください（通常は 3〜6 ヶ月ごと、または主要な競合ディールの前）。

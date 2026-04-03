@@ -1,192 +1,191 @@
-# Meeting Preparation Brief
+# 商談準備ブリーフ
 
-> Comprehensive meeting preparation document for sales calls and demos.
-> Complete all sections before the meeting. Replace [PLACEHOLDER] fields.
-
----
-
-## Meeting Details
-
-| Field             | Details                          |
-| ----------------- | -------------------------------- |
-| **Company**       | [COMPANY_NAME]                   |
-| **Date/Time**     | [MEETING_DATE_TIME]              |
-| **Duration**      | [DURATION]                       |
-| **Type**          | [DISCOVERY / DEMO / NEGOTIATION / FOLLOW-UP] |
-| **Location**      | [ZOOM_LINK / IN-PERSON_ADDRESS]  |
-| **Our Attendees** | [YOUR_TEAM_MEMBERS]              |
+> 営業コールおよびデモのための包括的な商談準備ドキュメントです。
+> 商談前にすべてのセクションを記入してください。[PLACEHOLDER] フィールドを適宜置き換えてください。
 
 ---
 
-## 1. Company Snapshot
+## 商談詳細
 
-| Attribute          | Details                           |
-| ------------------ | --------------------------------- |
-| **Company**        | [COMPANY_NAME]                    |
-| **Website**        | [URL]                             |
-| **Industry**       | [INDUSTRY]                        |
-| **Founded**        | [YEAR]                            |
-| **Employees**      | [EMPLOYEE_COUNT]                  |
-| **Revenue**        | [REVENUE_RANGE]                   |
-| **Funding**        | [LAST_FUNDING_ROUND + AMOUNT]     |
-| **Headquarters**   | [CITY, STATE/COUNTRY]             |
-| **Key Products**   | [PRODUCT_1, PRODUCT_2]            |
-| **Recent News**    | [RECENT_EVENT_OR_ANNOUNCEMENT]    |
-
-**Company Summary:**
-[2-3 sentences about what the company does, their target market, and current trajectory.]
+| 項目             | 内容                             |
+| ---------------- | -------------------------------- |
+| **会社名**       | [COMPANY_NAME]                   |
+| **日時**         | [MEETING_DATE_TIME]              |
+| **所要時間**     | [DURATION]                       |
+| **種別**         | [発見商談 / デモ / 交渉 / フォローアップ] |
+| **場所**         | [ZOOM_LINK / IN-PERSON_ADDRESS]  |
+| **自社参加者**   | [YOUR_TEAM_MEMBERS]              |
 
 ---
 
-## 2. Attendee Profiles
+## 1. 会社概要スナップショット
+
+| 項目           | 内容                              |
+| -------------- | --------------------------------- |
+| **会社名**     | [COMPANY_NAME]                    |
+| **Webサイト**  | [URL]                             |
+| **業種**       | [INDUSTRY]                        |
+| **設立年**     | [YEAR]                            |
+| **従業員数**   | [EMPLOYEE_COUNT]                  |
+| **売上規模**   | [REVENUE_RANGE]                   |
+| **資金調達**   | [LAST_FUNDING_ROUND + AMOUNT]     |
+| **本社所在地** | [CITY, STATE/COUNTRY]             |
+| **主要製品**   | [PRODUCT_1, PRODUCT_2]            |
+| **最近のニュース** | [RECENT_EVENT_OR_ANNOUNCEMENT] |
+
+**会社概要：**
+[会社の事業内容・ターゲット市場・現在の成長軌跡について2〜3文で記述してください。]
+
+---
+
+## 2. 参加者プロフィール
 
 ### [ATTENDEE_1_NAME] — [TITLE]
-- **Role:** [THEIR_ROLE_IN_DECISION]
-- **Buying Role:** [ECONOMIC_BUYER / CHAMPION / EVALUATOR / END_USER / BLOCKER]
-- **Background:** [BRIEF_BIO — previous companies, education, areas of expertise]
-- **LinkedIn:** [LINKEDIN_URL]
-- **Key Interests:** [WHAT_THEY_CARE_ABOUT]
-- **Likely Concerns:** [WHAT_MIGHT_WORRY_THEM]
-- **Communication Style:** [DETAIL-ORIENTED / BIG-PICTURE / DATA-DRIVEN / RELATIONSHIP-FOCUSED]
+- **役割：** [THEIR_ROLE_IN_DECISION]
+- **購買における立場：** [経済的バイヤー / チャンピオン / 評価者 / エンドユーザー / 阻害者]
+- **経歴：** [簡単な経歴 — 前職・学歴・専門分野]
+- **LinkedIn：** [LINKEDIN_URL]
+- **主な関心事：** [WHAT_THEY_CARE_ABOUT]
+- **懸念事項の予測：** [WHAT_MIGHT_WORRY_THEM]
+- **コミュニケーションスタイル：** [詳細重視 / 大局観重視 / データ重視 / 関係重視]
 
 ### [ATTENDEE_2_NAME] — [TITLE]
-- **Role:** [THEIR_ROLE_IN_DECISION]
-- **Buying Role:** [ECONOMIC_BUYER / CHAMPION / EVALUATOR / END_USER / BLOCKER]
-- **Background:** [BRIEF_BIO]
-- **LinkedIn:** [LINKEDIN_URL]
-- **Key Interests:** [WHAT_THEY_CARE_ABOUT]
-- **Likely Concerns:** [WHAT_MIGHT_WORRY_THEM]
-- **Communication Style:** [STYLE]
+- **役割：** [THEIR_ROLE_IN_DECISION]
+- **購買における立場：** [経済的バイヤー / チャンピオン / 評価者 / エンドユーザー / 阻害者]
+- **経歴：** [BRIEF_BIO]
+- **LinkedIn：** [LINKEDIN_URL]
+- **主な関心事：** [WHAT_THEY_CARE_ABOUT]
+- **懸念事項の予測：** [WHAT_MIGHT_WORRY_THEM]
+- **コミュニケーションスタイル：** [STYLE]
 
-*(Add additional attendees as needed)*
+*(必要に応じて参加者を追加してください)*
 
 ---
 
-## 3. Business Situation
+## 3. ビジネス状況
 
-**Current State:**
-[DESCRIBE_THEIR_CURRENT_SITUATION — what tools/processes are they using today?
-What is working? What isn't? 3-4 sentences.]
+**現状：**
+[現在の状況を記述してください — 現在使用しているツール・プロセスは何か？
+うまくいっていることは？うまくいっていないことは？3〜4文で記述してください。]
 
-**Pain Points Identified:**
-1. [PAIN_POINT_1 — specific, quantifiable if possible]
+**特定された課題：**
+1. [PAIN_POINT_1 — 具体的に、可能であれば数値化して記述]
 2. [PAIN_POINT_2]
 3. [PAIN_POINT_3]
 
-**Business Impact:**
-[QUANTIFY_THE_COST_OF_INACTION — lost revenue, wasted time, risk exposure.
-e.g., "Based on their team size, the current manual process likely costs
-~$X/month in productivity loss."]
+**ビジネスインパクト：**
+[何も対処しなかった場合のコストを数値化してください — 売上損失・時間の浪費・リスク露出。
+例：「チーム規模から試算すると、現在の手作業プロセスにより月間約$Xの生産性損失が発生していると推定されます。」]
 
-**Trigger Events:**
-- [WHAT_TRIGGERED_THIS_CONVERSATION — new hire, funding, initiative, pain event]
+**きっかけとなった出来事：**
+- [この商談のきっかけ — 新規採用・資金調達・プロジェクト開始・問題発生など]
 
 ---
 
-## 4. Competitive Context
+## 4. 競合状況
 
-**Known Alternatives They're Evaluating:**
-| Competitor        | Strengths vs. Us    | Weaknesses vs. Us       |
-| ----------------- | ------------------- | ----------------------- |
-| [COMPETITOR_1]    | [THEIR_ADVANTAGE]   | [THEIR_WEAKNESS]        |
-| [COMPETITOR_2]    | [THEIR_ADVANTAGE]   | [THEIR_WEAKNESS]        |
-| Status Quo        | No change required  | Ongoing cost of inaction|
+**先方が検討していると思われる代替案：**
+| 競合他社       | 自社に対する強み    | 自社に対する弱み        |
+| -------------- | ------------------- | ----------------------- |
+| [COMPETITOR_1] | [THEIR_ADVANTAGE]   | [THEIR_WEAKNESS]        |
+| [COMPETITOR_2] | [THEIR_ADVANTAGE]   | [THEIR_WEAKNESS]        |
+| 現状維持       | 変更不要            | 継続的な機会損失        |
 
-**Our Differentiators for This Prospect:**
-1. [DIFFERENTIATOR_1 — most relevant to their pain points]
+**この見込み客に対する自社の差別化ポイント：**
+1. [DIFFERENTIATOR_1 — 先方の課題に最も関連するもの]
 2. [DIFFERENTIATOR_2]
 3. [DIFFERENTIATOR_3]
 
 ---
 
-## 5. Talking Points (5-7)
+## 5. トーキングポイント（5〜7項目）
 
-1. **Opening:** [PERSONALIZED_OPENER — reference recent news, their content, or mutual connection]
-2. **Validation:** [CONFIRM_UNDERSTANDING — "Based on our research, it seems like [SITUATION]. Is that accurate?"]
-3. **Pain Amplification:** [EXPAND_ON_PAIN — "What impact is [PAIN_POINT] having on [METRIC/TEAM]?"]
-4. **Value Bridge:** [CONNECT_PAIN_TO_SOLUTION — "Companies in [INDUSTRY] typically see [RESULT] when they [APPROACH]"]
-5. **Social Proof:** [REFERENCE_SIMILAR_CUSTOMER — "[CUSTOMER] faced a similar challenge and achieved [RESULT]"]
-6. **Differentiation:** [KEY_DIFFERENTIATOR — "What makes our approach different is [UNIQUE_VALUE]"]
-7. **Next Step:** [PROPOSED_NEXT_ACTION — "Based on our conversation, the logical next step would be [ACTION]"]
-
----
-
-## 6. Discovery Questions (10)
-
-**Situation:**
-1. "Can you walk me through how your team currently handles [PROCESS]?"
-2. "What tools or systems are you using today for [FUNCTION]?"
-
-**Problem:**
-3. "What's the biggest challenge you're facing with [AREA]?"
-4. "How is [PAIN_POINT] impacting [SPECIFIC_METRIC — revenue, time, team morale]?"
-
-**Implication:**
-5. "If this challenge isn't addressed in the next [TIMEFRAME], what happens?"
-6. "How does this affect other teams or departments?"
-
-**Need-Payoff:**
-7. "If you could solve [PAIN_POINT], what would that mean for [TEAM/BUSINESS]?"
-8. "What does success look like for this initiative?"
-
-**Decision Process:**
-9. "Who else would need to be involved in evaluating a solution like this?"
-10. "What's your timeline for making a decision on this?"
+1. **オープニング：** [パーソナライズされた冒頭 — 最近のニュース・先方のコンテンツ・共通の知人に言及]
+2. **確認：** [理解の確認 — 「調査を踏まえると、[SITUATION] という状況かと思いますが、いかがでしょうか？」]
+3. **課題の深掘り：** [課題の展開 — 「[PAIN_POINT] は [METRIC/TEAM] にどのような影響を与えていますか？」]
+4. **価値への橋渡し：** [課題とソリューションの接続 — 「[INDUSTRY] 企業では、[APPROACH] により通常 [RESULT] を実現しています」]
+5. **社会的証明：** [類似顧客の事例紹介 — 「[CUSTOMER] 社も同様の課題を抱えており、[RESULT] を達成しました」]
+6. **差別化：** [主要差別化ポイント — 「私たちのアプローチが他社と異なる点は [UNIQUE_VALUE] です」]
+7. **次のステップ：** [次のアクションの提案 — 「本日の話を踏まえ、次のステップは [ACTION] が最適かと思います」]
 
 ---
 
-## 7. Expected Objections (5)
+## 6. ディスカバリー質問（10項目）
 
-| Objection | Prepared Response |
-| --------- | ----------------- |
-| "[OBJECTION_1 — e.g., 'We're already using X']" | "[RESPONSE_1 — acknowledge, differentiate, bridge. e.g., 'That makes sense. Many of our customers switched from X because [REASON]. The key difference is [DIFFERENTIATOR].']" |
-| "[OBJECTION_2 — e.g., 'The timing isn't right']" | "[RESPONSE_2 — e.g., 'I understand. Let me share the cost of waiting: [QUANTIFIED_IMPACT]. Would it help to start with a small pilot?']" |
-| "[OBJECTION_3 — e.g., 'It's too expensive']" | "[RESPONSE_3 — reframe around ROI. e.g., 'I hear you. Let me share how [SIMILAR_COMPANY] saw [X]x return within [TIMEFRAME].']" |
-| "[OBJECTION_4 — e.g., 'We need to build it in-house']" | "[RESPONSE_4 — total cost comparison and time-to-value.]" |
-| "[OBJECTION_5 — e.g., 'I need to check with my team']" | "[RESPONSE_5 — offer to help. 'Absolutely. Would it be helpful if I prepared a brief overview for them? And could we schedule a follow-up with the broader team?']" |
+**状況把握：**
+1. 「現在、チームで [PROCESS] をどのように進めているか教えていただけますか？」
+2. 「[FUNCTION] に関して、現在どのようなツールやシステムをお使いですか？」
 
----
+**課題の確認：**
+3. 「[AREA] において、現在最も大きな課題は何ですか？」
+4. 「[PAIN_POINT] は [具体的な指標 — 売上・時間・チームのモラル] にどのような影響を与えていますか？」
 
-## 8. Success Metrics
+**影響の把握：**
+5. 「今後 [TIMEFRAME] 以内にこの課題が解決されなかった場合、どうなると思いますか？」
+6. 「この課題は他のチームや部門にも影響を与えていますか？」
 
-**How We Define a Successful Meeting:**
-- [ ] Confirmed their [PAIN_POINTS] and [PRIORITIES]
-- [ ] Identified the [DECISION_MAKERS] and [DECISION_PROCESS]
-- [ ] Established [TIMELINE] and [BUDGET_RANGE]
-- [ ] Agreed on [NEXT_STEP] with a specific date
-- [ ] Built rapport with [KEY_STAKEHOLDER]
+**ニーズの明確化：**
+7. 「[PAIN_POINT] が解決されたとしたら、[TEAM/BUSINESS] にとってどのような意味がありますか？」
+8. 「このプロジェクトにおける成功のイメージを教えていただけますか？」
 
----
-
-## 9. Competitive Landmines
-
-Things to watch out for:
-1. [LANDMINE_1 — e.g., "They may mention [COMPETITOR] feature we don't have. Redirect to [OUR_STRENGTH]."]
-2. [LANDMINE_2 — e.g., "Previous vendor burned them. Emphasize [TRUST_BUILDER]."]
-3. [LANDMINE_3 — e.g., "Internal champion may lose influence. Map other allies."]
+**意思決定プロセス：**
+9. 「このようなソリューションを評価する際、他に関与する方はいらっしゃいますか？」
+10. 「意思決定のタイムラインはどのようにお考えですか？」
 
 ---
 
-## 10. Next Steps to Propose
+## 7. 想定される反論（5項目）
 
-Based on meeting outcome, propose one of:
-- **Strong Interest:** Schedule demo/POC with broader team by [DATE]
-- **Moderate Interest:** Send follow-up materials + schedule check-in in [TIMEFRAME]
-- **Needs More Info:** Provide requested details within 24 hours + schedule follow-up
-- **Not a Fit:** Thank them, ask for referrals, add to nurture
+| 反論 | 準備した回答 |
+| ---- | ------------ |
+| 「[OBJECTION_1 — 例：『すでに X を使っています』]」 | 「[RESPONSE_1 — 共感し、差別化し、橋渡しする。例：『おっしゃる通りです。多くのお客様も X から移行されました。その理由は [REASON] です。私たちの最大の違いは [DIFFERENTIATOR] です。』]」 |
+| 「[OBJECTION_2 — 例：『今はタイミングが合わない』]」 | 「[RESPONSE_2 — 例：『ご事情はよく分かります。少し考えていただきたいのですが、待ち続けた場合のコストは [QUANTIFIED_IMPACT] です。小規模なパイロットからスタートするのはいかがでしょうか？』]」 |
+| 「[OBJECTION_3 — 例：『費用が高い』]」 | 「[RESPONSE_3 — ROI の観点で捉え直す。例：『おっしゃる点はよく理解できます。[SIMILAR_COMPANY] 社が [TIMEFRAME] 以内に [X] 倍のリターンを得た事例をご紹介させてください。』]」 |
+| 「[OBJECTION_4 — 例：『社内で構築できる』]」 | 「[RESPONSE_4 — 総コスト比較と価値実現までの時間の観点から説明する。]」 |
+| 「[OBJECTION_5 — 例：『チームに確認が必要』]」 | 「[RESPONSE_5 — サポートを申し出る。『もちろんです。チームの方々向けに簡単な概要資料をご用意しましょうか？また、より広いチームとの打ち合わせを設定することもできます。』]」 |
 
 ---
 
-## Quick Reference Cheat Sheet
+## 8. 成功指標
+
+**この商談を成功と定義する条件：**
+- [ ] [PAIN_POINTS] と [PRIORITIES] を確認できた
+- [ ] [DECISION_MAKERS] と [DECISION_PROCESS] を把握できた
+- [ ] [TIMELINE] と [BUDGET_RANGE] を確認できた
+- [ ] 具体的な日付を決めた [NEXT_STEP] に合意できた
+- [ ] [KEY_STAKEHOLDER] との信頼関係を構築できた
+
+---
+
+## 9. 競合地雷
+
+注意すべき事項：
+1. [LANDMINE_1 — 例：「[COMPETITOR] の機能について言及される可能性がある。[OUR_STRENGTH] にリダイレクトする。」]
+2. [LANDMINE_2 — 例：「以前のベンダーで嫌な思いをしている可能性がある。[TRUST_BUILDER] を強調する。」]
+3. [LANDMINE_3 — 例：「社内チャンピオンの影響力が低下する可能性がある。他の協力者を探す。」]
+
+---
+
+## 10. 提案する次のステップ
+
+商談の結果に応じて、以下のいずれかを提案してください：
+- **強い関心あり：** [DATE] までに、より広いチームとのデモ・POC を設定する
+- **一定の関心あり：** フォローアップ資料を送付し、[TIMEFRAME] 以内に確認の打ち合わせを設定する
+- **情報が必要：** 24時間以内に必要な情報を提供し、フォローアップを設定する
+- **対象外：** 感謝を伝え、紹介を依頼し、ナーチャリングリストに追加する
+
+---
+
+## クイックリファレンスチートシート
 
 ```
-COMPANY:      [COMPANY_NAME] | [INDUSTRY] | [SIZE]
-KEY CONTACT:  [PRIMARY_CONTACT] ([TITLE], [BUYING_ROLE])
-TOP PAIN:     [#1_PAIN_POINT]
-OUR EDGE:     [#1_DIFFERENTIATOR]
-PROOF POINT:  [SIMILAR_COMPANY] achieved [RESULT]
-GOAL:         [MEETING_OBJECTIVE — e.g., "Secure demo with full buying committee"]
-MUST ASK:     "[MOST_IMPORTANT_DISCOVERY_QUESTION]"
-LANDMINE:     [BIGGEST_RISK_IN_THIS_MEETING]
-NEXT STEP:    [PROPOSED_NEXT_ACTION]
+会社名：        [COMPANY_NAME] | [INDUSTRY] | [SIZE]
+主要担当者：    [PRIMARY_CONTACT] ([TITLE], [BUYING_ROLE])
+最重要課題：    [#1_PAIN_POINT]
+自社の強み：    [#1_DIFFERENTIATOR]
+実績事例：      [SIMILAR_COMPANY] が [RESULT] を達成
+目標：          [商談の目的 — 例：「全購買委員会を交えたデモを確保する」]
+必須質問：      「[MOST_IMPORTANT_DISCOVERY_QUESTION]」
+注意事項：      [この商談での最大のリスク]
+次のステップ：  [PROPOSED_NEXT_ACTION]
 ```

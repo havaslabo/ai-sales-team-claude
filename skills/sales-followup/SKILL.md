@@ -1,407 +1,407 @@
-# Follow-Up Sequence Generator
+# フォローアップシーケンスジェネレーター
 
-You generate strategic follow-up email sequences for prospects after initial contact has been made. This is NOT cold outreach — these are follow-ups after a meeting, demo, proposal, or prior conversation. Every follow-up must add new value, reference specific conversation points, and include a clear next step.
+初回コンタクト後の見込み客に対して、戦略的なフォローアップメールシーケンスを生成します。これはコールドアウトリーチではありません。ミーティング、デモ、提案、または過去の会話の後のフォローアップです。すべてのフォローアップは新しい価値を加え、会話の具体的なポイントを参照し、明確な次のステップを含む必要があります。
 
-## Invocation
+## 呼び出し方法
 
 ```
 /sales followup <prospect>
 ```
 
-Where `<prospect>` is a company name, contact name, URL, or description of the prospect and the follow-up context.
+`<prospect>` には会社名、担当者名、URL、または見込み客とフォローアップのコンテキストの説明を指定します。
 
-## Step 1: Gather Follow-Up Context
+## ステップ1: フォローアップのコンテキストを収集する
 
-Before generating any sequence, collect the following information. If not provided, ask the user:
+シーケンスを生成する前に、以下の情報を収集します。提供されていない場合はユーザーに確認します:
 
-1. **Prospect name** and **company**
-2. **Previous interaction type**: Meeting, Demo, Proposal, Went Silent (Ghost), or Long-Term Nurture
-3. **Date of last interaction**
-4. **Key discussion points** from the last interaction (at least 3 specifics)
-5. **Prospect's stated pain points** or goals
-6. **Next step that was agreed upon** (if any)
-7. **Prospect's role and seniority level** (affects tone and content)
-8. **Deal stage**: Early exploration, Active evaluation, Near decision, Stalled
-9. **Prospect temperature**: Hot (actively engaged), Warm (interested but slow), Cool (disengaged), Cold (ghosted)
-10. **Your product/service** and the specific solution discussed
+1. 見込み客の**名前**と**会社名**
+2. **前回のインタラクションの種類**: ミーティング、デモ、提案、音信不通（Ghost）、長期育成（Long-Term Nurture）
+3. **前回のインタラクションの日付**
+4. 前回のインタラクションからの**主要な議論ポイント**（最低3つの具体的な内容）
+5. 見込み客が**述べた問題点**または目標
+6. **合意された次のステップ**（ある場合）
+7. 見込み客の**役職とシニアレベル**（トーンとコンテンツに影響）
+8. **案件ステージ**: 初期探索、積極的な評価、意思決定間近、停滞中
+9. **見込み客の温度感**: ホット（積極的にエンゲージ中）、ウォーム（興味はあるが進みが遅い）、クール（関与が低い）、コールド（音信不通）
+10. **製品・サービス**と議論した具体的なソリューション
 
-If previous analysis files exist in the working directory (PROSPECT-ANALYSIS.md, COMPANY-RESEARCH.md, LEAD-QUALIFICATION.md, DECISION-MAKERS.md, OUTREACH-SEQUENCE.md), read them and automatically incorporate relevant findings into the follow-up context.
+作業ディレクトリに以前の分析ファイルが存在する場合（PROSPECT-ANALYSIS.md、COMPANY-RESEARCH.md、LEAD-QUALIFICATION.md、DECISION-MAKERS.md、OUTREACH-SEQUENCE.md）、それらを読み込み、関連する知見をフォローアップのコンテキストに自動的に組み込みます。
 
-## Step 2: Select Follow-Up Scenario
+## ステップ2: フォローアップシナリオを選択する
 
-Based on the previous interaction type, select the matching scenario from below. If the user does not specify, ask which scenario fits best.
-
----
-
-### Scenario 1: Post-Meeting Follow-Up (3 Emails)
-
-Use this when: A discovery call, introductory meeting, or strategy session has taken place.
-
-**Email 1 — Summary + Next Steps** (Send: Same day, within 2 hours of meeting)
-- Subject line format: Use the meeting topic or a key takeaway, not "Great meeting today"
-- Open with ONE specific insight or moment from the meeting that stood out (shows you were listening)
-- Summarize the 3 key points discussed in bullet form
-- Restate the agreed-upon next step with a specific date and time
-- Attach or link any materials promised during the meeting
-- Close with a confirmation question: "Does this accurately capture what we discussed?"
-- Length: 80-100 words
-
-**Email 2 — Value Reinforcement** (Send: 3 days after Email 1)
-- Subject line format: Reference a specific challenge they mentioned
-- Open with a relevant resource (article, case study, data point) that directly addresses one of their stated challenges
-- Connect the resource to how your solution solves that specific problem
-- Include one NEW insight or idea that was NOT discussed in the meeting
-- Close with a soft next step: "Would it be helpful to walk through how [specific company in case study] implemented this?"
-- Length: 60-80 words
-
-**Email 3 — Decision Nudge** (Send: 5 days after Email 2)
-- Subject line format: Forward-looking, about their goals
-- Open with a question about their progress on the challenge discussed
-- Share a quick metric or result that is relevant to their situation
-- Create gentle urgency by referencing their timeline or a market factor
-- Propose a specific next meeting with a date: "Would Thursday at 2pm work for a 20-minute call to map out next steps?"
-- Length: 50-70 words
+前回のインタラクションの種類に基づいて、以下から該当するシナリオを選択します。ユーザーが指定しない場合は、どのシナリオが最も適切かを確認します。
 
 ---
 
-### Scenario 2: Post-Demo Follow-Up (4 Emails)
+### シナリオ1: ミーティング後フォローアップ（3通）
 
-Use this when: A product demo, walkthrough, or technical presentation has been delivered.
+使用場面: ディスカバリーコール、初回ミーティング、またはストラテジーセッションが行われた後。
 
-**Email 1 — Recap + Resources** (Send: Same day, within 3 hours of demo)
-- Subject line format: "[Feature they were most excited about] + Next Steps"
-- Open by referencing the specific moment in the demo where they showed the most interest or asked the most questions
-- Provide a bulleted recap of the 3-4 features demonstrated that align with their needs
-- Attach: Demo recording (if available), relevant documentation, setup guide, or one-pager
-- Include answers to any questions asked during the demo that you promised to follow up on
-- Close with: "What questions came up after we hung up?"
-- Length: 80-100 words
+**メール1 — サマリー＋次のステップ**（送信: ミーティング当日、終了から2時間以内）
+- 件名フォーマット: ミーティングのトピックまたは重要なテイクアウェイを使用。「素晴らしいミーティングでした」は不可
+- ミーティングで印象に残った1つの具体的な洞察や瞬間から始める（聞いていたことを示す）
+- 議論した3つの重要ポイントを箇条書きでまとめる
+- 合意された次のステップを具体的な日時とともに再確認する
+- ミーティング中に約束した資料を添付またはリンクする
+- 確認の質問でクローズ: 「以上、私たちの話し合いを正確に要約できていますか？」
+- 長さ: 80〜100語
 
-**Email 2 — Address Objections** (Send: 3 days after Email 1)
-- Subject line format: Address the biggest concern or hesitation they expressed
-- Proactively address the top 1-2 concerns or hesitations they raised during the demo
-- Use the Feel-Felt-Found framework: "Other [similar role] at [similar company] had the same concern. What they found was [specific outcome]."
-- Include a specific proof point: metric, testimonial quote, or mini case study
-- Close with an offer to connect them with a reference customer: "Would it help to hear directly from [reference customer name] about their experience?"
-- Length: 80-100 words
+**メール2 — 価値の強化**（送信: メール1の3日後）
+- 件名フォーマット: 彼らが述べた具体的な課題を参照
+- 彼らが述べた課題の1つに直接対処する関連リソース（記事、ケーススタディ、データポイント）から始める
+- そのリソースがあなたのソリューションによってどのようにその特定の問題を解決するかを関連付ける
+- ミーティングで議論されなかった1つの新しい洞察やアイデアを含める
+- 次のステップへのソフトなクロージング: 「[ケーススタディの類似企業]がこれをどのように実装したか、ご説明する価値はありますか？」
+- 長さ: 60〜80語
 
-**Email 3 — Social Proof** (Send: 5 days after Email 2)
-- Subject line format: "[Similar company] achieved [specific result]"
-- Lead with a case study or success story from a company similar to theirs (same industry, size, or challenge)
-- Structure as: Challenge they faced → Solution implemented → Specific measurable result
-- Draw a direct parallel to the prospect's situation: "Like you, they were struggling with [specific challenge from your conversation]"
-- Close with: "I mapped out what a similar path could look like for [their company]. Want me to walk you through it?"
-- Length: 70-90 words
-
-**Email 4 — Decision Timeline** (Send: 7 days after Email 3)
-- Subject line format: Direct and timeline-focused
-- Acknowledge that decisions take time, without being passive
-- Ask directly about their decision timeline and process: "Where does this sit in your priorities for Q[X]?"
-- Offer to help with internal selling: "I put together a one-page summary your team can review — want me to send it over?"
-- If there is a genuine time-sensitive element (pricing, availability, implementation timeline), mention it factually without manufactured urgency
-- Close with a specific proposed next step and date
-- Length: 60-80 words
+**メール3 — 意思決定の後押し**（送信: メール2の5日後）
+- 件名フォーマット: 彼らの目標について、前向きな内容
+- 議論した課題の進捗について質問から始める
+- 彼らの状況に関連する素早い数値または結果を共有する
+- 彼らのタイムラインまたは市場要因を参照することで、穏やかな緊急感を生み出す
+- 特定の日付で具体的な次のミーティングを提案: 「木曜日の午後2時に20分ほど通話して次のステップを確認しませんか？」
+- 長さ: 50〜70語
 
 ---
 
-### Scenario 3: Post-Proposal Follow-Up (5 Emails)
+### シナリオ2: デモ後フォローアップ（4通）
 
-Use this when: A formal proposal, quote, or pricing document has been sent.
+使用場面: 製品デモ、ウォークスルー、またはテクニカルプレゼンテーションが実施された後。
 
-**Email 1 — Proposal Delivery** (Send: Immediately with proposal)
-- Subject line format: "[Their Company] + [Your Company] Proposal — [Month Year]"
-- Keep this SHORT — the proposal speaks for itself
-- Highlight the 2-3 most important sections they should review first
-- Set expectation for a walkthrough: "I'd love to walk you through the investment section — it's easier to discuss live. How's [specific date/time]?"
-- Mention the proposal validity period if applicable
-- Length: 50-70 words
+**メール1 — 振り返り＋リソース**（送信: デモ当日、終了から3時間以内）
+- 件名フォーマット: 「[最も関心を示した機能] + 次のステップ」
+- デモ中に最も関心を示した、または最も質問が多かった具体的な瞬間を参照して始める
+- 彼らのニーズに対応する実演した3〜4つの機能を箇条書きでまとめる
+- 添付: デモ録画（利用可能な場合）、関連ドキュメント、セットアップガイド、または概要
+- デモ中に約束したフォローアップの回答を含める
+- クロージング: 「通話後にどのような質問が出てきましたか？」
+- 長さ: 80〜100語
 
-**Email 2 — Walkthrough Offer** (Send: 2 days after Email 1)
-- Subject line format: "Quick question about the [Their Company] proposal"
-- Ask if they have had a chance to review, without being pushy
-- Offer to do a 15-minute walkthrough of the proposal, emphasizing you can tailor it to their questions
-- Pre-answer the most common question prospects have at this stage (usually about pricing, scope, or timeline)
-- Close with two specific time options for the walkthrough
-- Length: 50-70 words
+**メール2 — 反論への対処**（送信: メール1の3日後）
+- 件名フォーマット: 彼らが表明した最大の懸念または躊躇を対処
+- デモ中に提起された上位1〜2つの懸念または躊躇を先手を打って対処する
+- Feel-Felt-Foundフレームワークを使用: 「[類似会社]の[同様の役職]も同じ懸念を持っていました。彼らが分かったのは[具体的な結果]でした。」
+- 具体的な証拠ポイントを含める: 数値、推薦コメント、またはミニケーススタディ
+- リファレンスカスタマーとのつながりのオファーでクローズ: 「[リファレンスカスタマー名]の体験を直接お聞きになることはお役に立ちますか？」
+- 長さ: 80〜100語
 
-**Email 3 — Value-Add Insight** (Send: 5 days after Email 2)
-- Subject line format: Something relevant to their industry or challenge, NOT about the proposal
-- Do NOT mention the proposal at all in this email
-- Instead, share a genuinely valuable insight, article, data point, or idea related to their business challenge
-- This demonstrates that you are thinking about their success, not just closing the deal
-- One subtle tie-back: "This reminded me of what we discussed about [their challenge]"
-- Length: 60-80 words
+**メール3 — ソーシャルプルーフ**（送信: メール2の5日後）
+- 件名フォーマット: 「[類似企業]が[具体的な結果]を達成」
+- 彼らと類似した企業（同じ業界、規模、または課題）からのケーススタディまたは成功事例から始める
+- 構成: 直面した課題 → 実装したソリューション → 具体的で測定可能な結果
+- 見込み客の状況との直接的な比較を引く: 「御社と同様に、彼らは[会話での具体的な課題]に苦労していました」
+- クロージング: 「[御社]に同様のパスがどのようなものかをまとめました。ご説明してもよいですか？」
+- 長さ: 70〜90語
 
-**Email 4 — Direct Check-In** (Send: 5 days after Email 3)
-- Subject line format: Short and direct — "Checking in on timing"
-- Be direct and honest: "I want to be respectful of your time — where do things stand on your end?"
-- Ask about their decision process: "Is there anyone else who needs to review this?"
-- Offer to adjust the proposal: "If anything in the proposal doesn't fit, I'm happy to revise"
-- Close with a yes-or-no question to force a response
-- Length: 40-60 words
-
-**Email 5 — Breakup Email** (Send: 10 days after Email 4)
-- Subject line format: "Should I close your file?" or "Not the right time?"
-- This is the FINAL email in the sequence. It must be respectful but create closure.
-- Acknowledge that timing may not be right
-- Leave the door open: "If things change in the future, I'm always happy to pick this back up"
-- Create subtle FOMO with a factual statement: "We're onboarding [X] new clients this quarter, so if you do want to move forward, sooner is better for implementation bandwidth"
-- Close with: "Either way, no hard feelings. Just let me know."
-- Length: 50-70 words
+**メール4 — 意思決定タイムライン**（送信: メール3の7日後）
+- 件名フォーマット: 直接的でタイムライン重視
+- 受動的にならずに、意思決定に時間がかかることを認める
+- 意思決定のタイムラインとプロセスについて直接確認: 「Q[X]の優先事項においてこれはどのくらいの位置づけですか？」
+- 社内での意思決定支援を申し出る: 「チームがレビューできる1ページのサマリーを作成しました。お送りしましょうか？」
+- 本当に時間的な要素がある場合（価格、可用性、実装タイムライン）、作られた緊急感なしに事実として言及する
+- 具体的な提案次のステップと日付でクローズ
+- 長さ: 60〜80語
 
 ---
 
-### Scenario 4: Ghost Recovery (3 Emails)
+### シナリオ3: 提案後フォローアップ（5通）
 
-Use this when: The prospect has stopped responding after previous engagement.
+使用場面: 正式な提案書、見積もり、または価格ドキュメントが送付された後。
 
-**Email 1 — Pattern Interrupt** (Send: 7 days after last unanswered email)
-- Subject line format: Something unexpected — a question, a bold statement, or humor. NOT "Just checking in" or "Following up"
-- Examples of good subject lines: "Did I say something wrong?", "Quick yes or no?", "Thought of you when I saw this", "[Their company] + [interesting observation]"
-- Completely change the tone and format from previous emails
-- Keep it extremely short (3-4 sentences max)
-- Ask ONE simple question that is easy to answer (yes/no or one word)
-- Do not rehash previous emails or reference that they have not responded
-- Length: 30-50 words
+**メール1 — 提案書の送付**（送信: 提案書と同時に）
+- 件名フォーマット: 「[御社名] + [弊社名] 提案書 — [月 年]」
+- 短く保つ — 提案書が語ります
+- 最初に確認すべき最も重要な2〜3つのセクションを強調する
+- ウォークスルーの期待値を設定: 「投資セクションについてご一緒にご説明できればと思います。ライブでお話しする方がわかりやすいです。[具体的な日時]はいかがですか？」
+- 提案書の有効期間を言及（該当する場合）
+- 長さ: 50〜70語
 
-**Email 2 — New Angle/Value** (Send: 7 days after Email 1)
-- Subject line format: Lead with new, genuinely interesting information
-- Bring something completely new to the table — a new development in their industry, a new feature, a new case study, a new idea
-- This should be something they would find valuable even if they NEVER buy from you
-- Frame it as: "Saw this and thought of [their specific situation]"
-- Subtle re-engagement: "If this is relevant, happy to share more. If not, no worries at all."
-- Length: 40-60 words
+**メール2 — ウォークスルーの提案**（送信: メール1の2日後）
+- 件名フォーマット: 「[御社名]提案書についての簡単なご確認」
+- 押しつけがましくなく、確認する時間があったかどうかを確認する
+- 質問に合わせてカスタマイズできることを強調しながら、15分間の提案書ウォークスルーを提案する
+- このステージで見込み客が最もよく持つ質問への事前回答（通常は価格、スコープ、タイムラインについて）
+- ウォークスルーの2つの具体的な時間オプションでクローズ
+- 長さ: 50〜70語
 
-**Email 3 — Honest Breakup** (Send: 14 days after Email 2)
-- Subject line format: "Closing the loop" or "One last thing"
-- Be completely honest and human: "I've reached out a few times and haven't heard back — I totally understand, things get busy"
-- Explicitly state you will stop emailing: "I don't want to be that person who keeps filling your inbox"
-- Leave ONE simple door open: "If this ever becomes relevant again, my inbox is always open"
-- End with genuine goodwill — wish them well with a specific reference to their business or goals
-- Length: 40-60 words
+**メール3 — 価値を加える洞察**（送信: メール2の5日後）
+- 件名フォーマット: 提案書に関係なく、業界や課題に関連するもの
+- このメールでは提案書について一切言及しない
+- 代わりに、彼らのビジネス課題に関連する本当に価値ある洞察、記事、データポイント、またはアイデアを共有する
+- 取引を成立させることだけでなく、彼らの成功を考えていることを示す
+- 1つの微妙な関連付け: 「これを読んで、[彼らの課題]についてお話しした内容を思い出しました」
+- 長さ: 60〜80語
 
----
+**メール4 — 直接的な確認**（送信: メール3の5日後）
+- 件名フォーマット: 短くて直接的 — 「タイミングについてのご確認」
+- 直接的かつ誠実に: 「お時間を大切にしたいので、現状はいかがですか？」
+- 意思決定プロセスについて確認: 「他にどなたかがこれを確認される必要がありますか？」
+- 提案書の調整を申し出る: 「提案書の内容が合わない部分があれば、喜んで修正いたします」
+- 返事を引き出すためのYes/Noの質問でクローズ
+- 長さ: 40〜60語
 
-### Scenario 5: Nurture Sequence (Ongoing Monthly)
-
-Use this when: The prospect is a good fit but not ready to buy now. Stay top of mind without being annoying.
-
-Generate 6 monthly emails. Each email must be genuinely useful standalone content — the prospect should be glad they received it even if they never buy.
-
-**Monthly Email Pattern** (Send: Once per month, same day of month)
-- Alternate between these content types each month:
-  1. **Industry Insight**: Share a trend, data point, or analysis relevant to their industry
-  2. **Resource Share**: Article, tool, template, or guide they would find useful (does not need to be your content)
-  3. **Case Study**: Brief success story from a company in their space
-  4. **Thought Leadership**: Your unique perspective on a challenge in their industry
-  5. **Event/Content Invite**: Webinar, podcast, report, or event invitation
-  6. **Personal Check-In**: Genuine, brief check-in referencing something specific about their business
-
-- Each nurture email must:
-  - Have a subject line that provides value on its own (not "Checking in" or "Quick update")
-  - Be under 80 words
-  - Provide value with zero sales pitch
-  - Include ONE subtle relevance tie-back (one sentence max)
-  - End with a low-pressure CTA: "Worth a look" or "Thought you'd find this interesting" — never "Let's schedule a call"
+**メール5 — ブレイクアップメール**（送信: メール4の10日後）
+- 件名フォーマット: 「ファイルを閉じてもよいですか？」または「今は適切なタイミングではないですか？」
+- これがシーケンスの最後のメールです。礼儀正しくも決着をつける必要があります。
+- タイミングが合わない可能性を認める
+- 扉を開けておく: 「将来的に状況が変わった場合は、いつでも再開できます」
+- 事実に基づく声明で微妙なFOMOを生み出す: 「今四半期は[X]社の新規オンボーディングを行っているため、もし進めたい場合は早い方が実装のスケジュール的に有利です」
+- クローズ: 「どちらにせよ、気にしないでください。教えていただければと思います。」
+- 長さ: 50〜70語
 
 ---
 
-## Step 3: Multi-Channel Integration
+### シナリオ4: Ghost リカバリー（3通）
 
-For each email in the selected sequence, also generate the following companion touchpoints:
+使用場面: 以前のエンゲージメント後、見込み客が返信しなくなった場合。
 
-### LinkedIn Touchpoints
+**メール1 — パターンインタラプト**（送信: 最後の未返信メールの7日後）
+- 件名フォーマット: 意外なもの — 質問、大胆な声明、またはユーモア。「確認のご連絡」や「フォローアップ」は不可
+- 良い件名の例: 「何か失礼なことを言いましたか？」「Yes/Noで答えられる質問です」「これを見てあなたのことを思いました」「[御社名] + [興味深い観察]」
+- 以前のメールからトーンとフォーマットを完全に変える
+- 非常に短く保つ（最大3〜4文）
+- 答えやすいシンプルな質問を1つだけ聞く（Yes/Noまたは一言）
+- 以前のメールを振り返ったり、返信がないことを言及したりしない
+- 長さ: 30〜50語
 
-For each email in the sequence, generate a corresponding LinkedIn action to be taken 1 day before or after the email:
+**メール2 — 新しいアングル・価値**（送信: メール1の7日後）
+- 件名フォーマット: 新しい本当に興味深い情報を前に出す
+- まったく新しい内容を提供する — 業界の新しい動向、新機能、新しいケーススタディ、新しいアイデア
+- 購入しなくても彼らが価値を感じるものであること
+- フレーミング: 「これを見て[彼らの具体的な状況]を思い出しました」
+- 穏やかな再エンゲージ: 「関連があれば喜んで詳しくお伝えします。そうでなければ、まったく問題ありません。」
+- 長さ: 40〜60語
 
-- **Before Email 1**: View their LinkedIn profile (no message — just visibility)
-- **After Email 1**: Like or comment on one of their recent LinkedIn posts (generate a specific, thoughtful comment based on the post content — not generic like "Great post!")
-- **Before Email 2**: Share a relevant article and tag the prospect or their company (if appropriate)
-- **After Email 3+**: Send a LinkedIn message that is SHORT (2-3 sentences max), conversational, and references the email topic without repeating it
+**メール3 — 正直なブレイクアップ**（送信: メール2の14日後）
+- 件名フォーマット: 「ループのクロージング」または「最後にひとつだけ」
+- 完全に正直で人間的に: 「何度かご連絡しましたが返信をいただけませんでした。お忙しいのはまったく理解できます」
+- メールを止めることを明確に伝える: 「これ以上受信トレイを埋め続けるつもりはありません」
+- 1つのシンプルな扉を開けておく: 「もしまた関連が出てきた場合は、いつでも私の受信トレイは開いています」
+- 相手のビジネスや目標への具体的な参照とともに、心からの好意で終わる
+- 長さ: 40〜60語
 
-LinkedIn message format:
+---
+
+### シナリオ5: 育成シーケンス（継続的な月次送信）
+
+使用場面: 見込み客は良い適合者だが、今すぐ購入する準備ができていない。うんざりさせずにトップオブマインドを維持する。
+
+6通の月次メールを生成します。各メールは単独でも本当に役立つコンテンツである必要があります。購入しなくても受け取って良かったと思えるものでなければなりません。
+
+**月次メールパターン**（送信: 毎月1回、同じ日）
+- 毎月これらのコンテンツタイプを交互に:
+  1. **業界インサイト**: 業界に関連するトレンド、データポイント、または分析を共有
+  2. **リソースシェア**: 役立つ記事、ツール、テンプレート、またはガイド（あなたのコンテンツでなくてよい）
+  3. **ケーススタディ**: 同じ業界の企業からの簡単な成功事例
+  4. **ソートリーダーシップ**: 業界の課題についてのあなた独自の視点
+  5. **イベント・コンテンツへの招待**: ウェビナー、ポッドキャスト、レポート、またはイベントへの招待
+  6. **個人的なチェックイン**: 相手のビジネスに関する具体的な内容を参照した、真摯で簡潔なチェックイン
+
+- 各育成メールは以下を満たす必要があります:
+  - 件名自体が価値を提供する（「確認のご連絡」や「簡単なご報告」ではなく）
+  - 80語以内
+  - セールスピッチなしで価値を提供する
+  - 1つの微妙な関連付けを含める（最大1文）
+  - 低プレッシャーのCTAで終わる: 「参考になれば」または「ご興味があれば」— 「通話をスケジュールしましょう」は不可
+
+---
+
+## ステップ3: マルチチャネル統合
+
+選択したシーケンスの各メールに対して、以下の付随するタッチポイントも生成します:
+
+### LinkedInタッチポイント
+
+シーケンスの各メールについて、メールの1日前後に取るべき対応するLinkedInアクションを生成します:
+
+- **メール1の前**: LinkedInプロフィールを閲覧（メッセージなし — 認知度向上のみ）
+- **メール1の後**: 相手の最近のLinkedIn投稿にいいねまたはコメント（投稿内容に基づいた具体的で思慮深いコメントを生成 — 「素晴らしい投稿！」のような汎用コメントは不可）
+- **メール2の前**: 関連記事を共有し、見込み客または彼らの会社をタグ付け（適切な場合）
+- **メール3以降の後**: 短い（最大2〜3文）、会話的で、メールのトピックを繰り返さずに参照するLinkedInメッセージを送信
+
+LinkedInメッセージのフォーマット:
 ```
-Hey [First Name] — [One sentence referencing shared context or their recent activity]. [One sentence with the core message or question]. [No formal sign-off]
+Hey [First Name] — [共有のコンテキストまたは最近のアクティビティを参照する1文]. [核心的なメッセージまたは質問の1文]. [正式な署名なし]
 ```
 
-### Phone Call Scripts
+### 電話コールスクリプト
 
-Generate a 30-second voicemail script for two key moments in the sequence:
+シーケンスの2つの重要な場面に向けた30秒のボイスメールスクリプトを生成します:
 
-**Voicemail Script Template:**
+**ボイスメールスクリプトテンプレート:**
 ```
 Hi [First Name], this is [Your Name] from [Your Company].
-[One sentence — the reason for calling, tied to a specific conversation point].
-[One sentence — the value or new information you're sharing].
-I'll send you a quick email with details — look for it from [your email].
-Talk soon.
+[1文 — 通話の理由、特定の会話ポイントと結びついた内容].
+[1文 — 共有している価値または新しい情報].
+詳細を含む簡単なメールをお送りします — [your email]からのメールをご確認ください.
+またご連絡します.
 ```
 
-Rules for voicemail scripts:
-- Never exceed 30 seconds when read aloud (approximately 75 words)
-- Speak in a natural, conversational tone — not scripted-sounding
-- Reference ONE specific thing from a previous conversation
-- Always point them to the companion email for details
-- Do NOT ask them to call back — reduce friction
+ボイスメールスクリプトのルール:
+- 声に出して読んで30秒を超えない（約75語）
+- 自然で会話的なトーン — スクリプト読み上げのように聞こえない
+- 以前の会話からの1つの具体的な内容を参照する
+- 詳細については常に付随するメールへ誘導する
+- 折り返しの連絡を求めない — 摩擦を減らす
 
-### SMS/Text Templates
+### SMS・テキストテンプレート
 
-Generate text message templates for warm leads only (prospects who have engaged at least twice). SMS should only be used if the prospect has opted in to text communication.
+温度感がウォーム以上のリードのみ向けのテキストメッセージテンプレートを生成します（少なくとも2回エンゲージした見込み客）。SMSはテキスト通信に同意した見込み客にのみ使用します。
 
-**SMS Template Rules:**
-- Maximum 2 sentences
-- Casual, conversational tone
-- Must provide value or ask a simple question
-- Never include links (they look spammy via text)
-- Always identify yourself: "Hey [Name], it's [Your Name] from [Company]."
+**SMSテンプレートのルール:**
+- 最大2文
+- カジュアルで会話的なトーン
+- 価値を提供するか、シンプルな質問をすること
+- リンクを含めない（テキスト経由ではスパムに見える）
+- 必ず自己紹介する: 「こんにちは[Name]さん、[Company]の[Your Name]です。」
 
-Generate 2-3 SMS templates appropriate for the selected scenario.
+選択したシナリオに適した2〜3つのSMSテンプレートを生成します。
 
 ---
 
-## Step 4: Cadence Recommendations
+## ステップ4: カデンスの推奨
 
-Based on the deal stage and prospect temperature, recommend the optimal cadence:
+案件ステージと見込み客の温度感に基づいて、最適なカデンスを推奨します:
 
-### Cadence Matrix
+### カデンスマトリックス
 
-| Prospect Temperature | Deal Stage: Early | Deal Stage: Active | Deal Stage: Near Decision | Deal Stage: Stalled |
+| 見込み客の温度感 | 案件ステージ: 初期 | 案件ステージ: 積極的 | 案件ステージ: 意思決定間近 | 案件ステージ: 停滞中 |
 |---------------------|-------------------|--------------------|--------------------------|--------------------|
-| **Hot** | Every 2-3 days | Every 2 days | Daily touchpoints OK | Every 3-4 days |
-| **Warm** | Every 4-5 days | Every 3-4 days | Every 2-3 days | Every 5-7 days |
-| **Cool** | Every 7 days | Every 5-7 days | Every 4-5 days | Every 10-14 days |
-| **Cold/Ghost** | Every 10-14 days | Every 7-10 days | Every 5-7 days | Every 14-21 days |
+| **ホット** | 2〜3日ごと | 2日ごと | 毎日のタッチポイントも可 | 3〜4日ごと |
+| **ウォーム** | 4〜5日ごと | 3〜4日ごと | 2〜3日ごと | 5〜7日ごと |
+| **クール** | 7日ごと | 5〜7日ごと | 4〜5日ごと | 10〜14日ごと |
+| **コールド/Ghost** | 10〜14日ごと | 7〜10日ごと | 5〜7日ごと | 14〜21日ごと |
 
-### Channel Cadence Rules
+### チャネルカデンスのルール
 
-- **Email**: Primary channel for all follow-ups. Every touchpoint in the sequence should have an email.
-- **LinkedIn**: Secondary channel. Use 1-2 days offset from email. Never send a LinkedIn message and email on the same day.
-- **Phone**: Use sparingly. Maximum 2 calls per sequence. Best used after Email 2 and before the final email.
-- **SMS**: Use only for hot/warm leads who have opted in. Maximum 1-2 texts per sequence. Best for time-sensitive confirmations or quick check-ins.
+- **メール**: すべてのフォローアップのメインチャネル。シーケンスのすべてのタッチポイントにメールが必要です。
+- **LinkedIn**: サブチャネル。メールから1〜2日ずらして使用。LinkedInメッセージとメールを同じ日に送信しない。
+- **電話**: 控えめに使用。1シーケンスあたり最大2回。メール2の後および最後のメールの前に使用するのが最適。
+- **SMS**: 同意したホット/ウォームリードにのみ使用。1シーケンスあたり最大1〜2通。時間的に重要な確認や素早いチェックインに最適。
 
-### Time-of-Day Recommendations
+### 時間帯の推奨
 
-- **C-Suite / Executives**: Tuesday-Thursday, 7:00-8:00 AM or 5:00-6:00 PM (before/after their meeting blocks)
-- **VPs / Directors**: Tuesday-Thursday, 9:00-10:00 AM or 2:00-3:00 PM
-- **Managers / ICs**: Tuesday-Thursday, 10:00-11:00 AM or 1:00-2:00 PM
-- **Avoid**: Monday mornings (inbox overload), Friday afternoons (checked out), weekends (unprofessional)
-
----
-
-## Step 5: Breakup Email Best Practices
-
-When generating any breakup or final email in a sequence, follow these rules:
-
-1. **Be respectful and genuine**: Never guilt-trip, passive-aggressive, or sarcastic. The prospect owes you nothing.
-2. **Acknowledge reality**: "I've reached out a few times" is honest. "I've been trying to reach you" sounds desperate.
-3. **Leave the door open**: Always make it easy for them to re-engage later with zero awkwardness.
-4. **Create subtle FOMO**: Use factual scarcity — implementation bandwidth, pricing changes, client slots — never manufactured urgency.
-5. **End on a positive note**: Wish them well with something specific to their situation.
-6. **Keep it the shortest email in the sequence**: Breakup emails should be 40-60 words maximum.
-7. **Never burn bridges**: This prospect may become a customer in 6-12 months, refer someone, or change companies.
+- **C-Suite / 経営幹部**: 火〜木、午前7:00〜8:00または午後5:00〜6:00（会議ブロックの前後）
+- **VP / ディレクター**: 火〜木、午前9:00〜10:00または午後2:00〜3:00
+- **マネージャー / IC**: 火〜木、午前10:00〜11:00または午後1:00〜2:00
+- **避けるべき時間**: 月曜の午前（受信トレイ過多）、金曜の午後（集中力が散漫）、週末（非プロフェッショナル）
 
 ---
 
-## Output Format
+## ステップ5: ブレイクアップメールのベストプラクティス
 
-Write the complete follow-up sequence to **FOLLOWUP-SEQUENCE.md** in the current working directory with the following structure:
+シーケンス内のブレイクアップまたは最終メールを生成する際は、以下のルールに従います:
+
+1. **礼儀正しく誠実に**: 罪悪感を抱かせたり、皮肉や嫌みを言ったりしない。見込み客はあなたに何も負っていません。
+2. **現実を認める**: 「何度かご連絡しました」は誠実です。「ご連絡しようとしていました」は必死に聞こえます。
+3. **扉を開けておく**: ゼロの気まずさで後で再エンゲージしやすいようにする。
+4. **微妙なFOMOを生み出す**: 事実に基づく希少性を使用 — 実装のスケジュール、価格変更、クライアント枠 — 作られた緊急感は使用しない。
+5. **ポジティブな言葉で終わる**: 相手の状況に具体的な何かを添えて好意を示す。
+6. **シーケンスの中で最も短いメールにする**: ブレイクアップメールは最大40〜60語。
+7. **橋を燃やさない**: この見込み客は6〜12ヶ月後に顧客になるかもしれない、紹介してくれるかもしれない、または会社を変わるかもしれません。
+
+---
+
+## 出力フォーマット
+
+現在の作業ディレクトリの **FOLLOWUP-SEQUENCE.md** に以下の構成で完全なフォローアップシーケンスを書き込みます:
 
 ```markdown
-# Follow-Up Sequence: [Prospect Name] — [Company]
+# フォローアップシーケンス: [Prospect Name] — [Company]
 
-Generated: [Date]
-Scenario: [Selected Scenario Name]
-Prospect Temperature: [Hot/Warm/Cool/Cold]
-Deal Stage: [Early/Active/Near Decision/Stalled]
+生成日: [Date]
+シナリオ: [Selected Scenario Name]
+見込み客の温度感: [Hot/Warm/Cool/Cold]
+案件ステージ: [Early/Active/Near Decision/Stalled]
 
 ---
 
-## Prospect Context
+## 見込み客コンテキスト
 
-| Field | Details |
+| 項目 | 詳細 |
 |-------|---------|
-| Prospect | [Name] |
-| Company | [Company] |
-| Role | [Title] |
-| Last Interaction | [Type] on [Date] |
-| Key Discussion Points | [Bullet list] |
-| Stated Pain Points | [Bullet list] |
-| Agreed Next Steps | [What was agreed] |
-| Temperature | [Hot/Warm/Cool/Cold] |
-| Deal Stage | [Stage] |
+| 見込み客 | [Name] |
+| 会社 | [Company] |
+| 役職 | [Title] |
+| 前回のインタラクション | [Type] on [Date] |
+| 主要な議論ポイント | [箇条書きリスト] |
+| 述べられた問題点 | [箇条書きリスト] |
+| 合意された次のステップ | [合意された内容] |
+| 温度感 | [Hot/Warm/Cool/Cold] |
+| 案件ステージ | [Stage] |
 
 ---
 
-## Selected Scenario: [Scenario Name]
+## 選択シナリオ: [Scenario Name]
 
-### Email 1: [Email Title]
-**Send**: [Timing relative to last interaction]
-**Channel**: Email
-**Subject**: [Subject line]
+### メール1: [メールタイトル]
+**送信**: [前回のインタラクションからの相対タイミング]
+**チャネル**: メール
+**件名**: [Subject line]
 
-[Full email body]
+[メール本文全体]
 
-**Companion LinkedIn Action**: [Action + timing]
-**Companion Phone Script** (if applicable): [Script]
-
----
-
-### Email 2: [Email Title]
-[Same format as above]
+**付随するLinkedInアクション**: [アクション＋タイミング]
+**付随する電話スクリプト**（該当する場合）: [スクリプト]
 
 ---
 
-[Continue for all emails in sequence]
+### メール2: [メールタイトル]
+[上記と同じフォーマット]
 
 ---
 
-## Phone Scripts
-
-### Voicemail Script 1 — [Timing]
-[Full 30-second script]
-
-### Voicemail Script 2 — [Timing]
-[Full 30-second script]
+[シーケンスのすべてのメールについて継続]
 
 ---
 
-## SMS Templates (Warm/Hot Leads Only)
+## 電話スクリプト
 
-1. [SMS template 1]
-2. [SMS template 2]
-3. [SMS template 3]
+### ボイスメールスクリプト1 — [タイミング]
+[30秒のフルスクリプト]
+
+### ボイスメールスクリプト2 — [タイミング]
+[30秒のフルスクリプト]
 
 ---
 
-## Cadence Calendar
+## SMSテンプレート（ウォーム/ホットリードのみ）
 
-| Day | Channel | Action | Content |
+1. [SMSテンプレート1]
+2. [SMSテンプレート2]
+3. [SMSテンプレート3]
+
+---
+
+## カデンスカレンダー
+
+| 日 | チャネル | アクション | コンテンツ |
 |-----|---------|--------|---------|
-| Day 0 | Email | Email 1 | [Brief description] |
-| Day 1 | LinkedIn | Profile view | [Action] |
-| Day 3 | Email | Email 2 | [Brief description] |
+| 0日目 | メール | メール1 | [簡単な説明] |
+| 1日目 | LinkedIn | プロフィール閲覧 | [アクション] |
+| 3日目 | メール | メール2 | [簡単な説明] |
 | ... | ... | ... | ... |
 
 ---
 
-## Best Practices Applied
+## 適用されたベストプラクティス
 
-- [List of principles followed in this sequence]
-- [Specific personalization choices made and why]
-- [Notes on tone, timing, and channel strategy]
+- [このシーケンスで従った原則のリスト]
+- [行われた具体的なパーソナライゼーションの選択とその理由]
+- [トーン、タイミング、チャネル戦略についての注記]
 ```
 
 ---
 
-## Rules and Constraints
+## ルールと制約
 
-1. **Every email must add NEW value.** Never send a "just checking in" or "bumping this to the top of your inbox" email. If there is nothing new to say, do not send.
-2. **Reference specific conversation points.** Generic follow-ups get deleted. Every email must reference something specific from the previous interaction.
-3. **One clear next step per email.** Never give multiple CTAs. One email = one ask.
-4. **Under 100 words per email.** Busy people do not read long follow-ups. Respect their time.
-5. **Appropriate urgency.** Urgency must be real (timeline, capacity, pricing) — never manufactured or manipulative.
-6. **Personalization is mandatory.** Use the prospect's name, company name, specific challenges, and conversation points. No [PLACEHOLDER] brackets in the final output.
-7. **Professional but human tone.** Write like a helpful human, not a sales bot. Contractions are fine. Overly formal language is not.
-8. **No manipulation tactics.** No fake scarcity, no guilt trips, no "I noticed you opened my email" tracking callouts.
-9. **Respect the prospect's time and intelligence.** They know you want to sell. Be direct about your intent while providing genuine value.
-10. **If previous analysis files exist**, incorporate their data. Do not ask the user to repeat information that is already available in PROSPECT-ANALYSIS.md, COMPANY-RESEARCH.md, or other output files in the working directory.
+1. **すべてのメールに新しい価値を加える必要があります。** 「確認のご連絡」や「受信トレイのトップに戻すためのメール」は送信しない。新しく言うことがない場合は送信しない。
+2. **具体的な会話ポイントを参照する。** 汎用的なフォローアップは削除されます。すべてのメールは前回のインタラクションからの具体的な何かを参照する必要があります。
+3. **1通のメールにつき1つの明確な次のステップ。** 複数のCTAを提供しない。1通のメール = 1つの依頼。
+4. **1通あたり100語以内。** 忙しい人は長いフォローアップを読みません。相手の時間を尊重する。
+5. **適切な緊急感。** 緊急感は本物でなければなりません（タイムライン、キャパシティ、価格） — 作られたものや操作的なものは使用しない。
+6. **パーソナライゼーションは必須です。** 見込み客の名前、会社名、具体的な課題、会話ポイントを使用する。最終出力に[PLACEHOLDER]の括弧は使わない。
+7. **プロフェッショナルだが人間的なトーン。** セールスボットではなく、役立つ人間として書く。短縮形は使っても良い。過度に形式的な言葉は使わない。
+8. **操作的な戦術を使わない。** 偽りの希少性、罪悪感を抱かせること、「メールを開封したことに気づきました」などのトラッキングの言及は不可。
+9. **見込み客の時間と知性を尊重する。** 彼らはあなたが売りたいことを知っています。真の価値を提供しながら、意図について直接的に伝える。
+10. **以前の分析ファイルが存在する場合**、そのデータを組み込む。PROSPECT-ANALYSIS.md、COMPANY-RESEARCH.md、または作業ディレクトリの他の出力ファイルで既に利用可能な情報をユーザーに繰り返させない。
