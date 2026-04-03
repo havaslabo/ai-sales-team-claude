@@ -1,0 +1,1 @@
+../../../skills/sales-minutes/SKILL.md

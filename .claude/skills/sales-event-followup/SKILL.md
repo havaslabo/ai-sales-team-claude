@@ -1,0 +1,1 @@
+../../../skills/sales-event-followup/SKILL.md

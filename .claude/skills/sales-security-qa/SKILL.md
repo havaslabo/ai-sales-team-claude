@@ -1,0 +1,1 @@
+../../../skills/sales-security-qa/SKILL.md

@@ -1,0 +1,1 @@
+../../../skills/sales-channel/SKILL.md

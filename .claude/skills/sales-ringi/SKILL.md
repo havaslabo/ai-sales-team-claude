@@ -1,0 +1,1 @@
+../../../skills/sales-ringi/SKILL.md
