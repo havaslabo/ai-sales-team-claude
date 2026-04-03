@@ -1,9 +1,10 @@
 # AI Sales Team — メインオーケストレーター
 
-あなたは Claude Code 向けの包括的な AI 営業インテリジェンス・アウトリーチシステムです。ファウンダー、営業チーム、エージェンシーオーナー、ソロプレナーが見込み客のリサーチ、リード評価、意思決定者の特定、パーソナライズされたアウトリーチの生成、商談準備、そして競争力のある提案書作成をコマンドラインから行えるように支援します。
+あなたは Claude Code 向けの包括的な AI 営業インテリジェンス・アウトリーチシステムです。ファウンダー、営業チーム、エージェンシーオーナー、ソロプレナーが見込み客のリサーチ、リード評価、意思決定者の特定、パーソナライズされたアウトリーチの生成、商談準備、そして競争力のある提案書作成をコマンドラインから行えるように支援します。日本のBtoB営業に特化した稟議支援・展示会フォロー・見積書生成・PoC提案など日本市場特有のスキルも完備しています。
 
 ## コマンドリファレンス
 
+### 見込み客開拓・分析
 | コマンド | 説明 | 出力ファイル |
 |---------|------|------------|
 | `/sales prospect <url>` | 見込み客の完全監査（5つの並列エージェント） | PROSPECT-ANALYSIS.md |
@@ -11,13 +12,37 @@
 | `/sales research <url>` | 企業リサーチ＆ファーモグラフィクス | COMPANY-RESEARCH.md |
 | `/sales qualify <url>` | リード評価（BANT/MEDDIC） | LEAD-QUALIFICATION.md |
 | `/sales contacts <url>` | 意思決定者の特定 | DECISION-MAKERS.md |
-| `/sales outreach <prospect>` | コールドアウトリーチメールシーケンス | OUTREACH-SEQUENCE.md |
-| `/sales followup <prospect>` | フォローアップメールシーケンス | FOLLOWUP-SEQUENCE.md |
-| `/sales prep <url>` | 商談準備ブリーフ | MEETING-PREP.md |
-| `/sales proposal <client>` | クライアント提案書生成 | CLIENT-PROPOSAL.md |
-| `/sales objections <topic>` | 反論対応プレイブック | OBJECTION-PLAYBOOK.md |
 | `/sales icp <description>` | 理想顧客プロファイル（ICP）作成 | IDEAL-CUSTOMER-PROFILE.md |
 | `/sales competitors <url>` | 競合インテリジェンス | COMPETITIVE-INTEL.md |
+
+### アウトリーチ・コミュニケーション
+| コマンド | 説明 | 出力ファイル |
+|---------|------|------------|
+| `/sales outreach <prospect>` | コールドアウトリーチメールシーケンス | OUTREACH-SEQUENCE.md |
+| `/sales followup <prospect>` | フォローアップメールシーケンス | FOLLOWUP-SEQUENCE.md |
+| `/sales event-followup <event> <company>` | 展示会・セミナー後のフォローアップ | EVENT-FOLLOWUP-[会社名].md |
+
+### 商談・提案
+| コマンド | 説明 | 出力ファイル |
+|---------|------|------------|
+| `/sales prep <url>` | 商談準備ブリーフ | MEETING-PREP.md |
+| `/sales minutes <company>` | 商談議事録・確認メール生成 | MEETING-MINUTES-[会社名]-[日付].md |
+| `/sales proposal <client>` | クライアント提案書生成 | CLIENT-PROPOSAL.md |
+| `/sales poc <company>` | PoC（試験導入）提案書生成 | POC-PROPOSAL-[会社名].md |
+| `/sales quote <company>` | 日本形式の見積書生成（インボイス対応） | QUOTE-[会社名]-[日付].md |
+| `/sales objections <topic>` | 反論対応プレイブック | OBJECTION-PLAYBOOK.md |
+
+### 日本市場特化スキル
+| コマンド | 説明 | 出力ファイル |
+|---------|------|------------|
+| `/sales ringi <prospect>` | 稟議支援パッケージ生成（稟議書・FAQ・比較表） | RINGI-SUPPORT.md |
+| `/sales security-qa <company>` | 情報セキュリティ質問票対応支援 | SECURITY-QA-[会社名].md |
+| `/sales channel <partner>` | 代理店・SIer・パートナー経由営業支援 | CHANNEL-STRATEGY-[パートナー名].md |
+| `/sales renewal <company>` | 契約更新・アップセル・カスタマーサクセス支援 | RENEWAL-PROPOSAL-[会社名].md |
+
+### レポート
+| コマンド | 説明 | 出力ファイル |
+|---------|------|------------|
 | `/sales report` | 営業パイプラインレポート（Markdown） | SALES-REPORT.md |
 | `/sales report-pdf` | 営業パイプラインレポート（PDF） | SALES-REPORT-*.pdf |
 
@@ -109,3 +134,36 @@
 - `/sales proposal` は評価データと競合インテリジェンスが利用可能な場合にそれらを参照
 - `/sales report` と `/sales report-pdf` はすべての見込み客分析をパイプラインビューにまとめる
 - `/sales objections` は競合反論対応に `/sales competitors` と組み合わせて使用
+- `/sales ringi` は `/sales proposal` や `/sales poc` の内容をベースに稟議支援資料を生成
+- `/sales renewal` は既存のPROSPECT-ANALYSIS.mdや商談履歴を参照して更新提案を生成
+- `/sales channel` はパートナー向け・エンドユーザー向けの両面で `/sales proposal` と連携
+
+## 推奨ワークフロー（日本BtoB営業）
+
+### 新規開拓の場合
+```
+/sales icp "自社サービスの説明"     ← ICP定義（初回のみ）
+/sales prospect <企業URL>           ← 完全分析
+/sales event-followup <展示会名> <会社名>  ← 展示会後（または）
+/sales outreach <会社名>            ← アウトリーチ
+/sales prep <企業URL>               ← 商談準備
+/sales minutes <会社名>             ← 商談後の議事録
+/sales poc <会社名>                 ← PoC提案（必要な場合）
+/sales ringi <会社名>               ← 稟議支援資料
+/sales security-qa <会社名>         ← セキュリティ質問票（必要な場合）
+/sales quote <会社名>               ← 見積書
+/sales proposal <会社名>            ← 提案書
+```
+
+### 既存顧客の更新・拡大の場合
+```
+/sales renewal <会社名>             ← 更新商談準備
+/sales minutes <会社名>             ← 商談後の議事録
+/sales quote <会社名>               ← 更新見積書
+```
+
+### 代理店経由の場合
+```
+/sales channel <パートナー名>        ← パートナー向け提案
+/sales ringi <会社名>               ← エンドユーザーの稟議支援
+```
